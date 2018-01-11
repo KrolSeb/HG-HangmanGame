@@ -13,8 +13,6 @@ public class HomeController {
     @RequestMapping("/")
     public String index(Model model){
         model.addAttribute("pageTitle","Strona główna");
-
-
         return "index";
     }
 }

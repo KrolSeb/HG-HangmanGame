@@ -1,6 +1,7 @@
 package com.wisielec.wisielec.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -11,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SignInController {
 
     @RequestMapping("/login")
-    public String login(){
+    public String login(Model model){
+        model.addAttribute("pageTitle","Logowanie");
         return "login-page";
     }
 }
