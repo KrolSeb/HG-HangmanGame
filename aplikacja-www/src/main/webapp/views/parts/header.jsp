@@ -3,7 +3,10 @@
 <head>
     <title>Gra w Wisielca | ${pageTitle}</title>
     <link href="../css/style.css" type="text/css" rel="stylesheet">
-
 </head>
 <body>
+
+<div class="container-fluid">
+
+</div>
 

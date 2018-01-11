@@ -7,7 +7,7 @@
 --%>
 <%@include file="parts/header.jsp" %>
 
-<h1>This is login page</h1>
+    
 
 
 <%@include file="parts/footer.jsp" %>

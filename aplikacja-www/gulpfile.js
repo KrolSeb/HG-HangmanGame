@@ -4,14 +4,14 @@ var gulp = require('gulp'),
 
 // sass & autoprefixer
 gulp.task('sass|autoprefixer', function () {
-    return gulp.src('./sass/style.scss')
+    return gulp.src('./src/main/webapp/sass/style.scss')
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(autoprefixer({ cascade: false }))
-        .pipe(gulp.dest('./css'));
+        .pipe(gulp.dest('./src/main/webapp/css'));
 });
 
 gulp.task('sass|autoprefixer:watch', function () {
-    return gulp.watch('./sass/**/*.scss', ['sass|autoprefixer']);
+    return gulp.watch('./src/main/webapp/sass/**/*.scss', ['sass|autoprefixer']);
 });
 
 
