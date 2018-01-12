@@ -1,9 +1,14 @@
-package wisielec.wisielec.com.aplikacja_android;
+package wisielec.com.wisielec.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import wisielec.wisielec.com.aplikacja_android.R;
+
 public class MainActivity extends AppCompatActivity {
+
+
+    //Test the main activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
