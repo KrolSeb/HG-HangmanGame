@@ -4,6 +4,57 @@
 
 body{
   margin: 0;
-  padding: 0;
+  background: url(../images/background.png) no-repeat center center;
+  background-size: cover;
+}
 
+.login-page{
+  .login-page__panel{
+    background-color: rgba(255,255,255,0.9);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.3);
+
+    a{
+      color: #0d2c4b;
+    }
+  }
+
+  .login-page__panel-title{
+    color: #0d2c4b;
+  }
+}
+
+.form{
+  .form-control{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #0d2c4b;
+
+    &::placeholder{
+      color: #0d2c4b;
+    }
+
+    &:focus{
+      box-shadow: none;
+      outline: none;
+    }
+  }
+}
+
+
+
+
+.btn{
+  &.btn-blue{
+    color: #ffffff;
+    background-color: #0d2c4b;
+    border-radius: 0;
+    font-size: 12pt;
+    padding: 15px 25px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.3);
+
+    &:focus{
+      outline: none;
+      box-shadow: none;
+    }
+  }
 }
