@@ -1,4 +1,4 @@
-package wisielec.com.wisielec.activity;
+package wisielec.wisielec.com.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
