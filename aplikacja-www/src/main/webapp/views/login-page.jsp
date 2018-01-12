@@ -6,7 +6,8 @@
         <div class="col-md-4 offset-md-4 login-page__panel pt-5 pb-5">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="text-center login-page__panel-title">Logowanie</h1>
+                    <a href="#"><i class="fa fa-arrow-circle-left prev-button"></i></a>
+                    <h1 class="login-page__panel-title text-center">Logowanie</h1>
                 </div>
             </div>
             <div class="row">
