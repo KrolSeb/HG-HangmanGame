@@ -2,8 +2,8 @@ package wisielec.wisielec.com.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import wisielec.wisielec.com.R;
 
-import wisielec.wisielec.com.aplikacja_android.R;
 
 public class MainActivity extends AppCompatActivity {
 
