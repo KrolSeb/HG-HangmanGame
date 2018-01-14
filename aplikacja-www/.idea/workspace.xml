@@ -9,9 +9,12 @@
       </changelist_data>
     </list>
     <list default="true" id="52ec4e4c-d407-4a84-8172-e21a44407731" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Category.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/DifficultyLevel.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Subcategory.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Word.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Category.java" afterPath="$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Category.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/DifficultyLevel.java" afterPath="$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/DifficultyLevel.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Rank.java" afterPath="$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Rank.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -43,18 +46,18 @@
       <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
-              <caret line="82" column="40" lean-forward="false" selection-start-line="82" selection-start-column="40" selection-end-line="82" selection-end-column="40" />
+            <state relative-caret-position="349">
+              <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Rank.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Rank.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Rank.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="26">
-              <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+            <state relative-caret-position="162">
+              <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
               <folding>
                 <element signature="e#228#229#0" expanded="true" />
                 <element signature="e#264#265#0" expanded="true" />
@@ -73,28 +76,54 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Category.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Category.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Category.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+            <state relative-caret-position="349">
+              <caret line="28" column="18" lean-forward="false" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
               <folding>
-                <element signature="e#279#280#0" expanded="true" />
-                <element signature="e#314#315#0" expanded="true" />
-                <element signature="e#370#371#0" expanded="true" />
-                <element signature="e#418#419#0" expanded="true" />
-                <element signature="e#456#457#0" expanded="true" />
-                <element signature="e#490#491#0" expanded="true" />
-                <element signature="e#544#545#0" expanded="true" />
-                <element signature="e#590#591#0" expanded="true" />
-                <element signature="e#621#622#0" expanded="true" />
-                <element signature="e#648#649#0" expanded="true" />
-                <element signature="e#688#689#0" expanded="true" />
-                <element signature="e#720#721#0" expanded="true" />
-                <element signature="e#771#772#0" expanded="true" />
-                <element signature="e#809#810#0" expanded="true" />
-                <element signature="e#880#881#0" expanded="true" />
-                <element signature="e#934#935#0" expanded="true" />
+                <element signature="e#248#249#0" expanded="true" />
+                <element signature="e#283#284#0" expanded="true" />
+                <element signature="e#339#340#0" expanded="true" />
+                <element signature="e#387#388#0" expanded="true" />
+                <element signature="e#440#441#0" expanded="true" />
+                <element signature="e#478#479#0" expanded="true" />
+                <element signature="e#551#552#0" expanded="true" />
+                <element signature="e#605#606#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Subcategory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Subcategory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+              <folding>
+                <element signature="e#204#205#0" expanded="true" />
+                <element signature="e#235#236#0" expanded="true" />
+                <element signature="e#287#288#0" expanded="true" />
+                <element signature="e#327#328#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Word.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Word.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="18" lean-forward="false" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+              <folding>
+                <element signature="e#199#200#0" expanded="true" />
+                <element signature="e#237#238#0" expanded="true" />
+                <element signature="e#296#297#0" expanded="true" />
+                <element signature="e#350#351#0" expanded="true" />
+                <element signature="e#381#382#0" expanded="true" />
+                <element signature="e#408#409#0" expanded="true" />
+                <element signature="e#448#449#0" expanded="true" />
+                <element signature="e#480#481#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -113,8 +142,8 @@
       <file leaf-file-name="DifficultyLevel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/DifficultyLevel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+            <state relative-caret-position="128">
+              <caret line="13" column="32" lean-forward="true" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
               <folding>
                 <element signature="e#193#194#0" expanded="true" />
                 <element signature="e#220#221#0" expanded="true" />
@@ -124,28 +153,6 @@
                 <element signature="e#352#353#0" expanded="true" />
                 <element signature="e#394#395#0" expanded="true" />
                 <element signature="e#430#431#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login-page.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/views/login-page.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/sass/style.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1139">
-              <caret line="67" column="1" lean-forward="false" selection-start-line="67" selection-start-column="1" selection-end-line="67" selection-end-column="1" />
-              <folding>
-                <marker date="1515780462228" expanded="true" signature="81:98" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -277,8 +284,11 @@
         <option value="$PROJECT_DIR$/src/main/webapp/views/parts/header.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/login-page.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/sass/style.scss" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Rank.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/DifficultyLevel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Rank.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Subcategoy.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Word.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Subcategory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Category.java" />
       </list>
     </option>
@@ -501,20 +511,23 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="" />
-      <recent name="com.wisielec.wisielec" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\__Studia\Projekt zespołowy\gra-w-wisielca\aplikacja-www\src\main\webapp" />
-      <recent name="D:\__Studia\Projekt zespołowy\gra-w-wisielca\aplikacja-www\src\main\webapp\css" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\__Studia\Projekt zespołowy\gra-w-wisielca\aplikacja-www" />
       <recent name="D:\__Studia\Projekt zespołowy\gra-w-wisielca\aplikacja-www\src\main\webapp" />
       <recent name="D:\__Studia\Projekt zespołowy\gra-w-wisielca\aplikacja-www\src\main\webapp\css" />
       <recent name="D:\__Studia\Projekt zespołowy\gra-w-wisielca\aplikacja-www\src\main\webapp\views\parts" />
       <recent name="D:\__Studia\Projekt zespołowy\gra-w-wisielca\aplikacja-www\src\main\webapp\js" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+      <recent name="com.wisielec.wisielec" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.wisielec.wisielec.domain" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\__Studia\Projekt zespołowy\gra-w-wisielca\aplikacja-www\src\main\webapp" />
+      <recent name="D:\__Studia\Projekt zespołowy\gra-w-wisielca\aplikacja-www\src\main\webapp\css" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -669,7 +682,7 @@
       <workItem from="1515777601825" duration="873000" />
       <workItem from="1515779156706" duration="2109000" />
       <workItem from="1515845253570" duration="853000" />
-      <workItem from="1515926621590" duration="779000" />
+      <workItem from="1515926621590" duration="1494000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1512737405247</created>
@@ -713,11 +726,18 @@
       <option name="project" value="LOCAL" />
       <updated>1515832544904</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add Category.java and DifficultyLevel.java classes">
+      <created>1515927445335</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1515927445335</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32148000" />
+    <option name="totallyTimeSpent" value="32863000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -824,7 +844,8 @@
     <MESSAGE value="Move gulpfile.js to root directory of project" />
     <MESSAGE value="Move gulpfile.js to root directory and add new path to configuration file" />
     <MESSAGE value="Add Rank.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Rank.java" />
+    <MESSAGE value="Add Category.java and DifficultyLevel.java classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Category.java and DifficultyLevel.java classes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -836,14 +857,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/parts/header.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="18" lean-forward="true" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/services.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/1.5.9.RELEASE/spring-boot-autoconfigure-1.5.9.RELEASE.jar!/org/springframework/boot/autoconfigure/websocket/WebSocketAutoConfiguration.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -1044,15 +1057,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="82" column="40" lean-forward="false" selection-start-line="82" selection-start-column="40" selection-end-line="82" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Word.java" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/views/login-page.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1095,60 +1099,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/WisielecApplication.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="24" column="5" lean-forward="false" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+        <state relative-caret-position="349">
+          <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/DifficultyLevel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding>
-            <element signature="e#193#194#0" expanded="true" />
-            <element signature="e#220#221#0" expanded="true" />
-            <element signature="e#260#261#0" expanded="true" />
-            <element signature="e#292#293#0" expanded="true" />
-            <element signature="e#323#324#0" expanded="true" />
-            <element signature="e#352#353#0" expanded="true" />
-            <element signature="e#394#395#0" expanded="true" />
-            <element signature="e#430#431#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Category.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-          <folding>
-            <element signature="e#279#280#0" expanded="true" />
-            <element signature="e#314#315#0" expanded="true" />
-            <element signature="e#370#371#0" expanded="true" />
-            <element signature="e#418#419#0" expanded="true" />
-            <element signature="e#456#457#0" expanded="true" />
-            <element signature="e#490#491#0" expanded="true" />
-            <element signature="e#544#545#0" expanded="true" />
-            <element signature="e#590#591#0" expanded="true" />
-            <element signature="e#621#622#0" expanded="true" />
-            <element signature="e#648#649#0" expanded="true" />
-            <element signature="e#688#689#0" expanded="true" />
-            <element signature="e#720#721#0" expanded="true" />
-            <element signature="e#771#772#0" expanded="true" />
-            <element signature="e#809#810#0" expanded="true" />
-            <element signature="e#880#881#0" expanded="true" />
-            <element signature="e#934#935#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Rank.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+        <state relative-caret-position="162">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
           <folding>
             <element signature="e#228#229#0" expanded="true" />
             <element signature="e#264#265#0" expanded="true" />
@@ -1162,6 +1124,86 @@
             <element signature="e#608#609#0" expanded="true" />
             <element signature="e#648#649#0" expanded="true" />
             <element signature="e#680#681#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/DifficultyLevel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="13" column="32" lean-forward="true" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+          <folding>
+            <element signature="e#193#194#0" expanded="true" />
+            <element signature="e#220#221#0" expanded="true" />
+            <element signature="e#260#261#0" expanded="true" />
+            <element signature="e#292#293#0" expanded="true" />
+            <element signature="e#323#324#0" expanded="true" />
+            <element signature="e#352#353#0" expanded="true" />
+            <element signature="e#394#395#0" expanded="true" />
+            <element signature="e#430#431#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Subcategoy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Subcategory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding>
+            <element signature="e#204#205#0" expanded="true" />
+            <element signature="e#235#236#0" expanded="true" />
+            <element signature="e#287#288#0" expanded="true" />
+            <element signature="e#327#328#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Word.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="18" lean-forward="false" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+          <folding>
+            <element signature="e#199#200#0" expanded="true" />
+            <element signature="e#237#238#0" expanded="true" />
+            <element signature="e#296#297#0" expanded="true" />
+            <element signature="e#350#351#0" expanded="true" />
+            <element signature="e#381#382#0" expanded="true" />
+            <element signature="e#408#409#0" expanded="true" />
+            <element signature="e#448#449#0" expanded="true" />
+            <element signature="e#480#481#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/WisielecApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="24" column="5" lean-forward="false" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wisielec/wisielec/domain/Category.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="28" column="18" lean-forward="false" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+          <folding>
+            <element signature="e#248#249#0" expanded="true" />
+            <element signature="e#283#284#0" expanded="true" />
+            <element signature="e#339#340#0" expanded="true" />
+            <element signature="e#387#388#0" expanded="true" />
+            <element signature="e#440#441#0" expanded="true" />
+            <element signature="e#478#479#0" expanded="true" />
+            <element signature="e#551#552#0" expanded="true" />
+            <element signature="e#605#606#0" expanded="true" />
           </folding>
         </state>
       </provider>

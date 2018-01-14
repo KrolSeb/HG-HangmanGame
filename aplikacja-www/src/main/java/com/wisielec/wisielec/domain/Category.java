@@ -1,13 +1,13 @@
 package com.wisielec.wisielec.domain;
 
+import java.util.List;
+
 /**
  * Created by Emerex on 14/01/2018.
  */
 public class Category {
     private String categoryName;
-    private String subcategory;
-    private String word;
-    private DifficultyLevel difficultyLevel;
+    private List<Subcategory> subcategoryList;
 
     public String getCategoryName() {
         return categoryName;
@@ -17,27 +17,19 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    public String getSubcategory() {
-        return subcategory;
+    public List<Subcategory> getSubcategoryList() {
+        return subcategoryList;
     }
 
-    public void setSubcategory(String subcategory) {
-        this.subcategory = subcategory;
+    public void setSubcategoryList(List<Subcategory> subcategoryList) {
+        this.subcategoryList = subcategoryList;
     }
 
-    public String getWord() {
-        return word;
-    }
-
-    public void setWord(String word) {
-        this.word = word;
-    }
-
-    public DifficultyLevel getDifficultyLevel() {
-        return difficultyLevel;
-    }
-
-    public void setDifficultyLevel(DifficultyLevel difficultyLevel) {
-        this.difficultyLevel = difficultyLevel;
+    @Override
+    public String toString() {
+        return "Category{" +
+                "categoryName='" + categoryName + '\'' +
+                ", subcategoryList=" + subcategoryList +
+                '}';
     }
 }

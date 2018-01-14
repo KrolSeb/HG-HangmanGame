@@ -22,4 +22,12 @@ public class DifficultyLevel {
     public void setPoints(long points) {
         this.points = points;
     }
+
+    @Override
+    public String toString() {
+        return "DifficultyLevel{" +
+                "name='" + name + '\'' +
+                ", points=" + points +
+                '}';
+    }
 }
