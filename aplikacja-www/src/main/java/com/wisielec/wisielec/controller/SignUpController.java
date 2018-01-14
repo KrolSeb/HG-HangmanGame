@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class SignUpController {
+    //Test of firebase
+
 
     @Autowired
     UserRepository userRepository;
