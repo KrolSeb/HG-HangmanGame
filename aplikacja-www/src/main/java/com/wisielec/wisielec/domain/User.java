@@ -1,7 +1,7 @@
 package com.wisielec.wisielec.domain;
 
 /**
- * Created by Emerex on 08/12/2017.
+ * Created by Emerex on 08/01/2018.
  */
 public class User {
     private String userName;
