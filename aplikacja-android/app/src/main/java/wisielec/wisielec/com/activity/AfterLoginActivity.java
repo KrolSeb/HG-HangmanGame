@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import wisielec.wisielec.com.R;
 
-public class AfterLoginActivity extends AppCompatActivity {
+public class AfterLoginActivity extends MainActivity {
     protected ImageView avatar;
     protected TextView username;
     protected TextView rankLevel;
