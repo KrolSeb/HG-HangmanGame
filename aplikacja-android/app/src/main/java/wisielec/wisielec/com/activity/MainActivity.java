@@ -8,7 +8,7 @@ import wisielec.wisielec.com.R;
 public class MainActivity extends AppCompatActivity {
 
 
-    //Test the main activity
+    //Test the main activity Marta
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
