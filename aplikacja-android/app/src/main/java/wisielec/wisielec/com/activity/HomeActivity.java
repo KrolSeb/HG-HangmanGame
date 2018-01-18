@@ -1,5 +1,7 @@
 package wisielec.wisielec.com.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,9 +32,34 @@ public class HomeActivity extends MainActivity {
         final View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                switch (v.getId()) {
+                    case R.id.buttonLogin:
+                        Context contextLogin;
+                        contextLogin = getApplicationContext();
+                        Intent intentLogin = new Intent(contextLogin, SignInActivity.class);
+                        startActivity(intentLogin);
+                        break;
+                    case R.id.buttonRegistration:
+                        Context contextRegistration;
+                        contextRegistration = getApplicationContext();
+                        Intent intentRegistration = new Intent(contextRegistration, SignUpActivity.class);
+                        startActivity(intentRegistration);
+                        break;
+                    case R.id.buttonExit:
+                        //MainActivity.this.finish();
+                        Intent intentExit = new Intent(Intent.ACTION_MAIN);
+                        intentExit.addCategory(Intent.CATEGORY_HOME);
+                        intentExit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intentExit);
+                        break;
+                    default:
+                        break;
+                }
             }
         };
+        buttonLogin.setOnClickListener(listener);
+        buttonRegistration.setOnClickListener(listener);
+        buttonExit.setOnClickListener(listener);
     }
 
 }
