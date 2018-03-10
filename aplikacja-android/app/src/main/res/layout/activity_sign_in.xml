@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="wisielec.wisielec.com.activity.SignInActivity"
+    android:background="@mipmap/login">
+
+    <EditText
+        android:id="@+id/emailInput"
+        android:layout_width="270dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="156dp"
+        android:layout_gravity="center"
+        android:text="Podaj email"
+        android:textStyle="bold"
+        android:textColor="#7c8085"
+        android:textAlignment="center"
+        android:background="@drawable/edittext_border"/>
+
+    <EditText
+        android:id="@+id/passwordInput"
+        android:layout_width="270dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="238dp"
+        android:layout_gravity="center"
+        android:text="Podaj hasło"
+        android:textStyle="bold"
+        android:textColor="#7c8085"
+        android:textAlignment="center"
+        android:background="@drawable/edittext_border"/>
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="173dp"
+        android:layout_marginTop="320dp"
+        android:layout_gravity="center"
+        android:background="#0d2c4b"
+        android:text="Zaloguj"
+        android:textColor="#f4d170"
+        android:textSize="25dp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/buttonRegistration"
+        android:layout_width="119dp"
+        android:layout_height="52dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="473dp"
+        android:layout_marginStart="45dp"
+        android:text="Rejestracja"
+        android:textColor="#0d2c4b"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:background="@drawable/button_border"/>
+
+</RelativeLayout>

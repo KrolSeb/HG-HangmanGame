@@ -10,14 +10,15 @@
         android:id="@+id/buttonLogin"
         android:layout_width="170dp"
         android:layout_height="60dp"
+        android:layout_gravity="center"
         android:layout_marginStart="95dp"
         android:layout_marginTop="210dp"
-        android:layout_gravity="center"
         android:background="#0d2c4b"
         android:text="Logowanie"
         android:textColor="#f4d170"
-        android:textSize="22dp"
-        android:textStyle="bold"/>
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"/>
 
     <Button
         android:id="@+id/buttonRegistration"
@@ -30,13 +31,14 @@
         android:background="#0d2c4b"
         android:text="Rejestracja"
         android:textColor="#f4d170"
-        android:textSize="22dp"
-        android:textStyle="bold" />
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"/>
 
     <Button
         android:id="@+id/buttonExit"
-        android:layout_width="105dp"
-        android:layout_height="45dp"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_gravity="center"
@@ -45,7 +47,8 @@
         android:background="#0d2c4b"
         android:text="Wyjście"
         android:textColor="#f4d170"
-        android:textSize="19dp"
-        android:textStyle="bold" />
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"/>
 
 </RelativeLayout>
