@@ -148,8 +148,15 @@
                 android:textColor="#0d2c4b"
                 android:textSize="17dp" />
 
+            <Button
+                android:id="@+id/reloadButton"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_above="@+id/settingsButton"
+                android:layout_alignParentStart="true"
+                android:text="Button" />
+
         </RelativeLayout>
 
     </android.support.design.widget.NavigationView>
-
 </android.support.v4.widget.DrawerLayout>
