@@ -43,7 +43,8 @@
         android:text="Zaloguj"
         android:textColor="#f4d170"
         android:textSize="25dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"/>
 
     <Button
         android:id="@+id/buttonRegistration"
@@ -56,6 +57,7 @@
         android:textColor="#0d2c4b"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:background="@drawable/button_border"/>
+        android:background="@drawable/button_border"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"/>
 
 </RelativeLayout>
