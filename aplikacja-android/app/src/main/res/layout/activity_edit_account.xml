@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="wisielec.wisielec.com.activity.EditAccountActivity"
+    android:background="@mipmap/editionaccount">
+
+    <ImageView
+        android:id="@+id/avatarImageView"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="100dp"
+        android:background="@mipmap/avatar" />
+
+    <TextView
+        android:id="@+id/usernameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/avatarImageView"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="19dp"
+        android:layout_toEndOf="@+id/avatarImageView"
+        android:text="Nazwa użytkownika"
+        android:textColor="#0d2c4b"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/newUsernameInput"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_alignEnd="@+id/usernameTextView"
+        android:layout_below="@+id/avatarImageView"
+        android:layout_gravity="center"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/edittext_border"
+        android:hint="Wprowadź nową nazwę"
+        android:textAlignment="center"
+        android:textColor="#7c8085"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/newPasswordInput"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/newUsernameInput"
+        android:layout_below="@+id/newUsernameInput"
+        android:layout_gravity="center"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/edittext_border"
+        android:hint="Wprowadź nowe hasło"
+        android:textAlignment="center"
+        android:textColor="#7c8085"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/replyNewPasswordInput"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/newPasswordInput"
+        android:layout_below="@+id/newPasswordInput"
+        android:layout_gravity="center"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/edittext_border"
+        android:hint="Powtórz nowe hasło"
+        android:textAlignment="center"
+        android:textColor="#7c8085"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/uploadNewAvatarButton"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/replyNewPasswordInput"
+        android:layout_below="@+id/replyNewPasswordInput"
+        android:layout_gravity="center"
+        android:layout_marginTop="14dp"
+        android:background="#0d2c4b"
+        android:text="Wgraj nowy avatar"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="130dp"
+        android:layout_height="55dp"
+        android:layout_above="@+id/deleteAccountButton"
+        android:layout_gravity="center"
+        android:layout_marginStart="22dp"
+        android:layout_toEndOf="@+id/deleteAccountButton"
+        android:background="#0d2c4b"
+        android:text="Zapisz"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/deleteAccountButton"
+        android:layout_width="119dp"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/uploadNewAvatarButton"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/button_border"
+        android:text="Usuń konto"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#0d2c4b"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/tickIndicator1"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignTop="@+id/newUsernameInput"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="7dp"
+        android:layout_toEndOf="@+id/newPasswordInput"
+        android:background="@mipmap/grey_tick" />
+
+    <ImageView
+        android:id="@+id/tickIndicator2"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignStart="@+id/tickIndicator1"
+        android:layout_alignTop="@+id/newPasswordInput"
+        android:layout_marginTop="7dp"
+        android:background="@mipmap/grey_tick" />
+
+    <ImageView
+        android:id="@+id/tickIndicator3"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignStart="@+id/tickIndicator2"
+        android:layout_alignTop="@+id/replyNewPasswordInput"
+        android:layout_marginTop="7dp"
+        android:background="@mipmap/grey_tick" />
+
+    <ImageView
+        android:id="@+id/tickIndicator4"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignStart="@+id/tickIndicator3"
+        android:layout_alignTop="@+id/uploadNewAvatarButton"
+        android:layout_marginTop="7dp"
+        android:background="@mipmap/grey_tick" />
+
+</RelativeLayout>

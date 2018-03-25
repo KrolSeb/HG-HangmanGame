@@ -40,8 +40,8 @@ public class SignInActivity extends MainActivity {
                     case R.id.buttonLogin:
                         Context contextLogin;
                         contextLogin = getApplicationContext();
-                        //Intent intentLogin = new Intent(contextLogin, SignInActivity.class);
-                        //startActivity(intentLogin);
+                        Intent intentLogin = new Intent(contextLogin, AfterLoginActivity.class);
+                        startActivity(intentLogin);
                         break;
                     case R.id.buttonRegistration:
                         Context contextRegistration;

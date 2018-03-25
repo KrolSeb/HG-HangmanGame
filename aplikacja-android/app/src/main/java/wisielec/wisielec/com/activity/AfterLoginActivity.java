@@ -1,5 +1,6 @@
 package wisielec.wisielec.com.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -58,7 +59,7 @@ public class AfterLoginActivity extends MainActivity {
 
         onSettingsButtonClick();
         onLogoutButtonClick();
-        directDataToTextViews();
+        //directDataToTextViews();
 
     }
 
@@ -66,7 +67,8 @@ public class AfterLoginActivity extends MainActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(getApplicationContext(),"Ustawienia",Toast.LENGTH_SHORT).show();
+                Intent intentEditAccount = new Intent(getApplicationContext(), EditAccountActivity.class);
+                startActivity(intentEditAccount);
             }
         });
     }
@@ -90,7 +92,7 @@ public class AfterLoginActivity extends MainActivity {
                 reloadButton.performClick();
             }
         }, 1000);
-        getUserDataFromDatabase();
+        //getUserDataFromDatabase();
     }
 
 
@@ -103,7 +105,6 @@ public class AfterLoginActivity extends MainActivity {
                     case R.id.reloadButton:
                         //Biblioteka do prostego dodawania obrazka z URL
                         Picasso.get().load(retrievedUser.getAvatarURL()).into(avatar);
-
                         username.setText(retrievedUser.getUsername());
                         rankingPosition.setText(Integer.toString(retrievedUser.getRankingPosition()));
                         rankLevel.setText(retrievedUser.getRank());
