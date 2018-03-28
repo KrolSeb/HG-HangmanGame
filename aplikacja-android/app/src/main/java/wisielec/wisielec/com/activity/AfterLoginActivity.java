@@ -28,25 +28,20 @@ public class AfterLoginActivity extends MainActivity {
     protected Button logoutButton;
     protected Button reloadButton;
 
+    protected Button howToPlayButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_login);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        howToPlayButton = findViewById(R.id.howToPlayButton);
 
         avatar = findViewById(R.id.avatarImageView);
         username = findViewById(R.id.usernameTextView);
@@ -59,9 +54,28 @@ public class AfterLoginActivity extends MainActivity {
 
         onSettingsButtonClick();
         onLogoutButtonClick();
-        //directDataToTextViews();
+        onClickListeners();
 
+        //directDataToTextViews();
     }
+
+    private void onClickListeners() {
+        final View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()){
+                    case R.id.howToPlayButton:
+                        Intent intentHowToPlay = new Intent(getApplicationContext(), HowToPlayActivity.class);
+                        startActivity(intentHowToPlay);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
+        howToPlayButton.setOnClickListener(listener);
+    }
+
 
     private void onSettingsButtonClick() {
         settingsButton.setOnClickListener(new View.OnClickListener() {
