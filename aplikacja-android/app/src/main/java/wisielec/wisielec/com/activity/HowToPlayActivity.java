@@ -7,7 +7,7 @@ import wisielec.wisielec.com.R;
  * Created by X on 2018-03-28.
  */
 
-public class HowToPlay extends MainActivity {
+public class HowToPlayActivity extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
