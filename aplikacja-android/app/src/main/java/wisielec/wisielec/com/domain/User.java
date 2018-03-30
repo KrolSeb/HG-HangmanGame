@@ -14,6 +14,15 @@ public class User {
     private String rank;
     private boolean isAccountActivated;
     private boolean isActuallyLogged;
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public void setId(String id) {
         this.id = id;
@@ -88,7 +97,7 @@ public class User {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "User{" +
                 "userName='" + username + '\'' +
                 ", avatarURL='" + avatarURL + '\'' +
