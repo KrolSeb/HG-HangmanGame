@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -18,8 +17,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-
-import java.util.concurrent.Executor;
 
 import wisielec.wisielec.com.activity.SignInActivity;
 import wisielec.wisielec.com.domain.User;
@@ -45,7 +42,7 @@ public class UserRepository {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 receivedUser.setAvatarURL(dataSnapshot.getValue(User.class).getAvatarURL());
-                receivedUser.setUsername(dataSnapshot.getValue(User.class).getUsername());
+                receivedUser.setUserName(dataSnapshot.getValue(User.class).getUserName());
                 receivedUser.setRankingPosition(dataSnapshot.getValue(User.class).getRankingPosition());
                 receivedUser.setRank(dataSnapshot.getValue(User.class).getRank());
                 receivedUser.setPoints(dataSnapshot.getValue(User.class).getPoints());
@@ -54,7 +51,7 @@ public class UserRepository {
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 receivedUser.setAvatarURL(dataSnapshot.getValue(User.class).getAvatarURL());
-                receivedUser.setUsername(dataSnapshot.getValue(User.class).getUsername());
+                receivedUser.setUserName(dataSnapshot.getValue(User.class).getUserName());
                 receivedUser.setRankingPosition(dataSnapshot.getValue(User.class).getRankingPosition());
                 receivedUser.setRank(dataSnapshot.getValue(User.class).getRank());
                 receivedUser.setPoints(dataSnapshot.getValue(User.class).getPoints());

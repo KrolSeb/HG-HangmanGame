@@ -5,16 +5,24 @@ package wisielec.wisielec.com.domain;
  */
 
 public class User {
-    private String id;
-    private String username;
-    private String password;
     private String avatarURL;
-    private int rankingPosition;
-    private long points;
-    private String rank;
-    private boolean isAccountActivated;
-    private boolean isActuallyLogged;
     private String email;
+    private String id;
+    private String isAccountActivated;
+    private String isActuallyLogged;
+    private String password;
+    private int points;
+    private String rank;
+    private int rankingPosition;
+    private String userName;
+
+    public String getAvatarURL() {
+        return avatarURL;
+    }
+
+    public void setAvatarURL(String avatarURL) {
+        this.avatarURL = avatarURL;
+    }
 
     public String getEmail() {
         return email;
@@ -24,88 +32,67 @@ public class User {
         this.email = email;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setAvatarURL(String avatarURL) {
-        this.avatarURL = avatarURL;
-    }
-
-    public void setRankingPosition(int rankingPosition) {
-        this.rankingPosition = rankingPosition;
-    }
-
-    public void setPoints(long points) {
-        this.points = points;
-    }
-
-    public void setRank(String rank) {
-        this.rank = rank;
-    }
-
-    public void setAccountActivated(boolean accountActivated) {
-        isAccountActivated = accountActivated;
-    }
-
-    public void setActuallyLogged(boolean actuallyLogged) {
-        isActuallyLogged = actuallyLogged;
-    }
-
     public String getId() {
         return id;
     }
 
-    public String getUsername() {
-        return username;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getIsAccountActivated() {
+        return isAccountActivated;
+    }
+
+    public void setIsAccountActivated(String isAccountActivated) {
+        this.isAccountActivated = isAccountActivated;
+    }
+
+    public String getIsActuallyLogged() {
+        return isActuallyLogged;
+    }
+
+    public void setIsActuallyLogged(String isActuallyLogged) {
+        this.isActuallyLogged = isActuallyLogged;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public String getAvatarURL() {
-        return avatarURL;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public int getRankingPosition() {
-        return rankingPosition;
-    }
-
-    public long getPoints() {
+    public int getPoints() {
         return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 
     public String getRank() {
         return rank;
     }
 
-    public boolean isAccountActivated() {
-        return isAccountActivated;
+    public void setRank(String rank) {
+        this.rank = rank;
     }
 
-    public boolean isActuallyLogged() {
-        return isActuallyLogged;
+    public int getRankingPosition() {
+        return rankingPosition;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userName='" + username + '\'' +
-                ", avatarURL='" + avatarURL + '\'' +
-                ", rankingPosition=" + rankingPosition + '\'' +
-                ", points=" + points +
-                ", rank='" + rank + '\'' +
-                ", isAccountActivated=" + isAccountActivated +
-                ", isActuallyLogged=" + isActuallyLogged +
-                '}';
+    public void setRankingPosition(int rankingPosition) {
+        this.rankingPosition = rankingPosition;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

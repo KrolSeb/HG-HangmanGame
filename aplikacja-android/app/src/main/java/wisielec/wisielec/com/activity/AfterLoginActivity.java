@@ -119,7 +119,7 @@ public class AfterLoginActivity extends MainActivity {
                     case R.id.reloadButton:
                         //Biblioteka do prostego dodawania obrazka z URL
                         Picasso.get().load(retrievedUser.getAvatarURL()).into(avatar);
-                        username.setText(retrievedUser.getUsername());
+                        username.setText(retrievedUser.getUserName());
                         rankingPosition.setText(Integer.toString(retrievedUser.getRankingPosition()));
                         rankLevel.setText(retrievedUser.getRank());
                         pointsAmount.setText(Long.toString(retrievedUser.getPoints()));
