@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@mipmap/game">
+
+    <Button
+        android:id="@+id/ALetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="234dp"
+        android:layout_marginStart="21dp"
+        android:background="#0d2c4b"
+        android:text="A"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/BLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/ALetter"
+        android:layout_alignTop="@+id/ALetter"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/ALetter"
+        android:background="#0d2c4b"
+        android:text="B"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/CLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/BLetter"
+        android:layout_alignTop="@+id/BLetter"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/BLetter"
+        android:background="#0d2c4b"
+        android:text="C"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/DLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/CLetter"
+        android:layout_alignTop="@+id/CLetter"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/CLetter"
+        android:background="#0d2c4b"
+        android:text="D"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/ELetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/DLetter"
+        android:layout_alignTop="@+id/DLetter"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/DLetter"
+        android:background="#0d2c4b"
+        android:text="E"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/FLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/ELetter"
+        android:layout_alignTop="@+id/ELetter"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/ELetter"
+        android:background="#0d2c4b"
+        android:text="F"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/GLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/FLetter"
+        android:layout_alignTop="@+id/FLetter"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/FLetter"
+        android:background="#0d2c4b"
+        android:text="G"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/HLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/GLetter"
+        android:layout_alignTop="@+id/GLetter"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/GLetter"
+        android:background="#0d2c4b"
+        android:text="H"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/ILetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/HLetter"
+        android:layout_alignTop="@+id/HLetter"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/HLetter"
+        android:background="#0d2c4b"
+        android:text="I"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/JLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/ILetter"
+        android:layout_alignTop="@+id/ILetter"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/ILetter"
+        android:background="#0d2c4b"
+        android:text="J"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/KLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignStart="@+id/ALetter"
+        android:layout_below="@+id/BLetter"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:background="#0d2c4b"
+        android:text="K"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/LLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_alignBottom="@+id/KLetter"
+        android:layout_alignTop="@+id/KLetter"
+        android:layout_toEndOf="@+id/KLetter"
+        android:background="#0d2c4b"
+        android:text="L"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/MLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_alignBottom="@+id/LLetter"
+        android:layout_alignTop="@+id/LLetter"
+        android:layout_toEndOf="@+id/LLetter"
+        android:background="#0d2c4b"
+        android:text="M"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/NLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_alignBottom="@+id/MLetter"
+        android:layout_alignTop="@+id/MLetter"
+        android:layout_toEndOf="@+id/MLetter"
+        android:background="#0d2c4b"
+        android:text="N"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/OLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_alignBottom="@+id/NLetter"
+        android:layout_alignTop="@+id/NLetter"
+        android:layout_toEndOf="@+id/NLetter"
+        android:background="#0d2c4b"
+        android:text="O"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/PLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/OLetter"
+        android:layout_alignTop="@+id/OLetter"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/OLetter"
+        android:background="#0d2c4b"
+        android:text="P"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/QLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_alignBottom="@+id/PLetter"
+        android:layout_alignTop="@+id/PLetter"
+        android:layout_toEndOf="@+id/PLetter"
+        android:background="#0d2c4b"
+        android:text="Q"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/RLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_alignBottom="@+id/QLetter"
+        android:layout_alignTop="@+id/QLetter"
+        android:layout_toEndOf="@+id/QLetter"
+        android:background="#0d2c4b"
+        android:text="R"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/SLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_alignBottom="@+id/RLetter"
+        android:layout_alignTop="@+id/RLetter"
+        android:layout_toEndOf="@+id/RLetter"
+        android:background="#0d2c4b"
+        android:text="S"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/TLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignStart="@+id/LLetter"
+        android:layout_below="@+id/LLetter"
+        android:layout_marginTop="13dp"
+        android:background="#0d2c4b"
+        android:text="T"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/ULetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_alignBottom="@+id/TLetter"
+        android:layout_alignTop="@+id/TLetter"
+        android:layout_toEndOf="@+id/TLetter"
+        android:background="#0d2c4b"
+        android:text="U"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/VLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_alignBottom="@+id/ULetter"
+        android:layout_alignTop="@+id/ULetter"
+        android:layout_toEndOf="@+id/ULetter"
+        android:background="#0d2c4b"
+        android:text="V"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/WLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_alignBottom="@+id/VLetter"
+        android:layout_alignTop="@+id/VLetter"
+        android:layout_toEndOf="@+id/VLetter"
+        android:background="#0d2c4b"
+        android:text="W"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/XLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_alignBottom="@+id/WLetter"
+        android:layout_alignTop="@+id/WLetter"
+        android:layout_toEndOf="@+id/WLetter"
+        android:background="#0d2c4b"
+        android:text="X"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/YLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_alignBottom="@+id/XLetter"
+        android:layout_alignTop="@+id/XLetter"
+        android:layout_toEndOf="@+id/XLetter"
+        android:background="#0d2c4b"
+        android:text="Y"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/ZLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_alignBottom="@+id/YLetter"
+        android:layout_alignTop="@+id/YLetter"
+        android:layout_toEndOf="@+id/YLetter"
+        android:background="#0d2c4b"
+        android:text="Z"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <!-- Polskie litery -->
+
+    <Button
+        android:id="@+id/polishALetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignStart="@+id/KLetter"
+        android:layout_below="@+id/TLetter"
+        android:layout_marginTop="23dp"
+        android:background="#0d2c4b"
+        android:text="Ą"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/polishCLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/polishALetter"
+        android:layout_alignStart="@+id/TLetter"
+        android:layout_alignTop="@+id/polishALetter"
+        android:background="#0d2c4b"
+        android:text="Ć"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/polishELetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/polishCLetter"
+        android:layout_alignStart="@+id/ULetter"
+        android:layout_alignTop="@+id/polishCLetter"
+        android:background="#0d2c4b"
+        android:text="Ę"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/polishLLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/polishELetter"
+        android:layout_alignStart="@+id/VLetter"
+        android:layout_alignTop="@+id/polishELetter"
+        android:background="#0d2c4b"
+        android:text="Ł"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/polishNLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/polishLLetter"
+        android:layout_alignStart="@+id/WLetter"
+        android:layout_alignTop="@+id/polishLLetter"
+        android:background="#0d2c4b"
+        android:text="Ń"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/polishOLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/polishNLetter"
+        android:layout_alignStart="@+id/XLetter"
+        android:layout_alignTop="@+id/polishNLetter"
+        android:background="#0d2c4b"
+        android:text="Ó"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/polishSLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/polishNLetter"
+        android:layout_alignStart="@+id/YLetter"
+        android:layout_alignTop="@+id/polishOLetter"
+        android:background="#0d2c4b"
+        android:text="Ś"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+
+    <!-- Litera Ź -->
+    <Button
+        android:id="@+id/polishZFirstLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/polishSLetter"
+        android:layout_alignStart="@+id/ZLetter"
+        android:layout_alignTop="@+id/polishSLetter"
+        android:background="#0d2c4b"
+        android:text="Ź"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <!-- Litera Ż -->
+    <Button
+        android:id="@+id/polishZSecondLetter"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignBottom="@+id/polishZFirstLetter"
+        android:layout_alignStart="@+id/SLetter"
+        android:layout_alignTop="@+id/polishZFirstLetter"
+        android:background="#0d2c4b"
+        android:text="Ż"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/abortGameButton"
+        android:layout_width="119dp"
+        android:layout_height="45dp"
+        android:layout_alignStart="@+id/polishALetter"
+        android:layout_below="@+id/polishALetter"
+        android:layout_gravity="center"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_border"
+        android:text="Przerwij rozgrywkę"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#0d2c4b"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/hangmanOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        app:srcCompat="@mipmap/hangmanone" />
+
+    <ImageView
+        android:id="@+id/hangmanTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        app:srcCompat="@mipmap/hangmantwo" />
+
+    <ImageView
+        android:id="@+id/hangmanThree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        app:srcCompat="@mipmap/hangmanthree" />
+
+    <ImageView
+        android:id="@+id/hangmanFour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        app:srcCompat="@mipmap/hangmanfour" />
+
+    <ImageView
+        android:id="@+id/hangmanFive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        app:srcCompat="@mipmap/hangmanfive" />
+
+    <TextView
+        android:id="@+id/categoryTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/CLetter"
+        android:layout_marginBottom="83dp"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#0d2c4b"
+        android:textSize="21dp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@+id/LLetter"
+        android:text="Kategoria:" />
+
+    <TextView
+        android:id="@+id/concreteCategoryTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_alignBaseline="@+id/categoryTextView"
+        android:layout_alignBottom="@+id/categoryTextView"
+        android:layout_alignStart="@+id/PLetter"
+        android:text="Piłkarz"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#0d2c4b"
+        android:textSize="21dp"
+        android:textStyle="bold" />
+</RelativeLayout>

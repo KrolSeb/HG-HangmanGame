@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import wisielec.wisielec.com.R;
+import wisielec.wisielec.com.domain.User;
+import wisielec.wisielec.com.repository.UserRepository;
 
 /**
  * Created by X on 2018-01-18.
@@ -19,6 +21,7 @@ public class SignInActivity extends MainActivity {
     Button buttonRegistration;
     EditText emailInput;
     EditText passwordInput;
+    private UserRepository userRepository = new UserRepository();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

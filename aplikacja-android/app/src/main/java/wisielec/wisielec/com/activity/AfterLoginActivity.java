@@ -29,6 +29,7 @@ public class AfterLoginActivity extends MainActivity {
     protected Button reloadButton;
 
     protected Button howToPlayButton;
+    protected Button playButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class AfterLoginActivity extends MainActivity {
         toggle.syncState();
 
         howToPlayButton = findViewById(R.id.howToPlayButton);
+        playButton = findViewById(R.id.playButton);
 
         avatar = findViewById(R.id.avatarImageView);
         username = findViewById(R.id.usernameTextView);
@@ -68,12 +70,17 @@ public class AfterLoginActivity extends MainActivity {
                         Intent intentHowToPlay = new Intent(getApplicationContext(), HowToPlayActivity.class);
                         startActivity(intentHowToPlay);
                         break;
+                    case R.id.playButton:
+                        Intent intentPlay = new Intent(getApplicationContext(), ChooseCountOfRoundsActivity.class);
+                        startActivity(intentPlay);
+                        break;
                     default:
                         break;
                 }
             }
         };
         howToPlayButton.setOnClickListener(listener);
+        playButton.setOnClickListener(listener);
     }
 
 

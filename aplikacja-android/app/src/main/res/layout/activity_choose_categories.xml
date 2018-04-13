@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/categories">
+
+    <Button
+        android:id="@+id/firstCategoryButton"
+        android:layout_width="156dp"
+        android:layout_height="56dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:background="#0abc30"
+        android:text="Sport"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#0d2c4b"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/secondCategoryButton"
+        android:layout_width="156dp"
+        android:layout_height="56dp"
+        android:layout_alignStart="@+id/thirdCategoryButton"
+        android:layout_below="@+id/firstCategoryButton"
+        android:layout_gravity="center"
+        android:layout_marginTop="13dp"
+        android:background="#0abc30"
+        android:text="Kino"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#0d2c4b"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/thirdCategoryButton"
+        android:layout_width="156dp"
+        android:layout_height="56dp"
+        android:layout_alignStart="@+id/firstCategoryButton"
+        android:layout_below="@+id/secondCategoryButton"
+        android:layout_gravity="center"
+        android:layout_marginTop="13dp"
+        android:background="#f8aa12"
+        android:text="Muzyka"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#0d2c4b"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/fourthCategoryButton"
+        android:layout_width="156dp"
+        android:layout_height="56dp"
+        android:layout_alignStart="@+id/thirdCategoryButton"
+        android:layout_below="@+id/thirdCategoryButton"
+        android:layout_gravity="center"
+        android:layout_marginTop="13dp"
+        android:background="#f8aa12"
+        android:text="Jedzenie"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#0d2c4b"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/fifthCategoryButton"
+        android:layout_width="156dp"
+        android:layout_height="56dp"
+        android:layout_alignStart="@+id/fourthCategoryButton"
+        android:layout_below="@+id/fourthCategoryButton"
+        android:layout_gravity="center"
+        android:layout_marginTop="13dp"
+        android:background="#f42020"
+        android:text="Chemia"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#0d2c4b"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/changeCategoryButton"
+        android:layout_width="119dp"
+        android:layout_height="52dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="37dp"
+        android:layout_marginStart="36dp"
+        android:background="@drawable/button_border"
+        android:text="Zmień kategorie"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#0d2c4b"
+        android:textSize="17dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/startGameButton"
+        android:layout_width="119dp"
+        android:layout_height="52dp"
+        android:layout_alignTop="@+id/changeCategoryButton"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:layout_marginEnd="36dp"
+        android:text="Rozpocznij rozgrywkę"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:background="#0d2c4b"
+        android:textColor="#f4d170"
+        android:textSize="17dp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
