@@ -17,7 +17,7 @@ import wisielec.wisielec.com.repository.UserRepository;
  */
 
 public abstract class AbstractAccessActivity extends MainActivity {
-    public UserRepository userRepository = new UserRepository();
+    public UserRepository userRepository = UserRepository.getInstance();
 
     public boolean isFormValid(EditText emailInput) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(emailInput.getText().toString()).matches() && !emailInput.getText().toString().isEmpty();

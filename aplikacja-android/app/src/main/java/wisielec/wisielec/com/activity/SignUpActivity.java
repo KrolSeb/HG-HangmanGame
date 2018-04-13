@@ -1,5 +1,6 @@
 package wisielec.wisielec.com.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 
 import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.domain.User;
+import wisielec.wisielec.com.interfaces.Callback;
 import wisielec.wisielec.com.repository.UserRepository;
 
 /**
@@ -24,7 +26,7 @@ public class SignUpActivity extends AbstractAccessActivity {
     EditText passwordInput;
     EditText repeatPasswordInput;
 
-    private UserRepository userRepository = new UserRepository();
+    private UserRepository userRepository = UserRepository.getInstance();
 
 
     @Override
@@ -38,8 +40,6 @@ public class SignUpActivity extends AbstractAccessActivity {
         passwordInput = (EditText) findViewById(R.id.passwordInput);
         repeatPasswordInput = (EditText) findViewById(R.id.repeatPasswordInput);
         OnClickListeners();
-
-
     }
 
     protected void OnClickListeners() {
@@ -50,7 +50,12 @@ public class SignUpActivity extends AbstractAccessActivity {
                     case R.id.buttonRegistration:
                         User user = new User(emailInput.getText().toString(),passwordInput.getText().toString());
                         if(!(isFormValid(emailInput))) return;
-                        userRepository.registerNewUser(SignUpActivity.this, user);
+                        userRepository.registerNewUser(SignUpActivity.this, user, new Callback() {
+                            @Override
+                            public void event() {
+                                changeToAfterLoginActivity();
+                            }
+                        });
                         break;
                     case R.id.buttonCancel:
                         Context contextCancel;

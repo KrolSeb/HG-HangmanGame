@@ -22,7 +22,7 @@ public class SignInActivity extends AbstractAccessActivity {
     Button buttonRegistration;
     EditText emailInput;
     EditText passwordInput;
-    private UserRepository userRepository = new UserRepository();
+    private UserRepository userRepository = UserRepository.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

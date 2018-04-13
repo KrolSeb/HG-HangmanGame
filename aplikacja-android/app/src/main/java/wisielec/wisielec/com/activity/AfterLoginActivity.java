@@ -12,10 +12,15 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.squareup.picasso.Picasso;
 
 import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.domain.User;
+import wisielec.wisielec.com.interfaces.Callback;
+import wisielec.wisielec.com.repository.UserRepository;
+
 import static wisielec.wisielec.com.repository.UserRepository.retrieveUserFromDatabase;
 
 public class AfterLoginActivity extends MainActivity {
@@ -30,6 +35,8 @@ public class AfterLoginActivity extends MainActivity {
 
     protected Button howToPlayButton;
     protected Button playButton;
+
+    protected UserRepository userRepository = UserRepository.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +72,7 @@ public class AfterLoginActivity extends MainActivity {
         final View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (view.getId()){
+                switch (view.getId()) {
                     case R.id.howToPlayButton:
                         Intent intentHowToPlay = new Intent(getApplicationContext(), HowToPlayActivity.class);
                         startActivity(intentHowToPlay);
@@ -98,7 +105,16 @@ public class AfterLoginActivity extends MainActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(getApplicationContext(),"Wylogowanie",Toast.LENGTH_SHORT).show();
+                userRepository.logOut(new Callback() {
+                    @Override
+                    public void event() {
+                        //TODO implement save state of user on this place
+
+                        startActivity(new Intent(AfterLoginActivity.this, SignInActivity.class));
+                        finish();
+                    }
+                });
+                Toast.makeText(getApplicationContext(),"Wylogowano", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -144,8 +160,7 @@ public class AfterLoginActivity extends MainActivity {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
             super.onBackPressed();
         }
     }

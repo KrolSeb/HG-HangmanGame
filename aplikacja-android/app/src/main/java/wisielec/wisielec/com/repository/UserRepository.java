@@ -2,7 +2,6 @@ package wisielec.wisielec.com.repository;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
@@ -20,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import wisielec.wisielec.com.activity.SignInActivity;
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.interfaces.Callback;
 import wisielec.wisielec.com.interfaces.OnGetDataListener;
@@ -37,6 +35,14 @@ public class UserRepository {
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
+    private static UserRepository instance = null;
+
+    private UserRepository() { }
+
+    public static UserRepository getInstance() {
+        if (instance == null) instance = new UserRepository();
+        return instance;
+    }
 
     public static User retrieveUserFromDatabase() {
         receivedUser = new User();
@@ -93,7 +99,7 @@ public class UserRepository {
         });
     }
 
-    public void registerNewUser(final Context context, final User user) {
+    public void registerNewUser(final Context context, final User user, final Callback onSuccess) {
         firebaseAuth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
                 .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -109,9 +115,7 @@ public class UserRepository {
                             user.setPassword("");
                             databaseReference.push().setValue(user);
 
-                            Intent intent = new Intent(context, SignInActivity.class);
-                            context.startActivity(intent);
-                            ((Activity) context).finish();
+                            onSuccess.event();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -134,7 +138,10 @@ public class UserRepository {
         });
     }
 
-
+    public void logOut(Callback onSuccess) {
+        firebaseAuth.signOut();
+        onSuccess.event();
+    }
 
     public void addUserToDatabase(User user) {
         DatabaseReference mDatabase;

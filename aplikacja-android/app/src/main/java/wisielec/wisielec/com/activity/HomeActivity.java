@@ -38,19 +38,21 @@ public class HomeActivity extends MainActivity {
                         contextLogin = getApplicationContext();
                         Intent intentLogin = new Intent(contextLogin, SignInActivity.class);
                         startActivity(intentLogin);
+                        finish();
                         break;
                     case R.id.buttonRegistration:
                         Context contextRegistration;
                         contextRegistration = getApplicationContext();
                         Intent intentRegistration = new Intent(contextRegistration, SignUpActivity.class);
                         startActivity(intentRegistration);
+                        finish();
                         break;
                     case R.id.buttonExit:
-                        //MainActivity.this.finish();
                         Intent intentExit = new Intent(Intent.ACTION_MAIN);
                         intentExit.addCategory(Intent.CATEGORY_HOME);
                         intentExit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intentExit);
+                        finish();
                         break;
                     default:
                         break;
