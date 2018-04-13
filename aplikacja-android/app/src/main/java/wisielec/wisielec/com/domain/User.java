@@ -1,20 +1,29 @@
 package wisielec.wisielec.com.domain;
 
+import java.io.Serializable;
+
 /**
  * Created by sebastian on 12.01.18(Saturday).
  */
 
-public class User {
+public class User implements Serializable{
     private String avatarURL;
     private String email;
     private String id;
-    private String isAccountActivated;
-    private String isActuallyLogged;
+    private boolean isAccountActivated;
+    private boolean isActuallyLogged;
     private String password;
     private int points;
     private String rank;
     private int rankingPosition;
     private String userName;
+
+    public User(String email, String password){
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(){}
 
     public String getAvatarURL() {
         return avatarURL;
@@ -40,19 +49,19 @@ public class User {
         this.id = id;
     }
 
-    public String getIsAccountActivated() {
+    public boolean getIsAccountActivated() {
         return isAccountActivated;
     }
 
-    public void setIsAccountActivated(String isAccountActivated) {
+    public void setIsAccountActivated(boolean isAccountActivated) {
         this.isAccountActivated = isAccountActivated;
     }
 
-    public String getIsActuallyLogged() {
+    public boolean getIsActuallyLogged() {
         return isActuallyLogged;
     }
 
-    public void setIsActuallyLogged(String isActuallyLogged) {
+    public void setIsActuallyLogged(boolean isActuallyLogged) {
         this.isActuallyLogged = isActuallyLogged;
     }
 

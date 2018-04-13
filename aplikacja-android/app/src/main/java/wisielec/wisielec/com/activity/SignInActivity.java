@@ -9,13 +9,14 @@ import android.widget.EditText;
 
 import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.domain.User;
+import wisielec.wisielec.com.interfaces.Callback;
 import wisielec.wisielec.com.repository.UserRepository;
 
 /**
  * Created by X on 2018-01-18.
  */
 
-public class SignInActivity extends MainActivity {
+public class SignInActivity extends AbstractAccessActivity {
 
     Button buttonLogin;
     Button buttonRegistration;
@@ -41,10 +42,7 @@ public class SignInActivity extends MainActivity {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.buttonLogin:
-                        Context contextLogin;
-                        contextLogin = getApplicationContext();
-                        Intent intentLogin = new Intent(contextLogin, AfterLoginActivity.class);
-                        startActivity(intentLogin);
+                        signIn();
                         break;
                     case R.id.buttonRegistration:
                         Context contextRegistration;
@@ -59,5 +57,15 @@ public class SignInActivity extends MainActivity {
         };
         buttonLogin.setOnClickListener(listener);
         buttonRegistration.setOnClickListener(listener);
+    }
+
+    public void signIn() {
+        if (!isFormValid(emailInput)) return;
+        userRepository.loginUser(SignInActivity.this, new User(emailInput.getText().toString(), passwordInput.getText().toString()), new Callback() {
+            @Override
+            public void event() {
+                changeToAfterLoginActivity();
+            }
+        });
     }
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -17,9 +18,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import wisielec.wisielec.com.activity.SignInActivity;
 import wisielec.wisielec.com.domain.User;
+import wisielec.wisielec.com.interfaces.Callback;
+import wisielec.wisielec.com.interfaces.OnGetDataListener;
 
 /**
  * Created by Sebastian on 2018-01-17.
@@ -31,7 +35,7 @@ public class UserRepository {
 
 
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-    private FirebaseDatabase firebaseDatabase;
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
 
     public static User retrieveUserFromDatabase() {
@@ -72,8 +76,24 @@ public class UserRepository {
         return receivedUser;
     }
 
-    public void registerNewUser(final Context context, final User user) {
+    public void getUser(String UID, final OnGetDataListener listener) {
+        listener.onStart();
+        DatabaseReference userReference = firebaseDatabase.getReference("users/" + UID);
 
+        userReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                listener.onSuccess(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                listener.onFailed(databaseError);
+            }
+        });
+    }
+
+    public void registerNewUser(final Context context, final User user) {
         firebaseAuth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
                 .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -82,7 +102,6 @@ public class UserRepository {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser authenticatedUser = firebaseAuth.getCurrentUser();
-                            firebaseDatabase = FirebaseDatabase.getInstance();
 
                             DatabaseReference databaseReference = firebaseDatabase.getReference();
                             databaseReference.child("users").push().child(authenticatedUser.getUid());
@@ -100,6 +119,21 @@ public class UserRepository {
                     }
                 });
     }
+
+    public void loginUser(final Context context, final User user, final Callback onSuccess) {
+        firebaseAuth.signInWithEmailAndPassword(user.getEmail(), user.getPassword()).addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    onSuccess.event();
+                } else {
+                    Log.w(TAG, "signInWithEmail:failure", task.getException());
+                    Toast.makeText(context, "Logowanie użytkownika nie powiodło się: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
 
 
     public void addUserToDatabase(User user) {

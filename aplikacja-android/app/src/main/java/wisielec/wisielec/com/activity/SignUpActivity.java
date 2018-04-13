@@ -16,7 +16,7 @@ import wisielec.wisielec.com.repository.UserRepository;
  * Created by X on 2018-01-18.
  */
 
-public class SignUpActivity extends MainActivity {
+public class SignUpActivity extends AbstractAccessActivity {
     private static final String TAG = "SignUpActivity";
     Button buttonCancel;
     Button buttonRegistration;
@@ -42,21 +42,14 @@ public class SignUpActivity extends MainActivity {
 
     }
 
-    private boolean isFormValid() {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(emailInput.getText().toString()).matches() && repeatPasswordInput.getText().toString().equals(passwordInput.getText().toString());
-    }
-
     protected void OnClickListeners() {
         final View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.buttonRegistration:
-                        User user = new User();
-
-                        if(!isFormValid()) return;
-                        user.setEmail(emailInput.getText().toString());
-                        user.setPassword(passwordInput.getText().toString());
+                        User user = new User(emailInput.getText().toString(),passwordInput.getText().toString());
+                        if(!(isFormValid(emailInput))) return;
                         userRepository.registerNewUser(SignUpActivity.this, user);
                         break;
                     case R.id.buttonCancel:
