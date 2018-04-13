@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import wisielec.wisielec.com.enums.Rank;
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.interfaces.Callback;
 import wisielec.wisielec.com.interfaces.OnGetDataListener;
@@ -105,19 +106,16 @@ public class UserRepository {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser authenticatedUser = firebaseAuth.getCurrentUser();
-
                             DatabaseReference databaseReference = firebaseDatabase.getReference();
-                            databaseReference.child("users").push().child(authenticatedUser.getUid());
 
+                            //set user paremateres before save to database
                             user.setPassword("");
-                            databaseReference.push().setValue(user);
+                            user.setId(authenticatedUser.getUid());
 
+                            databaseReference.child("users").child(authenticatedUser.getUid()).setValue(user);
                             onSuccess.event();
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                         }
                     }

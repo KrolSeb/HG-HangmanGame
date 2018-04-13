@@ -28,7 +28,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/avatarImageView"
+                android:id="@+id/avatarImageViewBar"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_alignParentTop="true"
@@ -37,10 +37,10 @@
                 app:srcCompat="@mipmap/avatar" />
 
             <TextView
-                android:id="@+id/usernameTextView"
+                android:id="@+id/usernameTextViewBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/avatarImageView"
+                android:layout_below="@+id/avatarImageViewBar"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="3dp"
                 android:text="Nazwa użytkownika"
@@ -52,7 +52,7 @@
                 android:id="@+id/rankingTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/usernameTextView"
+                android:layout_below="@+id/usernameTextViewBar"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:text="Miejsce w rankingu:"
@@ -61,7 +61,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/rankingPositionTextView"
+                android:id="@+id/rankingPositionTextViewBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rankingTextView"
@@ -76,7 +76,7 @@
                 android:id="@+id/rankTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rankingPositionTextView"
+                android:layout_below="@+id/rankingPositionTextViewBar"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
                 android:text="Ranga:"
@@ -85,7 +85,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/rankLevelTextView"
+                android:id="@+id/rankLevelTextViewBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rankTextView"
@@ -100,7 +100,7 @@
                 android:id="@+id/pointsTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rankLevelTextView"
+                android:layout_below="@+id/rankLevelTextViewBar"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
                 android:textColor="#0d2c4b"
@@ -109,7 +109,7 @@
                 android:text="Punkty:" />
 
             <TextView
-                android:id="@+id/pointsAmountTextView"
+                android:id="@+id/pointsAmountTextViewBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pointsTextView"
@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/logoutButton"
                 android:layout_alignStart="@+id/logoutButton"
-                android:layout_below="@+id/pointsAmountTextView"
+                android:layout_below="@+id/pointsAmountTextViewBar"
                 android:layout_marginTop="37dp"
                 android:background="@mipmap/administrative_panel_button"
                 android:text="Ustawienia"
@@ -138,8 +138,8 @@
                 android:id="@+id/logoutButton"
                 android:layout_width="218dp"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/usernameTextView"
-                android:layout_alignStart="@+id/usernameTextView"
+                android:layout_alignEnd="@+id/usernameTextViewBar"
+                android:layout_alignStart="@+id/usernameTextViewBar"
                 android:layout_below="@+id/settingsButton"
                 android:layout_marginTop="20dp"
                 android:background="@mipmap/administrative_panel_button"
@@ -147,14 +147,6 @@
                 android:textAllCaps="false"
                 android:textColor="#0d2c4b"
                 android:textSize="17dp" />
-
-            <Button
-                android:id="@+id/reloadButton"
-                android:layout_width="1dp"
-                android:layout_height="1dp"
-                android:layout_above="@+id/settingsButton"
-                android:layout_alignParentStart="true"
-                android:text="Button" />
 
         </RelativeLayout>
 

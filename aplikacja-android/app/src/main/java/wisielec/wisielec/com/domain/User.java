@@ -2,11 +2,13 @@ package wisielec.wisielec.com.domain;
 
 import java.io.Serializable;
 
+import wisielec.wisielec.com.enums.Rank;
+
 /**
  * Created by sebastian on 12.01.18(Saturday).
  */
 
-public class User implements Serializable{
+public class User implements Serializable {
     private String avatarURL;
     private String email;
     private String id;
@@ -18,12 +20,25 @@ public class User implements Serializable{
     private int rankingPosition;
     private String userName;
 
-    public User(String email, String password){
+    public User(String email, String password) {
+        this();
         this.email = email;
         this.password = password;
+        this.userName  = this.email.split("@")[0];
     }
 
-    public User(){}
+    public User() {
+        this.avatarURL = "";
+        this.email = "";
+        this.id = "";
+        this.isAccountActivated = true;
+        this.isActuallyLogged = true;
+        this.password = "";
+        this.points = 0;
+        this.rank = Rank.SZEREGOWY.toString();
+        this.rankingPosition = 0;
+        this.userName = "";
+    }
 
     public String getAvatarURL() {
         return avatarURL;

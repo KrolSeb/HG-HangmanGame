@@ -2,9 +2,6 @@ package wisielec.wisielec.com.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -21,27 +18,32 @@ import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.interfaces.Callback;
 import wisielec.wisielec.com.repository.UserRepository;
 
-import static wisielec.wisielec.com.repository.UserRepository.retrieveUserFromDatabase;
-
 public class AfterLoginActivity extends MainActivity {
     protected ImageView avatar;
+    protected ImageView avatarBar;
     protected TextView username;
-    protected TextView rankLevel;
+    protected TextView usernameBar;
+    protected TextView rankLevelBar;
     protected TextView rankingPosition;
-    protected TextView pointsAmount;
+    protected TextView rankingPositionBar;
+    protected TextView pointsAmountBar;
     protected Button settingsButton;
     protected Button logoutButton;
-    protected Button reloadButton;
 
     protected Button howToPlayButton;
     protected Button playButton;
 
     protected UserRepository userRepository = UserRepository.getInstance();
 
+    private User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_login);
+
+        Intent intent = getIntent();
+        user =  (User) intent.getSerializableExtra("user");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -53,19 +55,27 @@ public class AfterLoginActivity extends MainActivity {
         playButton = findViewById(R.id.playButton);
 
         avatar = findViewById(R.id.avatarImageView);
+        avatarBar = findViewById(R.id.avatarImageViewBar);
+
         username = findViewById(R.id.usernameTextView);
-        rankLevel = findViewById(R.id.rankLevelTextView);
+        usernameBar = findViewById(R.id.usernameTextViewBar);
+
+        rankLevelBar = findViewById(R.id.rankLevelTextViewBar);
+
         rankingPosition = findViewById(R.id.rankingPositionTextView);
-        pointsAmount = findViewById(R.id.pointsAmountTextView);
+        rankingPositionBar = findViewById(R.id.rankingPositionTextViewBar);
+
+        pointsAmountBar = findViewById(R.id.pointsAmountTextViewBar);
+
         settingsButton = findViewById(R.id.settingsButton);
         logoutButton = findViewById(R.id.logoutButton);
-        reloadButton = findViewById(R.id.reloadButton);
 
         onSettingsButtonClick();
         onLogoutButtonClick();
         onClickListeners();
 
-        //directDataToTextViews();
+        bindingDataWithLayout();
+
     }
 
     private void onClickListeners() {
@@ -119,40 +129,18 @@ public class AfterLoginActivity extends MainActivity {
         });
     }
 
-    private void directDataToTextViews() {
-        reloadButton.setSoundEffectsEnabled(false);
-        reloadButton.setVisibility(View.GONE);
+    private void bindingDataWithLayout(){
+        if(!user.getAvatarURL().isEmpty()) {
+            Picasso.get().load(user.getAvatarURL()).into(avatar);
+            Picasso.get().load(user.getAvatarURL()).into(avatarBar);
+        }
+        username.setText(user.getUserName());
+        usernameBar.setText(user.getUserName());
+        rankingPosition.setText(user.getRankingPosition()+"");
+        rankingPositionBar.setText(user.getRankingPosition()+"");
+        rankLevelBar.setText(user.getRank());
+        pointsAmountBar.setText(user.getPoints()+"");
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                reloadButton.performClick();
-            }
-        }, 1000);
-        //getUserDataFromDatabase();
-    }
-
-
-    private void getUserDataFromDatabase() {
-        final User retrievedUser = retrieveUserFromDatabase();
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.reloadButton:
-                        //Biblioteka do prostego dodawania obrazka z URL
-                        Picasso.get().load(retrievedUser.getAvatarURL()).into(avatar);
-                        username.setText(retrievedUser.getUserName());
-                        rankingPosition.setText(Integer.toString(retrievedUser.getRankingPosition()));
-                        rankLevel.setText(retrievedUser.getRank());
-                        pointsAmount.setText(Long.toString(retrievedUser.getPoints()));
-                        break;
-                    default:
-                        break;
-                }
-            }
-        };
-        reloadButton.setOnClickListener(listener);
     }
 
     @Override
