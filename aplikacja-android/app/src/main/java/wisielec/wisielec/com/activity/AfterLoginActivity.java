@@ -139,7 +139,7 @@ public class AfterLoginActivity extends MainActivity {
         rankingPosition.setText(user.getRankingPosition()+"");
         rankingPositionBar.setText(user.getRankingPosition()+"");
         rankLevelBar.setText(user.getRank());
-        pointsAmountBar.setText(user.getPoints()+"");
+        pointsAmountBar.setText(user.getPoints()+" pkt");
 
     }
 

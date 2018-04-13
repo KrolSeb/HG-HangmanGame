@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/summary">
+
+    <ImageView
+        android:id="@+id/avatarImageView"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="96dp"
+        android:background="@mipmap/avatar" />
+
+    <TextView
+        android:id="@+id/usernameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/avatarImageView"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="6dp"
+        android:layout_toEndOf="@+id/avatarImageView"
+        android:text="Nazwa użytkownika"
+        android:textColor="#0d2c4b"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/rankingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/usernameTextView"
+        android:layout_below="@+id/usernameTextView"
+        android:layout_marginTop="3dp"
+        android:text="Miejsce w rankingu :"
+        android:textColor="#0d2c4b"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/rankingPositionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/rankingTextView"
+        android:layout_alignBottom="@+id/rankingTextView"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/rankingTextView"
+        android:text="6"
+        android:textColor="#0d2c4b"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/pointsPart1TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/usernameTextView"
+        android:layout_below="@+id/avatarImageView"
+        android:layout_marginTop="17dp"
+        android:text="Punkty za odgadnięte"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#0d2c4b"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/pointsPart2TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/pointsPart1TextView"
+        android:layout_below="@+id/pointsPart1TextView"
+        android:layout_marginTop="2dp"
+        android:text="hasła :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#0d2c4b"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/pointsValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/pointsPart2TextView"
+        android:layout_alignBottom="@+id/pointsPart2TextView"
+        android:layout_marginStart="12dp"
+        android:layout_toEndOf="@+id/rankingPositionTextView"
+        android:text="45"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#0d2c4b"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/bonusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/pointsPart2TextView"
+        android:layout_below="@+id/pointsPart2TextView"
+        android:layout_marginTop="11dp"
+        android:text="Bonus :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#0d2c4b"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/bonusValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bonusTextView"
+        android:layout_alignBottom="@+id/bonusTextView"
+        android:layout_alignStart="@+id/pointsValueTextView"
+        android:text="32"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#0d2c4b"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/negativePointsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/bonusTextView"
+        android:layout_below="@+id/bonusTextView"
+        android:layout_marginTop="14dp"
+        android:text="Punkty ujemne :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#0d2c4b"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/negativePointsValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/negativePointsTextView"
+        android:layout_alignBottom="@+id/negativePointsTextView"
+        android:layout_alignStart="@+id/bonusValueTextView"
+        android:text="0"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#0d2c4b"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/sumOfPointsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/negativePointsTextView"
+        android:layout_below="@+id/negativePointsTextView"
+        android:layout_marginTop="14dp"
+        android:text="Suma punktów :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#0d2c4b"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/sumOfPointsValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/sumOfPointsTextView"
+        android:layout_alignBottom="@+id/sumOfPointsTextView"
+        android:layout_alignStart="@+id/negativePointsValueTextView"
+        android:text="77"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#0d2c4b"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/endGameButton"
+        android:layout_width="125dp"
+        android:layout_height="58dp"
+        android:layout_below="@+id/sumOfPointsTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="27dp"
+        android:background="#0d2c4b"
+        android:text="Zakończ rozgrywkę"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/afterGameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/endGameButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:text="Po tej rozgrywce masz :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#0d2c4b"
+        android:textSize="19dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/afterGamePointsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/afterGameTextView"
+        android:layout_toStartOf="@+id/afterGamePointsShortcutTextView"
+        android:text="177"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#0d2c4b"
+        android:textSize="19dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/afterGamePointsShortcutTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_alignEnd="@+id/pointsPart1TextView"
+        android:layout_below="@+id/afterGameTextView"
+        android:layout_marginEnd="30dp"
+        android:text="pkt"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#0d2c4b"
+        android:textSize="19dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/rankTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/endGameButton"
+        android:layout_below="@+id/afterGamePointsShortcutTextView"
+        android:text="Rangę - "
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#0d2c4b"
+        android:textSize="19dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/rankValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/rankTextView"
+        android:layout_alignBottom="@+id/rankTextView"
+        android:layout_toEndOf="@+id/rankTextView"
+        android:text="Sierżant"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#0d2c4b"
+        android:textSize="19dp"
+        android:textStyle="bold" />
+
+
+
+</RelativeLayout>
