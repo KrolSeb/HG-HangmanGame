@@ -25,7 +25,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/avatarImageViewBar"
@@ -103,10 +103,10 @@
                 android:layout_below="@+id/rankLevelTextViewBar"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
+                android:text="Punkty:"
                 android:textColor="#0d2c4b"
                 android:textSize="19dp"
-                android:textStyle="bold"
-                android:text="Punkty:" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/pointsAmountTextViewBar"
@@ -115,40 +115,50 @@
                 android:layout_below="@+id/pointsTextView"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="4dp"
+                android:text="100 pkt"
                 android:textColor="#0d2c4b"
                 android:textSize="24dp"
-                android:textStyle="bold"
-                android:text="100 pkt" />
+                android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/settingsButton"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/logoutButton"
-                android:layout_alignStart="@+id/logoutButton"
                 android:layout_below="@+id/pointsAmountTextViewBar"
-                android:layout_marginTop="37dp"
-                android:background="@mipmap/administrative_panel_button"
-                android:text="Ustawienia"
-                android:textAllCaps="false"
-                android:textColor="#0d2c4b"
-                android:textSize="17dp" />
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/logoutButton"
-                android:layout_width="218dp"
-                android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/usernameTextViewBar"
-                android:layout_alignStart="@+id/usernameTextViewBar"
-                android:layout_below="@+id/settingsButton"
-                android:layout_marginTop="20dp"
-                android:background="@mipmap/administrative_panel_button"
-                android:text="Wyloguj"
-                android:textAllCaps="false"
-                android:textColor="#0d2c4b"
-                android:textSize="17dp" />
+                <Button
+                    android:id="@+id/settingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/logoutButton"
+                    android:layout_alignStart="@+id/logoutButton"
+                    android:layout_below="@+id/pointsAmountTextViewBar"
+                    android:layout_marginTop="37dp"
+                    android:layout_weight="1.0"
+                    android:background="@mipmap/administrative_panel_button"
+                    android:text="Ustawienia"
+                    android:textAllCaps="false"
+                    android:textColor="#0d2c4b"
+                    android:textSize="17dp" />
+
+                <Button
+                    android:id="@+id/logoutButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/usernameTextViewBar"
+                    android:layout_alignStart="@+id/usernameTextViewBar"
+                    android:layout_below="@+id/settingsButton"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1.0"
+                    android:background="@mipmap/administrative_panel_button"
+                    android:text="Wyloguj"
+                    android:textAllCaps="false"
+                    android:textColor="#0d2c4b"
+                    android:textSize="17dp" />
+            </LinearLayout>
 
         </RelativeLayout>
+
 
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>
