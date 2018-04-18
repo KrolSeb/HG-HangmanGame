@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="wisielec.wisielec.com.activity.RankingActivity"
+    android:background="@mipmap/ranking">
+
+    <TextView
+        android:layout_width="20dp"
+        android:layout_height="10dp"
+        android:id="@+id/user1"
+        android:text="Użytkownik
+1000pkt"
+        android:textColor="#0d2c4b"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/user2"
+        android:textColor="#0d2c4b"
+        android:layout_marginTop="86dp"
+        android:layout_marginStart="29dp"
+        android:textStyle="bold"
+        android:textSize="12dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/user3"
+        android:textColor="#0d2c4b"
+        android:layout_marginTop="86dp"
+        android:layout_marginStart="29dp"
+        android:textStyle="bold"
+        android:textSize="12dp" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listUser"
+        android:textColor="#0d2c4b"
+        android:layout_marginTop="86dp"
+        android:layout_marginStart="29dp"
+        android:textStyle="bold"
+        android:textSize="12dp"/>
+
+</RelativeLayout>
