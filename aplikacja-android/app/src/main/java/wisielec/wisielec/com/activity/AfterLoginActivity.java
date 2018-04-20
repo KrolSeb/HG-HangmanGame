@@ -9,7 +9,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -29,10 +28,9 @@ public class AfterLoginActivity extends MainActivity {
     protected TextView pointsAmountBar;
     protected Button settingsButton;
     protected Button logoutButton;
-
     protected Button howToPlayButton;
     protected Button playButton;
-
+    protected Button toRankListButton;
     protected UserRepository userRepository = UserRepository.getInstance();
 
     private User user;
@@ -53,6 +51,7 @@ public class AfterLoginActivity extends MainActivity {
 
         howToPlayButton = findViewById(R.id.howToPlayButton);
         playButton = findViewById(R.id.playButton);
+        toRankListButton = findViewById(R.id.toRankListButton);
 
         avatar = findViewById(R.id.avatarImageView);
         avatarBar = findViewById(R.id.avatarImageViewBar);
@@ -66,7 +65,6 @@ public class AfterLoginActivity extends MainActivity {
         rankingPositionBar = findViewById(R.id.rankingPositionTextViewBar);
 
         pointsAmountBar = findViewById(R.id.pointsAmountTextViewBar);
-
         settingsButton = findViewById(R.id.settingsButton);
         logoutButton = findViewById(R.id.logoutButton);
 
@@ -91,6 +89,10 @@ public class AfterLoginActivity extends MainActivity {
                         Intent intentPlay = new Intent(getApplicationContext(), ChooseCountOfRoundsActivity.class);
                         startActivity(intentPlay);
                         break;
+                    case R.id.toRankListButton:
+                        Intent intentRankList = new Intent(getApplicationContext(), RankingActivity.class);
+                        startActivity(intentRankList);
+                        break;
                     default:
                         break;
                 }
@@ -98,6 +100,7 @@ public class AfterLoginActivity extends MainActivity {
         };
         howToPlayButton.setOnClickListener(listener);
         playButton.setOnClickListener(listener);
+        toRankListButton.setOnClickListener(listener);
     }
 
 
@@ -124,7 +127,6 @@ public class AfterLoginActivity extends MainActivity {
                         finish();
                     }
                 });
-                Toast.makeText(getApplicationContext(),"Wylogowano", Toast.LENGTH_SHORT).show();
             }
         });
     }

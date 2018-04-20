@@ -11,20 +11,16 @@ import wisielec.wisielec.com.R;
  */
 
 public class RankingActivity extends MainActivity {
-
-    TextView user1;
-    TextView user2;
-    TextView user3;
-    ListView listUser;
+    TextView firstUserPointsTextView;
+    TextView secondUserPointsTextView;
+    TextView thirdUserPointsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
-
-        user1 = (TextView) findViewById(R.id.user1);
-        user2 = (TextView) findViewById(R.id.user2);
-        user3 = (TextView) findViewById(R.id.user3);
-        listUser = (ListView) findViewById(R.id.listUser);
+        firstUserPointsTextView = (TextView) findViewById(R.id.firstUserPointsTextView);
+        secondUserPointsTextView = (TextView) findViewById(R.id.secondUserPointsTextView);
+        thirdUserPointsTextView = (TextView) findViewById(R.id.thirdUserPointsTextView);
     }
 }
