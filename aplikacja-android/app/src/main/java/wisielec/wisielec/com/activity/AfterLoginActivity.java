@@ -114,16 +114,21 @@ public class AfterLoginActivity extends MainActivity {
             @Override
             public void onSuccess(List<User> userList) {
                 User user;
+                String userName;
+
                 user = userList.get(0);
-                firstUserFromRanking.setText(String.valueOf(user.getPoints()));
+                userName = (user.getUserName().isEmpty()) ? user.getEmail() : user.getUserName();
+                firstUserFromRanking.setText(String.valueOf(userName));
                 firstUserPoints.setText(String.valueOf(user.getPoints()));
 
                 user = userList.get(1);
-                secondUserFromRanking.setText(String.valueOf(user.getPoints()));
+                userName = (user.getUserName().isEmpty()) ? user.getEmail() : user.getUserName();
+                secondUserFromRanking.setText(String.valueOf(userName));
                 secondUserPoints.setText(String.valueOf(user.getPoints()));
 
                 user = userList.get(2);
-                thirdUserFromRanking.setText(String.valueOf(user.getPoints()));
+                userName = (user.getUserName().isEmpty()) ? user.getEmail() : user.getUserName();
+                thirdUserFromRanking.setText(String.valueOf(userName));
                 thirdUserPoints.setText(String.valueOf(user.getPoints()));
             }
         });

@@ -119,4 +119,20 @@ public class User implements Serializable {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "avatarURL='" + avatarURL + '\'' +
+                ", email='" + email + '\'' +
+                ", id='" + id + '\'' +
+                ", isAccountActivated=" + isAccountActivated +
+                ", isActuallyLogged=" + isActuallyLogged +
+                ", password='" + password + '\'' +
+                ", points=" + points +
+                ", rank='" + rank + '\'' +
+                ", rankingPosition=" + rankingPosition +
+                ", userName='" + userName + '\'' +
+                '}';
+    }
 }
