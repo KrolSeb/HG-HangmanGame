@@ -10,7 +10,7 @@ import com.google.firebase.database.DatabaseError;
 
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.interfaces.OnGetDataListener;
-import wisielec.wisielec.com.repository.UserRepository;
+import wisielec.wisielec.com.services.UserRepository;
 
 /**
  * Created by sebastian on 13.04.18.

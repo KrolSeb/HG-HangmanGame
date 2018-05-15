@@ -10,12 +10,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.interfaces.Callback;
-import wisielec.wisielec.com.repository.UserRepository;
+import wisielec.wisielec.com.interfaces.OnGetDataListener;
+import wisielec.wisielec.com.services.UserRepository;
 
 public class AfterLoginActivity extends MainActivity {
     protected ImageView avatar;
@@ -32,6 +38,9 @@ public class AfterLoginActivity extends MainActivity {
     protected Button playButton;
     protected Button toRankListButton;
     protected UserRepository userRepository = UserRepository.getInstance();
+
+
+    protected List<User> userList = new ArrayList<>();
 
     private User user;
 
@@ -73,6 +82,26 @@ public class AfterLoginActivity extends MainActivity {
         onClickListeners();
 
         bindingDataWithLayout();
+
+        userRepository.getAllUsersFromDatabase(new OnGetDataListener() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onSuccess(DataSnapshot data) {
+                for(DataSnapshot singleData : data.getChildren()) {
+                    userList.add(singleData.getValue(User.class));
+                }
+            }
+
+            @Override
+            public void onFailed(DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
 

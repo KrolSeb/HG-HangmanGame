@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "359481041389",
+    "firebase_url": "https://gra-w-wisielca.firebaseio.com",
+    "project_id": "gra-w-wisielca",
+    "storage_bucket": "gra-w-wisielca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359481041389:android:b28ef4ef28d6f635",
+        "android_client_info": {
+          "package_name": "wisielec.wisielec.com.aplikacja_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "359481041389-b8bca7iokafchd63f0pppfnrtf7ll617.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxo4wMFWgz9NOKqEhZXLsZc-sQT8C9XbE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

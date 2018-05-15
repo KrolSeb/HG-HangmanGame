@@ -1,4 +1,4 @@
-package wisielec.wisielec.com.repository;
+package wisielec.wisielec.com.services;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,7 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import wisielec.wisielec.com.enums.Rank;
+import java.util.ArrayList;
+import java.util.List;
+
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.interfaces.Callback;
 import wisielec.wisielec.com.interfaces.OnGetDataListener;
@@ -31,6 +33,7 @@ import wisielec.wisielec.com.interfaces.OnGetDataListener;
 public class UserRepository {
     private static final String TAG = "UserRepository";
     protected static User receivedUser;
+    private List<User> userList;
 
 
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -38,50 +41,71 @@ public class UserRepository {
 
     private static UserRepository instance = null;
 
-    private UserRepository() { }
+    private UserRepository() {
+        userList = new ArrayList<>();
+    }
 
     public static UserRepository getInstance() {
         if (instance == null) instance = new UserRepository();
         return instance;
     }
 
-    public static User retrieveUserFromDatabase() {
-        receivedUser = new User();
-        DatabaseReference mDatabaseStatic = FirebaseDatabase.getInstance().getReference("users");
-        Query queryRef = mDatabaseStatic.orderByChild("actuallyLogged").equalTo(true);
-        queryRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                receivedUser.setAvatarURL(dataSnapshot.getValue(User.class).getAvatarURL());
-                receivedUser.setUserName(dataSnapshot.getValue(User.class).getUserName());
-                receivedUser.setRankingPosition(dataSnapshot.getValue(User.class).getRankingPosition());
-                receivedUser.setRank(dataSnapshot.getValue(User.class).getRank());
-                receivedUser.setPoints(dataSnapshot.getValue(User.class).getPoints());
-            }
+    public void getAllUsersFromDatabase(final OnGetDataListener callback){
+        DatabaseReference mDatabaseStatic = firebaseDatabase.getReference("users");
+        Query queryReference = mDatabaseStatic.child("users").orderByChild("points");
 
+        queryReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                receivedUser.setAvatarURL(dataSnapshot.getValue(User.class).getAvatarURL());
-                receivedUser.setUserName(dataSnapshot.getValue(User.class).getUserName());
-                receivedUser.setRankingPosition(dataSnapshot.getValue(User.class).getRankingPosition());
-                receivedUser.setRank(dataSnapshot.getValue(User.class).getRank());
-                receivedUser.setPoints(dataSnapshot.getValue(User.class).getPoints());
-            }
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                callback.onSuccess(dataSnapshot);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
             }
         });
-        return receivedUser;
+
     }
+
+//    public static User retrieveUserFromDatabase() {
+//        receivedUser = new User();
+//        DatabaseReference mDatabaseStatic = FirebaseDatabase.getInstance().getReference("users");
+//        Query queryRef = mDatabaseStatic.orderByChild("actuallyLogged").equalTo(true);
+//        queryRef.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                receivedUser.setAvatarURL(dataSnapshot.getValue(User.class).getAvatarURL());
+//                receivedUser.setUserName(dataSnapshot.getValue(User.class).getUserName());
+//                receivedUser.setRankingPosition(dataSnapshot.getValue(User.class).getRankingPosition());
+//                receivedUser.setRank(dataSnapshot.getValue(User.class).getRank());
+//                receivedUser.setPoints(dataSnapshot.getValue(User.class).getPoints());
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//                receivedUser.setAvatarURL(dataSnapshot.getValue(User.class).getAvatarURL());
+//                receivedUser.setUserName(dataSnapshot.getValue(User.class).getUserName());
+//                receivedUser.setRankingPosition(dataSnapshot.getValue(User.class).getRankingPosition());
+//                receivedUser.setRank(dataSnapshot.getValue(User.class).getRank());
+//                receivedUser.setPoints(dataSnapshot.getValue(User.class).getPoints());
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//            }
+//        });
+//        return receivedUser;
+//    }
 
     public void getUser(String UID, final OnGetDataListener listener) {
         listener.onStart();
