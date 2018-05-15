@@ -10,21 +10,21 @@ import com.google.firebase.database.DatabaseError;
 
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.interfaces.OnGetDataListener;
-import wisielec.wisielec.com.services.UserRepository;
+import wisielec.wisielec.com.services.UserService;
 
 /**
  * Created by sebastian on 13.04.18.
  */
 
 public abstract class AbstractAccessActivity extends MainActivity {
-    public UserRepository userRepository = UserRepository.getInstance();
+    public UserService userService = UserService.getInstance();
 
     public boolean isFormValid(EditText emailInput) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(emailInput.getText().toString()).matches() && !emailInput.getText().toString().isEmpty();
     }
 
     public void changeToAfterLoginActivity() {
-        userRepository.getUser(FirebaseAuth.getInstance().getCurrentUser().getUid(), new OnGetDataListener() {
+        userService.getUser(FirebaseAuth.getInstance().getCurrentUser().getUid(), new OnGetDataListener() {
             @Override
             public void onStart() {
                 //Do nothing

@@ -1,7 +1,6 @@
 package wisielec.wisielec.com.activity;
 
 import android.os.Bundle;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import wisielec.wisielec.com.R;
@@ -19,8 +18,8 @@ public class RankingActivity extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
-        firstUserPointsTextView = (TextView) findViewById(R.id.firstUserPointsTextView);
-        secondUserPointsTextView = (TextView) findViewById(R.id.secondUserPointsTextView);
-        thirdUserPointsTextView = (TextView) findViewById(R.id.thirdUserPointsTextView);
+        firstUserPointsTextView = (TextView) findViewById(R.id.firstUserPointsRankPositonTextView);
+        secondUserPointsTextView = (TextView) findViewById(R.id.secondUserPointsRankPositionTextView);
+        thirdUserPointsTextView = (TextView) findViewById(R.id.thirdUserPointsRankPositionTextView);
     }
 }

@@ -10,7 +10,7 @@ import android.widget.EditText;
 import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.interfaces.Callback;
-import wisielec.wisielec.com.services.UserRepository;
+import wisielec.wisielec.com.services.UserService;
 
 /**
  * Created by X on 2018-01-18.
@@ -24,7 +24,7 @@ public class SignUpActivity extends AbstractAccessActivity {
     EditText passwordInput;
     EditText repeatPasswordInput;
 
-    private UserRepository userRepository = UserRepository.getInstance();
+    private UserService userService = UserService.getInstance();
 
 
     @Override
@@ -48,7 +48,7 @@ public class SignUpActivity extends AbstractAccessActivity {
                     case R.id.buttonRegistration:
                         User user = new User(emailInput.getText().toString(),passwordInput.getText().toString());
                         if(!(isFormValid(emailInput))) return;
-                        userRepository.registerNewUser(SignUpActivity.this, user, new Callback() {
+                        userService.registerNewUser(SignUpActivity.this, user, new Callback() {
                             @Override
                             public void event() {
                                 changeToAfterLoginActivity();

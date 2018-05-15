@@ -8,7 +8,7 @@
     android:background="@mipmap/ranking">
 
     <TextView
-        android:id="@+id/firstUserTextView"
+        android:id="@+id/firstUserNameRankPositionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -20,11 +20,11 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/firstUserPointsTextView"
+        android:id="@+id/firstUserPointsRankPositonTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/firstUserTextView"
-        android:layout_below="@+id/firstUserTextView"
+        android:layout_alignStart="@+id/firstUserNameRankPositionTextView"
+        android:layout_below="@+id/firstUserNameRankPositionTextView"
         android:layout_marginStart="11dp"
         android:text="1000"
         android:textColor="#0d2c4b"
@@ -35,19 +35,19 @@
         android:id="@+id/firstPointsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/firstUserTextView"
+        android:layout_below="@+id/firstUserNameRankPositionTextView"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@+id/firstUserPointsTextView"
+        android:layout_toEndOf="@+id/firstUserPointsRankPositonTextView"
         android:text="pkt"
         android:textColor="#0d2c4b"
         android:textSize="18dp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/secondUserTextView"
+        android:id="@+id/secondUserNameRankPositionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/firstUserPointsTextView"
+        android:layout_below="@+id/firstUserPointsRankPositonTextView"
         android:layout_marginEnd="43dp"
         android:layout_marginTop="11dp"
         android:layout_toStartOf="@+id/firstPointsTextView"
@@ -57,11 +57,11 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/secondUserPointsTextView"
+        android:id="@+id/secondUserPointsRankPositionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/secondUserTextView"
-        android:layout_below="@+id/secondUserTextView"
+        android:layout_alignStart="@+id/secondUserNameRankPositionTextView"
+        android:layout_below="@+id/secondUserNameRankPositionTextView"
         android:layout_marginStart="15dp"
         android:text="500"
         android:textColor="#0d2c4b"
@@ -72,21 +72,21 @@
         android:id="@+id/secondPointsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/secondUserPointsTextView"
-        android:layout_alignBottom="@+id/secondUserPointsTextView"
+        android:layout_alignBaseline="@+id/secondUserPointsRankPositionTextView"
+        android:layout_alignBottom="@+id/secondUserPointsRankPositionTextView"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@+id/secondUserPointsTextView"
+        android:layout_toEndOf="@+id/secondUserPointsRankPositionTextView"
         android:textColor="#0d2c4b"
         android:textSize="18dp"
         android:text="pkt"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/thirdUserTextView"
+        android:id="@+id/thirdUserNameRankPositionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/secondUserTextView"
-        android:layout_alignBottom="@+id/secondUserTextView"
+        android:layout_alignBaseline="@+id/secondUserNameRankPositionTextView"
+        android:layout_alignBottom="@+id/secondUserNameRankPositionTextView"
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/firstPointsTextView"
         android:text="Użytkownik"
@@ -95,12 +95,12 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/thirdUserPointsTextView"
+        android:id="@+id/thirdUserPointsRankPositionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/thirdUserTextView"
+        android:layout_below="@+id/thirdUserNameRankPositionTextView"
         android:layout_marginStart="10dp"
-        android:layout_toEndOf="@+id/firstUserTextView"
+        android:layout_toEndOf="@+id/firstUserNameRankPositionTextView"
         android:text="250"
         android:textColor="#0d2c4b"
         android:textSize="18dp"
@@ -110,9 +110,9 @@
         android:id="@+id/thirdPointsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/thirdUserTextView"
+        android:layout_below="@+id/thirdUserNameRankPositionTextView"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@+id/thirdUserPointsTextView"
+        android:layout_toEndOf="@+id/thirdUserPointsRankPositionTextView"
         android:text="pkt"
         android:textColor="#0d2c4b"
         android:textSize="18dp"
@@ -121,7 +121,7 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_below="@+id/secondUserPointsTextView"
+        android:layout_below="@+id/secondUserPointsRankPositionTextView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp" />
 

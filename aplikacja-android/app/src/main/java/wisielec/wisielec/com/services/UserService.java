@@ -1,4 +1,4 @@
-package wisielec.wisielec.com.repository;
+package wisielec.wisielec.com.services;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,29 +18,29 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.TreeMap;
+import java.util.ArrayList;
+import java.util.List;
 
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.interfaces.Callback;
-import wisielec.wisielec.com.interfaces.FirebaseCallback;
 import wisielec.wisielec.com.interfaces.OnGetDataListener;
 
 /**
  * Created by Sebastian on 2018-01-17.
  */
 
-public class UserRepository {
-    private static final String TAG = "UserRepository";
+public class UserService {
+    private static final String TAG = "UserService";
 
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
-    private static UserRepository instance = null;
-    private TreeMap<String, Integer> bestUsersMap = new TreeMap<>();
-    private UserRepository() { }
+    private static UserService instance = null;
+    private List<User> userList = new ArrayList<>();
+    private UserService() { }
 
-    public static UserRepository getInstance() {
-        if (instance == null) instance = new UserRepository();
+    public static UserService getInstance() {
+        if (instance == null) instance = new UserService();
         return instance;
     }
 
@@ -70,7 +70,6 @@ public class UserRepository {
                             FirebaseUser authenticatedUser = firebaseAuth.getCurrentUser();
                             DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-                            //set user paremateres before save to database
                             user.setPassword("");
                             user.setId(authenticatedUser.getUid());
 
@@ -102,7 +101,7 @@ public class UserRepository {
         onSuccess.event();
     }
 
-    public void getBestUsersFromRanking(final FirebaseCallback firebaseCallback){
+    public void getBestUsersFromRanking(final IBestUserCallback callback){
         final DatabaseReference databaseReference = firebaseDatabase.getReference();
         Query queryRef = databaseReference.child("users").orderByChild("points");
 
@@ -111,10 +110,9 @@ public class UserRepository {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds: dataSnapshot.getChildren()) {
                     User user = ds.getValue(User.class);
-                    bestUsersMap.put(user.getUserName(), user.getPoints());
-                    //Log.d("Username " + user.getUserName(), "Points " + user.getPoints());
+                    userList.add(user);
                 }
-                firebaseCallback.onCallback(bestUsersMap);
+                callback.onSuccess(userList);
             }
 
             @Override
@@ -125,6 +123,7 @@ public class UserRepository {
     }
 
 
-
-
+    public interface IBestUserCallback{
+        void onSuccess(List<User> userList);
+    }
 }
