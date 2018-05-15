@@ -116,6 +116,9 @@ public class AfterLoginActivity extends MainActivity {
                 User user;
                 String userName;
 
+
+
+
                 user = userList.get(0);
                 userName = (user.getUserName().isEmpty()) ? user.getEmail() : user.getUserName();
                 firstUserFromRanking.setText(String.valueOf(userName));

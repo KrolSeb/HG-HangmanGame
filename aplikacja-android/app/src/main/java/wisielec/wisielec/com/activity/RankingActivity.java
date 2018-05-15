@@ -1,6 +1,7 @@
 package wisielec.wisielec.com.activity;
 
 import android.os.Bundle;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import wisielec.wisielec.com.R;
+import wisielec.wisielec.com.adapters.RankingListAdapter;
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.services.UserService;
 
@@ -33,6 +35,13 @@ public class RankingActivity extends MainActivity {
     @BindView(R.id.thirdUserNameRankPositionTextView)
     TextView thirdUserNameTextView;
 
+    /**
+     * RankingActivityElements
+     * ListView
+     */
+    @BindView(R.id.infinityUserRankingList)
+    ListView infinityUserRankingList;
+
     private UserService userService = UserService.getInstance();
 
     @Override
@@ -42,6 +51,7 @@ public class RankingActivity extends MainActivity {
 
         ButterKnife.bind(this);
 
+        final RankingListAdapter rankingListAdapter = new RankingListAdapter(this);
 
         userService.getBestUsersFromRanking(new UserService.IBestUserCallback() {
             @Override
@@ -63,6 +73,9 @@ public class RankingActivity extends MainActivity {
                 userName = (user.getUserName().isEmpty()) ? user.getEmail() : user.getUserName();
                 thirdUserNameTextView.setText(String.valueOf(userName));
                 thirdUserPointsTextView.setText(String.valueOf(user.getPoints()));
+
+                rankingListAdapter.setUserList(userList);
+                infinityUserRankingList.setAdapter(rankingListAdapter);
             }
         });
     }

@@ -119,10 +119,12 @@
         android:textStyle="bold" />
 
     <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:id="@+id/infinityUserRankingList"
+        android:layout_width="327dp"
+        android:layout_height="218dp"
         android:layout_below="@+id/secondUserPointsRankPositionTextView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="53dp"
+        tools:listitem="@layout/ranking_single_item" />
 
 </RelativeLayout>

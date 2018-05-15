@@ -37,8 +37,9 @@ public class UserService {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
     private static UserService instance = null;
-    private List<User> userList = new ArrayList<>();
-    private UserService() { }
+
+    private UserService() {
+    }
 
     public static UserService getInstance() {
         if (instance == null) instance = new UserService();
@@ -102,14 +103,15 @@ public class UserService {
         onSuccess.event();
     }
 
-    public void getBestUsersFromRanking(final IBestUserCallback callback){
+    public void getBestUsersFromRanking(final IBestUserCallback callback) {
         final DatabaseReference databaseReference = firebaseDatabase.getReference();
         Query queryRef = databaseReference.child("users").orderByChild("points");
 
         queryRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds: dataSnapshot.getChildren()) {
+                List<User> userList = new ArrayList<>();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     User user = ds.getValue(User.class);
                     userList.add(user);
                 }
@@ -131,7 +133,7 @@ public class UserService {
     }
 
 
-    public interface IBestUserCallback{
+    public interface IBestUserCallback {
         void onSuccess(List<User> userList);
     }
 }
