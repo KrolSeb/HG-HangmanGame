@@ -2,6 +2,7 @@ package wisielec.wisielec.com.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -9,19 +10,18 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.TreeMap;
 
 import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.interfaces.Callback;
-import wisielec.wisielec.com.interfaces.OnGetDataListener;
-import wisielec.wisielec.com.services.UserRepository;
+import wisielec.wisielec.com.interfaces.FirebaseCallback;
+import wisielec.wisielec.com.repository.UserRepository;
 
 public class AfterLoginActivity extends MainActivity {
     protected ImageView avatar;
@@ -37,10 +37,10 @@ public class AfterLoginActivity extends MainActivity {
     protected Button howToPlayButton;
     protected Button playButton;
     protected Button toRankListButton;
+    protected TextView firstUserFromRanking;
+    protected TextView firstUserPoints;
+
     protected UserRepository userRepository = UserRepository.getInstance();
-
-
-    protected List<User> userList = new ArrayList<>();
 
     private User user;
 
@@ -50,7 +50,7 @@ public class AfterLoginActivity extends MainActivity {
         setContentView(R.layout.activity_after_login);
 
         Intent intent = getIntent();
-        user =  (User) intent.getSerializableExtra("user");
+        user = (User) intent.getSerializableExtra("user");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -77,31 +77,21 @@ public class AfterLoginActivity extends MainActivity {
         settingsButton = findViewById(R.id.settingsButton);
         logoutButton = findViewById(R.id.logoutButton);
 
+        firstUserFromRanking = findViewById(R.id.firstUserTextView);
+        firstUserPoints = findViewById(R.id.firstUserPointsTextView);
+
         onSettingsButtonClick();
         onLogoutButtonClick();
         onClickListeners();
 
         bindingDataWithLayout();
 
-        userRepository.getAllUsersFromDatabase(new OnGetDataListener() {
+        userRepository.getBestUsersFromRanking(new FirebaseCallback() {
             @Override
-            public void onStart() {
-
-            }
-
-            @Override
-            public void onSuccess(DataSnapshot data) {
-                for(DataSnapshot singleData : data.getChildren()) {
-                    userList.add(singleData.getValue(User.class));
-                }
-            }
-
-            @Override
-            public void onFailed(DatabaseError databaseError) {
-
+            public void onCallback(TreeMap<String, Integer> map) {
+                Log.d("Test: ", map.descendingMap().toString());
             }
         });
-
 
     }
 
@@ -171,7 +161,8 @@ public class AfterLoginActivity extends MainActivity {
         rankingPositionBar.setText(user.getRankingPosition()+"");
         rankLevelBar.setText(user.getRank());
         pointsAmountBar.setText(user.getPoints()+" pkt");
-
+        //firstUserFromRanking.setText("Test text");
+        //firstUserPoints.setText("test again");
     }
 
     @Override
