@@ -158,6 +158,7 @@ public class AfterLoginActivity extends MainActivity {
     @OnClick(R.id.settingsButton)
     public void onSettingsButtonClick() {
         Intent intentEditAccount = new Intent(getApplicationContext(), EditAccountActivity.class);
+        intentEditAccount.putExtra("user", user);
         startActivity(intentEditAccount);
     }
 
