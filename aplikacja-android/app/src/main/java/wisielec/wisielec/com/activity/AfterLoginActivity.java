@@ -2,6 +2,7 @@ package wisielec.wisielec.com.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -9,12 +10,17 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+
+import java.util.HashMap;
+import java.util.TreeMap;
 
 import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.interfaces.Callback;
+import wisielec.wisielec.com.interfaces.FirebaseCallback;
 import wisielec.wisielec.com.repository.UserRepository;
 
 public class AfterLoginActivity extends MainActivity {
@@ -31,6 +37,9 @@ public class AfterLoginActivity extends MainActivity {
     protected Button howToPlayButton;
     protected Button playButton;
     protected Button toRankListButton;
+    protected TextView firstUserFromRanking;
+    protected TextView firstUserPoints;
+
     protected UserRepository userRepository = UserRepository.getInstance();
 
     private User user;
@@ -41,7 +50,7 @@ public class AfterLoginActivity extends MainActivity {
         setContentView(R.layout.activity_after_login);
 
         Intent intent = getIntent();
-        user =  (User) intent.getSerializableExtra("user");
+        user = (User) intent.getSerializableExtra("user");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -68,11 +77,21 @@ public class AfterLoginActivity extends MainActivity {
         settingsButton = findViewById(R.id.settingsButton);
         logoutButton = findViewById(R.id.logoutButton);
 
+        firstUserFromRanking = findViewById(R.id.firstUserTextView);
+        firstUserPoints = findViewById(R.id.firstUserPointsTextView);
+
         onSettingsButtonClick();
         onLogoutButtonClick();
         onClickListeners();
 
         bindingDataWithLayout();
+
+        userRepository.getBestUsersFromRanking(new FirebaseCallback() {
+            @Override
+            public void onCallback(TreeMap<String, Integer> map) {
+                Log.d("Test: ", map.descendingMap().toString());
+            }
+        });
 
     }
 
@@ -142,7 +161,8 @@ public class AfterLoginActivity extends MainActivity {
         rankingPositionBar.setText(user.getRankingPosition()+"");
         rankLevelBar.setText(user.getRank());
         pointsAmountBar.setText(user.getPoints()+" pkt");
-
+        //firstUserFromRanking.setText("Test text");
+        //firstUserPoints.setText("test again");
     }
 
     @Override

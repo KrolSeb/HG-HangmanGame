@@ -11,7 +11,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,9 +18,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import wisielec.wisielec.com.enums.Rank;
+import java.util.TreeMap;
+
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.interfaces.Callback;
+import wisielec.wisielec.com.interfaces.FirebaseCallback;
 import wisielec.wisielec.com.interfaces.OnGetDataListener;
 
 /**
@@ -30,57 +31,17 @@ import wisielec.wisielec.com.interfaces.OnGetDataListener;
 
 public class UserRepository {
     private static final String TAG = "UserRepository";
-    protected static User receivedUser;
-
 
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
     private static UserRepository instance = null;
-
+    private TreeMap<String, Integer> bestUsersMap = new TreeMap<>();
     private UserRepository() { }
 
     public static UserRepository getInstance() {
         if (instance == null) instance = new UserRepository();
         return instance;
-    }
-
-    public static User retrieveUserFromDatabase() {
-        receivedUser = new User();
-        DatabaseReference mDatabaseStatic = FirebaseDatabase.getInstance().getReference("users");
-        Query queryRef = mDatabaseStatic.orderByChild("actuallyLogged").equalTo(true);
-        queryRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                receivedUser.setAvatarURL(dataSnapshot.getValue(User.class).getAvatarURL());
-                receivedUser.setUserName(dataSnapshot.getValue(User.class).getUserName());
-                receivedUser.setRankingPosition(dataSnapshot.getValue(User.class).getRankingPosition());
-                receivedUser.setRank(dataSnapshot.getValue(User.class).getRank());
-                receivedUser.setPoints(dataSnapshot.getValue(User.class).getPoints());
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                receivedUser.setAvatarURL(dataSnapshot.getValue(User.class).getAvatarURL());
-                receivedUser.setUserName(dataSnapshot.getValue(User.class).getUserName());
-                receivedUser.setRankingPosition(dataSnapshot.getValue(User.class).getRankingPosition());
-                receivedUser.setRank(dataSnapshot.getValue(User.class).getRank());
-                receivedUser.setPoints(dataSnapshot.getValue(User.class).getPoints());
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-        return receivedUser;
     }
 
     public void getUser(String UID, final OnGetDataListener listener) {
@@ -141,9 +102,29 @@ public class UserRepository {
         onSuccess.event();
     }
 
-    public void addUserToDatabase(User user) {
-        DatabaseReference mDatabase;
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("users").push().setValue(user);
+    public void getBestUsersFromRanking(final FirebaseCallback firebaseCallback){
+        final DatabaseReference databaseReference = firebaseDatabase.getReference();
+        Query queryRef = databaseReference.child("users").orderByChild("points");
+
+        queryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds: dataSnapshot.getChildren()) {
+                    User user = ds.getValue(User.class);
+                    bestUsersMap.put(user.getUserName(), user.getPoints());
+                    //Log.d("Username " + user.getUserName(), "Points " + user.getPoints());
+                }
+                firebaseCallback.onCallback(bestUsersMap);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
+
+
+
+
 }
