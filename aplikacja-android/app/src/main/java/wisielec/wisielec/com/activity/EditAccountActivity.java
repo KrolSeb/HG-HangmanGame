@@ -1,8 +1,11 @@
 package wisielec.wisielec.com.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,6 +33,7 @@ public class EditAccountActivity extends MainActivity {
     protected Button deleteAccountButton;
 
     private User user;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,9 @@ public class EditAccountActivity extends MainActivity {
             @Override
             public void onClick(View view) {
                 switch (view.getId()){
+                    case R.id.uploadNewAvatarButton:
+                        launchAvatarChoose();
+                        break;
                     case R.id.saveButton:
                         confirmChanges();
                         break;
@@ -68,17 +75,18 @@ public class EditAccountActivity extends MainActivity {
             }
         };
         saveButton.setOnClickListener(listener);
+        uploadNewAvatarButton.setOnClickListener(listener);
     }
 
 
-    public void confirmChanges() {
+    private void confirmChanges() {
         if (!newUsernameEditText.getText().toString().equals("")) {
             updateUserName();
         }
     }
 
 
-    public void updateUserName() {
+    private void updateUserName() {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser authenticatedUser = firebaseAuth.getCurrentUser();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -86,8 +94,15 @@ public class EditAccountActivity extends MainActivity {
         DatabaseReference userReference = firebaseDatabase.getReference();
         user.setUserName(newUsernameEditText.getText().toString());
         userReference.child("users").child(authenticatedUser.getUid()).setValue(user);
-
     }
 
+    public void launchAvatarChoose(){
+        AlertDialog alertDialog = new AlertDialog.Builder(EditAccountActivity.this).setTitle("Wybierz avatar").setView(R.layout.dialog_choose_avatar).create();
+        alertDialog.show();
+    }
+
+    private void updateAvatar(){
+
+    }
 
 }
