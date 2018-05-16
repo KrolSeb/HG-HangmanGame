@@ -36,14 +36,17 @@ public class ChooseCountOfRoundsActivity extends GameActivityAbstract{
                 switch (view.getId()){
                     case R.id.threeRoundsButton:
                         intentChooseCategories = new Intent(getApplicationContext(), ChooseCategoriesActivity.class);
+                        intentChooseCategories.putExtra("categoryNumber", 3);
                         startActivity(intentChooseCategories);
                         break;
                     case R.id.fiveRoundsButton:
                         intentChooseCategories = new Intent(getApplicationContext(), ChooseCategoriesActivity.class);
+                        intentChooseCategories.putExtra("categoryNumber", 5);
                         startActivity(intentChooseCategories);
                         break;
                     case R.id.sevenRoundsButton:
                         intentChooseCategories = new Intent(getApplicationContext(), ChooseCategoriesActivity.class);
+                        intentChooseCategories.putExtra("categoryNumber", 7);
                         startActivity(intentChooseCategories);
                         break;
                     default:
