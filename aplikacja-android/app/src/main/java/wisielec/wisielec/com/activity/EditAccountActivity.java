@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.domain.User;
 
@@ -30,12 +32,28 @@ public class EditAccountActivity extends MainActivity {
     protected Button uploadNewAvatarButton;
     protected Button saveButton;
     protected Button deleteAccountButton;
+    protected ImageView imageView0;
+    protected ImageView imageView1;
+    protected ImageView imageView2;
+    protected ImageView imageView3;
+    protected ImageView imageView4;
+    protected ImageView imageView5;
+    protected ImageView imageView6;
+    protected ImageView imageView7;
+    protected ImageView imageView8;
 
     protected View viewDialog;
     protected LayoutInflater inflater;
+    protected AlertDialog alertDialog;
 
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser authenticatedUser;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference userReference;
+
+    private ArrayList<String> listOfURLs;
+    private String imageURL = "";
     private User user;
-    private AlertDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +67,6 @@ public class EditAccountActivity extends MainActivity {
         saveButton = findViewById(R.id.saveButton);
         deleteAccountButton = findViewById(R.id.deleteAccountButton);
 
-        inflater = LayoutInflater.from(this);
-
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
 
@@ -59,36 +75,23 @@ public class EditAccountActivity extends MainActivity {
         }
         usernameTextView.setText(user.getUserName());
 
+        listOfURLs = new ArrayList<>();
+        addURLToList();
+
+        initializeAccessToDatabase();
         onClickListeners();
     }
 
-    private void getImagesFromURLs(){
-        ImageView imageView1 = viewDialog.findViewById(R.id.imageView1);
-        Picasso.get().load("https://image.ibb.co/eHX6dy/astronaut.jpg").into(imageView1);
-
-        ImageView imageView2 = viewDialog.findViewById(R.id.imageView2);
-        Picasso.get().load("https://image.ibb.co/hEExkd/cat.jpg").into(imageView2);
-
-        ImageView imageView3 = viewDialog.findViewById(R.id.imageView3);
-        Picasso.get().load("https://image.ibb.co/cbGA5d/dog.jpg").into(imageView3);
-
-        ImageView imageView4 = viewDialog.findViewById(R.id.imageView4);
-        Picasso.get().load("https://image.ibb.co/fD5Rdy/duck.jpg").into(imageView4);
-
-        ImageView imageView5 = viewDialog.findViewById(R.id.imageView5);
-        Picasso.get().load("https://image.ibb.co/c9gckd/fish.jpg").into(imageView5);
-
-        ImageView imageView6 = viewDialog.findViewById(R.id.imageView6);
-        Picasso.get().load("https://image.ibb.co/cQxTrJ/frog.jpg").into(imageView6);
-
-        ImageView imageView7 = viewDialog.findViewById(R.id.imageView7);
-        Picasso.get().load("https://image.ibb.co/fFUxkd/guitar.jpg").into(imageView7);
-
-        ImageView imageView8 = viewDialog.findViewById(R.id.imageView8);
-        Picasso.get().load("https://image.ibb.co/gJzxkd/palm_tree.jpg").into(imageView8);
-
-        ImageView imageView9 = viewDialog.findViewById(R.id.imageView9);
-        Picasso.get().load("https://image.ibb.co/iVwckd/skater.jpg").into(imageView9);
+    private void addURLToList(){
+        listOfURLs.add("https://image.ibb.co/knWNJy/astronaut.png");
+        listOfURLs.add("https://image.ibb.co/fo8PWJ/cat.png");
+        listOfURLs.add("https://image.ibb.co/jWcUyy/chess.png");
+        listOfURLs.add("https://image.ibb.co/n3hUyy/dog.png");
+        listOfURLs.add("https://image.ibb.co/gegpyy/fish.png");
+        listOfURLs.add("https://image.ibb.co/mazbdy/guitar.png");
+        listOfURLs.add("https://image.ibb.co/dK6pyy/launch.png");
+        listOfURLs.add("https://image.ibb.co/i6D8rJ/palm_tree.png");
+        listOfURLs.add("https://image.ibb.co/fAHZWJ/skater.png");
     }
 
     protected void onClickListeners(){
@@ -97,10 +100,9 @@ public class EditAccountActivity extends MainActivity {
             public void onClick(View view) {
                 switch (view.getId()){
                     case R.id.uploadNewAvatarButton:
-                        viewDialog = inflater.inflate(R.layout.dialog_choose_avatar, null);
+                        initDialogComponents();
                         getImagesFromURLs();
-                        launchAvatarChoose();
-                        viewDialog = null;
+                        chooseAvatar();
                         break;
                     case R.id.saveButton:
                         confirmChanges();
@@ -114,26 +116,126 @@ public class EditAccountActivity extends MainActivity {
         uploadNewAvatarButton.setOnClickListener(listener);
     }
 
+    private void initializeAccessToDatabase(){
+        firebaseAuth = FirebaseAuth.getInstance();
+        authenticatedUser = firebaseAuth.getCurrentUser();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        userReference = firebaseDatabase.getReference();
+    }
+
+    protected void initDialogComponents(){
+        inflater = LayoutInflater.from(this);
+        viewDialog = inflater.inflate(R.layout.dialog_choose_avatar, null);
+    }
+
+    private void getImagesFromURLs(){
+        imageView0 = viewDialog.findViewById(R.id.imageView0);
+        Picasso.get().load(listOfURLs.get(0)).into(imageView0);
+
+        imageView1 = viewDialog.findViewById(R.id.imageView1);
+        Picasso.get().load(listOfURLs.get(1)).into(imageView1);
+
+        imageView2 = viewDialog.findViewById(R.id.imageView2);
+        Picasso.get().load(listOfURLs.get(2)).into(imageView2);
+
+        imageView3 = viewDialog.findViewById(R.id.imageView3);
+        Picasso.get().load(listOfURLs.get(3)).into(imageView3);
+
+        imageView4 = viewDialog.findViewById(R.id.imageView4);
+        Picasso.get().load(listOfURLs.get(4)).into(imageView4);
+
+        imageView5 = viewDialog.findViewById(R.id.imageView5);
+        Picasso.get().load(listOfURLs.get(5)).into(imageView5);
+
+        imageView6 = viewDialog.findViewById(R.id.imageView6);
+        Picasso.get().load(listOfURLs.get(6)).into(imageView6);
+
+        imageView7 = viewDialog.findViewById(R.id.imageView7);
+        Picasso.get().load(listOfURLs.get(7)).into(imageView7);
+
+        imageView8 = viewDialog.findViewById(R.id.imageView8);
+        Picasso.get().load(listOfURLs.get(8)).into(imageView8);
+    }
+
+    private void chooseAvatar(){
+        alertDialog = new AlertDialog.Builder(EditAccountActivity.this).setTitle("Wybierz avatar").setView(viewDialog).create();
+        alertDialog.show();
+
+        final View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()){
+                    case R.id.imageView0:
+                        imageURL = listOfURLs.get(0);
+                        alertDialog.dismiss();
+                        break;
+                    case R.id.imageView1:
+                        imageURL = listOfURLs.get(1);
+                        alertDialog.dismiss();
+                        break;
+                    case R.id.imageView2:
+                        imageURL = listOfURLs.get(2);
+                        alertDialog.dismiss();
+                        break;
+                    case R.id.imageView3:
+                        imageURL = listOfURLs.get(3);
+                        alertDialog.dismiss();
+                        break;
+                    case R.id.imageView4:
+                        imageURL = listOfURLs.get(4);
+                        alertDialog.dismiss();
+                        break;
+                    case R.id.imageView5:
+                        imageURL = listOfURLs.get(5);
+                        alertDialog.dismiss();
+                        break;
+                    case R.id.imageView6:
+                        imageURL = listOfURLs.get(6);
+                        alertDialog.dismiss();
+                        break;
+                    case R.id.imageView7:
+                        imageURL = listOfURLs.get(7);
+                        alertDialog.dismiss();
+                        break;
+                    case R.id.imageView8:
+                        imageURL = listOfURLs.get(8);
+                        alertDialog.dismiss();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
+        imageView0.setOnClickListener(listener);
+        imageView1.setOnClickListener(listener);
+        imageView2.setOnClickListener(listener);
+        imageView3.setOnClickListener(listener);
+        imageView4.setOnClickListener(listener);
+        imageView5.setOnClickListener(listener);
+        imageView6.setOnClickListener(listener);
+        imageView7.setOnClickListener(listener);
+        imageView8.setOnClickListener(listener);
+
+        //Dodane w celu mozliwosci ponownego otworzenia AlertDialoga
+        viewDialog = null;
+    }
 
     private void confirmChanges() {
         if (!newUsernameEditText.getText().toString().equals("")) {
             updateUserName();
         }
+        if (!imageURL.equals("")){
+            updateAvatar();
+        }
     }
 
-
     private void updateUserName() {
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser authenticatedUser = firebaseAuth.getCurrentUser();
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-
-        DatabaseReference userReference = firebaseDatabase.getReference();
         user.setUserName(newUsernameEditText.getText().toString());
         userReference.child("users").child(authenticatedUser.getUid()).setValue(user);
     }
 
-    public void launchAvatarChoose(){
-        alertDialog = new AlertDialog.Builder(EditAccountActivity.this).setTitle("Wybierz avatar").setView(viewDialog).create();
-        alertDialog.show();
+    private void updateAvatar() {
+        user.setAvatarURL(imageURL);
+        userReference.child("users").child(authenticatedUser.getUid()).setValue(user);
     }
 }
