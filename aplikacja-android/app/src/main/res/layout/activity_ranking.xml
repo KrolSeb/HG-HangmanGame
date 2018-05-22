@@ -151,7 +151,7 @@
 
     <ListView
         android:id="@+id/infinityUserRankingList"
-        android:layout_width="327dp"
+        android:layout_width="298dp"
         android:layout_height="218dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

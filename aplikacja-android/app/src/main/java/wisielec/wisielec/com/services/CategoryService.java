@@ -7,9 +7,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import wisielec.wisielec.com.domain.Category;
 
@@ -42,15 +43,12 @@ public class CategoryService {
                 }
 
                 List<Category> randomizedCategoryList = new ArrayList<>();
-                List<Integer> arrayWithRadomizedNumbers = getRandomArray(0, categoryList.size()-1);
+                Set<Integer> arrayWithRandomizedNumbers = getRandomArray(0, categoryList.size()-1, count);
 
-                int i = 0;
-                for(Integer value: arrayWithRadomizedNumbers){
-                    if(i++ < count){
-                        randomizedCategoryList.add(categoryList.get(value));
-                    }else{
-                        break;
-                    }
+                System.out.println(arrayWithRandomizedNumbers);
+
+                for(Integer value : arrayWithRandomizedNumbers){
+                    randomizedCategoryList.add(categoryList.get(value));
                 }
                 callback.onSuccess(randomizedCategoryList);
             }
@@ -62,19 +60,14 @@ public class CategoryService {
         });
     }
 
-    private List<Integer> getRandomArray(int min, int max){
-        List<Integer> A = new ArrayList<>();
-        while (max >= min){
-            A.add(max--);
-        }
+    private Set<Integer> getRandomArray(int min, int max, int numOfElements){
+        Set<Integer> A = new HashSet<>();
+        Random random = new Random();
 
-        A.sort(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer int1, Integer int2) {
-                Random random = new Random();
-                return 1 - random.nextInt(2);
-            }
-        });
+        int i = 0;
+        while(A.size() < numOfElements) {
+            A.add(random.nextInt((max - min) + 1) + min);
+        }
 
         return A;
     }
