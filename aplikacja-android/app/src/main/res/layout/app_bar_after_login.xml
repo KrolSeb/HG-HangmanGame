@@ -13,8 +13,8 @@
         android:layout_height="56dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="46dp"
-        android:layout_toStartOf="@+id/playButton"
-        android:background="@mipmap/avatar" />
+        android:layout_toStartOf="@+id/playButton"/>
+        <!--android:background="@mipmap/avatar"-->
 
     <TextView
         android:id="@+id/usernameTextView"

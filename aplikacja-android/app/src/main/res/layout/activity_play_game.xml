@@ -6,7 +6,7 @@
     android:background="@mipmap/game">
 
     <Button
-        android:id="@+id/ALetter"
+        android:id="@+id/letter0"
         android:layout_width="28dp"
         android:layout_height="32dp"
         android:layout_alignParentBottom="true"
@@ -22,14 +22,14 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/BLetter"
+        android:id="@+id/letter1"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/ALetter"
-        android:layout_alignTop="@+id/ALetter"
+        android:layout_alignBottom="@+id/letter0"
+        android:layout_alignTop="@+id/letter0"
         android:layout_gravity="center"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@+id/ALetter"
+        android:layout_toEndOf="@+id/letter0"
         android:background="#0d2c4b"
         android:text="B"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -38,14 +38,14 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/CLetter"
+        android:id="@+id/letter2"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/BLetter"
-        android:layout_alignTop="@+id/BLetter"
+        android:layout_alignBottom="@+id/letter1"
+        android:layout_alignTop="@+id/letter1"
         android:layout_gravity="center"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@+id/BLetter"
+        android:layout_toEndOf="@+id/letter1"
         android:background="#0d2c4b"
         android:text="C"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -54,14 +54,14 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/DLetter"
+        android:id="@+id/letter3"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/CLetter"
-        android:layout_alignTop="@+id/CLetter"
+        android:layout_alignBottom="@+id/letter2"
+        android:layout_alignTop="@+id/letter2"
         android:layout_gravity="center"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@+id/CLetter"
+        android:layout_toEndOf="@+id/letter2"
         android:background="#0d2c4b"
         android:text="D"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -70,14 +70,14 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/ELetter"
+        android:id="@+id/letter4"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/DLetter"
-        android:layout_alignTop="@+id/DLetter"
+        android:layout_alignBottom="@+id/letter3"
+        android:layout_alignTop="@+id/letter3"
         android:layout_gravity="center"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@+id/DLetter"
+        android:layout_toEndOf="@+id/letter3"
         android:background="#0d2c4b"
         android:text="E"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -86,14 +86,14 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/FLetter"
+        android:id="@+id/letter5"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/ELetter"
-        android:layout_alignTop="@+id/ELetter"
+        android:layout_alignBottom="@+id/letter4"
+        android:layout_alignTop="@+id/letter4"
         android:layout_gravity="center"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@+id/ELetter"
+        android:layout_toEndOf="@+id/letter4"
         android:background="#0d2c4b"
         android:text="F"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -102,14 +102,14 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/GLetter"
+        android:id="@+id/letter6"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/FLetter"
-        android:layout_alignTop="@+id/FLetter"
+        android:layout_alignBottom="@+id/letter5"
+        android:layout_alignTop="@+id/letter5"
         android:layout_gravity="center"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@+id/FLetter"
+        android:layout_toEndOf="@+id/letter5"
         android:background="#0d2c4b"
         android:text="G"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -118,14 +118,14 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/HLetter"
+        android:id="@+id/letter7"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/GLetter"
-        android:layout_alignTop="@+id/GLetter"
+        android:layout_alignBottom="@+id/letter6"
+        android:layout_alignTop="@+id/letter6"
         android:layout_gravity="center"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@+id/GLetter"
+        android:layout_toEndOf="@+id/letter6"
         android:background="#0d2c4b"
         android:text="H"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -134,14 +134,14 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/ILetter"
+        android:id="@+id/letter8"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/HLetter"
-        android:layout_alignTop="@+id/HLetter"
+        android:layout_alignBottom="@+id/letter7"
+        android:layout_alignTop="@+id/letter7"
         android:layout_gravity="center"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@+id/HLetter"
+        android:layout_toEndOf="@+id/letter7"
         android:background="#0d2c4b"
         android:text="I"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -151,14 +151,14 @@
         />
 
     <Button
-        android:id="@+id/JLetter"
+        android:id="@+id/letter9"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/ILetter"
-        android:layout_alignTop="@+id/ILetter"
+        android:layout_alignBottom="@+id/letter8"
+        android:layout_alignTop="@+id/letter8"
         android:layout_gravity="center"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@+id/ILetter"
+        android:layout_toEndOf="@+id/letter8"
         android:background="#0d2c4b"
         android:text="J"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -167,11 +167,11 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/KLetter"
+        android:id="@+id/letter10"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignStart="@+id/ALetter"
-        android:layout_below="@+id/BLetter"
+        android:layout_alignStart="@+id/letter0"
+        android:layout_below="@+id/letter1"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:background="#0d2c4b"
@@ -182,13 +182,13 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/LLetter"
+        android:id="@+id/letter11"
         android:layout_width="28dp"
         android:layout_height="32dp"
         android:layout_marginStart="4dp"
-        android:layout_alignBottom="@+id/KLetter"
-        android:layout_alignTop="@+id/KLetter"
-        android:layout_toEndOf="@+id/KLetter"
+        android:layout_alignBottom="@+id/letter10"
+        android:layout_alignTop="@+id/letter10"
+        android:layout_toEndOf="@+id/letter10"
         android:background="#0d2c4b"
         android:text="L"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -197,13 +197,13 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/MLetter"
+        android:id="@+id/letter12"
         android:layout_width="28dp"
         android:layout_height="32dp"
         android:layout_marginStart="4dp"
-        android:layout_alignBottom="@+id/LLetter"
-        android:layout_alignTop="@+id/LLetter"
-        android:layout_toEndOf="@+id/LLetter"
+        android:layout_alignBottom="@+id/letter11"
+        android:layout_alignTop="@+id/letter11"
+        android:layout_toEndOf="@+id/letter11"
         android:background="#0d2c4b"
         android:text="M"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -212,13 +212,13 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/NLetter"
+        android:id="@+id/letter13"
         android:layout_width="28dp"
         android:layout_height="32dp"
         android:layout_marginStart="4dp"
-        android:layout_alignBottom="@+id/MLetter"
-        android:layout_alignTop="@+id/MLetter"
-        android:layout_toEndOf="@+id/MLetter"
+        android:layout_alignBottom="@+id/letter12"
+        android:layout_alignTop="@+id/letter12"
+        android:layout_toEndOf="@+id/letter12"
         android:background="#0d2c4b"
         android:text="N"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -227,13 +227,13 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/OLetter"
+        android:id="@+id/letter14"
         android:layout_width="28dp"
         android:layout_height="32dp"
         android:layout_marginStart="4dp"
-        android:layout_alignBottom="@+id/NLetter"
-        android:layout_alignTop="@+id/NLetter"
-        android:layout_toEndOf="@+id/NLetter"
+        android:layout_alignBottom="@+id/letter13"
+        android:layout_alignTop="@+id/letter13"
+        android:layout_toEndOf="@+id/letter13"
         android:background="#0d2c4b"
         android:text="O"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -242,13 +242,13 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/PLetter"
+        android:id="@+id/letter15"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/OLetter"
-        android:layout_alignTop="@+id/OLetter"
+        android:layout_alignBottom="@+id/letter14"
+        android:layout_alignTop="@+id/letter14"
         android:layout_marginStart="4dp"
-        android:layout_toEndOf="@+id/OLetter"
+        android:layout_toEndOf="@+id/letter14"
         android:background="#0d2c4b"
         android:text="P"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -257,13 +257,13 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/QLetter"
+        android:id="@+id/letter16"
         android:layout_width="28dp"
         android:layout_height="32dp"
         android:layout_marginStart="4dp"
-        android:layout_alignBottom="@+id/PLetter"
-        android:layout_alignTop="@+id/PLetter"
-        android:layout_toEndOf="@+id/PLetter"
+        android:layout_alignBottom="@+id/letter15"
+        android:layout_alignTop="@+id/letter15"
+        android:layout_toEndOf="@+id/letter15"
         android:background="#0d2c4b"
         android:text="Q"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -272,13 +272,13 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/RLetter"
+        android:id="@+id/letter17"
         android:layout_width="28dp"
         android:layout_height="32dp"
         android:layout_marginStart="4dp"
-        android:layout_alignBottom="@+id/QLetter"
-        android:layout_alignTop="@+id/QLetter"
-        android:layout_toEndOf="@+id/QLetter"
+        android:layout_alignBottom="@+id/letter16"
+        android:layout_alignTop="@+id/letter16"
+        android:layout_toEndOf="@+id/letter16"
         android:background="#0d2c4b"
         android:text="R"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -287,13 +287,13 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/SLetter"
+        android:id="@+id/letter18"
         android:layout_width="28dp"
         android:layout_height="32dp"
         android:layout_marginStart="4dp"
-        android:layout_alignBottom="@+id/RLetter"
-        android:layout_alignTop="@+id/RLetter"
-        android:layout_toEndOf="@+id/RLetter"
+        android:layout_alignBottom="@+id/letter17"
+        android:layout_alignTop="@+id/letter17"
+        android:layout_toEndOf="@+id/letter17"
         android:background="#0d2c4b"
         android:text="S"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -302,11 +302,11 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/TLetter"
+        android:id="@+id/letter19"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignStart="@+id/LLetter"
-        android:layout_below="@+id/LLetter"
+        android:layout_alignStart="@+id/letter11"
+        android:layout_below="@+id/letter11"
         android:layout_marginTop="13dp"
         android:background="#0d2c4b"
         android:text="T"
@@ -316,13 +316,13 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/ULetter"
+        android:id="@+id/letter20"
         android:layout_width="28dp"
         android:layout_height="32dp"
         android:layout_marginStart="4dp"
-        android:layout_alignBottom="@+id/TLetter"
-        android:layout_alignTop="@+id/TLetter"
-        android:layout_toEndOf="@+id/TLetter"
+        android:layout_alignBottom="@+id/letter19"
+        android:layout_alignTop="@+id/letter19"
+        android:layout_toEndOf="@+id/letter19"
         android:background="#0d2c4b"
         android:text="U"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -331,13 +331,13 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/VLetter"
+        android:id="@+id/letter21"
         android:layout_width="28dp"
         android:layout_height="32dp"
         android:layout_marginStart="4dp"
-        android:layout_alignBottom="@+id/ULetter"
-        android:layout_alignTop="@+id/ULetter"
-        android:layout_toEndOf="@+id/ULetter"
+        android:layout_alignBottom="@+id/letter20"
+        android:layout_alignTop="@+id/letter20"
+        android:layout_toEndOf="@+id/letter20"
         android:background="#0d2c4b"
         android:text="V"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -346,13 +346,13 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/WLetter"
+        android:id="@+id/letter22"
         android:layout_width="28dp"
         android:layout_height="32dp"
         android:layout_marginStart="4dp"
-        android:layout_alignBottom="@+id/VLetter"
-        android:layout_alignTop="@+id/VLetter"
-        android:layout_toEndOf="@+id/VLetter"
+        android:layout_alignBottom="@+id/letter21"
+        android:layout_alignTop="@+id/letter21"
+        android:layout_toEndOf="@+id/letter21"
         android:background="#0d2c4b"
         android:text="W"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -361,13 +361,13 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/XLetter"
+        android:id="@+id/letter23"
         android:layout_width="28dp"
         android:layout_height="32dp"
         android:layout_marginStart="4dp"
-        android:layout_alignBottom="@+id/WLetter"
-        android:layout_alignTop="@+id/WLetter"
-        android:layout_toEndOf="@+id/WLetter"
+        android:layout_alignBottom="@+id/letter22"
+        android:layout_alignTop="@+id/letter22"
+        android:layout_toEndOf="@+id/letter22"
         android:background="#0d2c4b"
         android:text="X"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -376,13 +376,13 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/YLetter"
+        android:id="@+id/letter24"
         android:layout_width="28dp"
         android:layout_height="32dp"
         android:layout_marginStart="4dp"
-        android:layout_alignBottom="@+id/XLetter"
-        android:layout_alignTop="@+id/XLetter"
-        android:layout_toEndOf="@+id/XLetter"
+        android:layout_alignBottom="@+id/letter23"
+        android:layout_alignTop="@+id/letter23"
+        android:layout_toEndOf="@+id/letter23"
         android:background="#0d2c4b"
         android:text="Y"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -391,13 +391,13 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/ZLetter"
+        android:id="@+id/letter25"
         android:layout_width="28dp"
         android:layout_height="32dp"
         android:layout_marginStart="4dp"
-        android:layout_alignBottom="@+id/YLetter"
-        android:layout_alignTop="@+id/YLetter"
-        android:layout_toEndOf="@+id/YLetter"
+        android:layout_alignBottom="@+id/letter24"
+        android:layout_alignTop="@+id/letter24"
+        android:layout_toEndOf="@+id/letter24"
         android:background="#0d2c4b"
         android:text="Z"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -408,11 +408,11 @@
     <!-- Polskie litery -->
 
     <Button
-        android:id="@+id/polishALetter"
+        android:id="@+id/letter26"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignStart="@+id/KLetter"
-        android:layout_below="@+id/TLetter"
+        android:layout_alignStart="@+id/letter10"
+        android:layout_below="@+id/letter19"
         android:layout_marginTop="23dp"
         android:background="#0d2c4b"
         android:text="Ą"
@@ -422,12 +422,12 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/polishCLetter"
+        android:id="@+id/letter27"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/polishALetter"
-        android:layout_alignStart="@+id/TLetter"
-        android:layout_alignTop="@+id/polishALetter"
+        android:layout_alignBottom="@+id/letter26"
+        android:layout_alignStart="@+id/letter19"
+        android:layout_alignTop="@+id/letter26"
         android:background="#0d2c4b"
         android:text="Ć"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -436,12 +436,12 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/polishELetter"
+        android:id="@+id/letter28"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/polishCLetter"
-        android:layout_alignStart="@+id/ULetter"
-        android:layout_alignTop="@+id/polishCLetter"
+        android:layout_alignBottom="@+id/letter27"
+        android:layout_alignStart="@+id/letter20"
+        android:layout_alignTop="@+id/letter27"
         android:background="#0d2c4b"
         android:text="Ę"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -450,12 +450,12 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/polishLLetter"
+        android:id="@+id/letter29"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/polishELetter"
-        android:layout_alignStart="@+id/VLetter"
-        android:layout_alignTop="@+id/polishELetter"
+        android:layout_alignBottom="@+id/letter28"
+        android:layout_alignStart="@+id/letter21"
+        android:layout_alignTop="@+id/letter28"
         android:background="#0d2c4b"
         android:text="Ł"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -464,12 +464,12 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/polishNLetter"
+        android:id="@+id/letter30"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/polishLLetter"
-        android:layout_alignStart="@+id/WLetter"
-        android:layout_alignTop="@+id/polishLLetter"
+        android:layout_alignBottom="@+id/letter29"
+        android:layout_alignStart="@+id/letter22"
+        android:layout_alignTop="@+id/letter29"
         android:background="#0d2c4b"
         android:text="Ń"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -478,12 +478,12 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/polishOLetter"
+        android:id="@+id/letter31"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/polishNLetter"
-        android:layout_alignStart="@+id/XLetter"
-        android:layout_alignTop="@+id/polishNLetter"
+        android:layout_alignBottom="@+id/letter30"
+        android:layout_alignStart="@+id/letter23"
+        android:layout_alignTop="@+id/letter30"
         android:background="#0d2c4b"
         android:text="Ó"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -492,12 +492,12 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/polishSLetter"
+        android:id="@+id/letter32"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/polishNLetter"
-        android:layout_alignStart="@+id/YLetter"
-        android:layout_alignTop="@+id/polishOLetter"
+        android:layout_alignBottom="@+id/letter30"
+        android:layout_alignStart="@+id/letter24"
+        android:layout_alignTop="@+id/letter31"
         android:background="#0d2c4b"
         android:text="Ś"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -508,12 +508,12 @@
 
     <!-- Litera Ź -->
     <Button
-        android:id="@+id/polishZFirstLetter"
+        android:id="@+id/letter33"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/polishSLetter"
-        android:layout_alignStart="@+id/ZLetter"
-        android:layout_alignTop="@+id/polishSLetter"
+        android:layout_alignBottom="@+id/letter32"
+        android:layout_alignStart="@+id/letter25"
+        android:layout_alignTop="@+id/letter32"
         android:background="#0d2c4b"
         android:text="Ź"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -523,12 +523,12 @@
 
     <!-- Litera Ż -->
     <Button
-        android:id="@+id/polishZSecondLetter"
+        android:id="@+id/letter34"
         android:layout_width="28dp"
         android:layout_height="32dp"
-        android:layout_alignBottom="@+id/polishZFirstLetter"
-        android:layout_alignStart="@+id/SLetter"
-        android:layout_alignTop="@+id/polishZFirstLetter"
+        android:layout_alignBottom="@+id/letter33"
+        android:layout_alignStart="@+id/letter18"
+        android:layout_alignTop="@+id/letter33"
         android:background="#0d2c4b"
         android:text="Ż"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
@@ -540,8 +540,8 @@
         android:id="@+id/abortGameButton"
         android:layout_width="119dp"
         android:layout_height="45dp"
-        android:layout_alignStart="@+id/polishALetter"
-        android:layout_below="@+id/polishALetter"
+        android:layout_alignStart="@+id/letter26"
+        android:layout_below="@+id/letter26"
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
         android:background="@drawable/button_border"
@@ -595,13 +595,13 @@
         android:id="@+id/categoryTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/CLetter"
+        android:layout_above="@+id/letter2"
         android:layout_marginBottom="83dp"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
         android:textColor="#0d2c4b"
         android:textSize="21dp"
         android:textStyle="bold"
-        android:layout_toEndOf="@+id/LLetter"
+        android:layout_toEndOf="@+id/letter11"
         android:text="Kategoria:" />
 
     <TextView
@@ -611,7 +611,7 @@
         android:layout_marginStart="3dp"
         android:layout_alignBaseline="@+id/categoryTextView"
         android:layout_alignBottom="@+id/categoryTextView"
-        android:layout_alignStart="@+id/PLetter"
+        android:layout_alignStart="@+id/letter15"
         android:text="Piłkarz"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
         android:textColor="#0d2c4b"

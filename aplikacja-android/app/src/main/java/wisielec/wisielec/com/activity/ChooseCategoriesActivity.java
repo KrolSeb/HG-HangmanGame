@@ -50,7 +50,6 @@ public class ChooseCategoriesActivity extends GameActivityAbstract {
 
         changeCategory();
 
-        onClickListeners();
     }
 
     @OnClick(R.id.changeCategoryButton)
@@ -67,20 +66,11 @@ public class ChooseCategoriesActivity extends GameActivityAbstract {
         });
     }
 
-    private void onClickListeners() {
-        final View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                switch (view.getId()) {
-                    case R.id.startGameButton:
-                        Intent intentPlayGame = new Intent(getApplicationContext(), PlayGameActivity.class);
-                        startActivity(intentPlayGame);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        };
+
+    @OnClick(R.id.startGameButton)
+    public void changeActivity(){
+        Intent intentPlayGame = new Intent(getApplicationContext(), PlayGameActivity.class);
+        startActivity(intentPlayGame);
     }
 
 }
