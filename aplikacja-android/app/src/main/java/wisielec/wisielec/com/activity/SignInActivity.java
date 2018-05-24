@@ -68,4 +68,11 @@ public class SignInActivity extends AbstractAccessActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intentHomeActivity = new Intent(SignInActivity.this, HomeActivity.class);
+        startActivity(intentHomeActivity);
+        finish();
+    }
 }

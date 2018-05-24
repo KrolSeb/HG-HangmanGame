@@ -70,4 +70,11 @@ public class SignUpActivity extends AbstractAccessActivity {
         buttonRegistration.setOnClickListener(listener);
         buttonCancel.setOnClickListener(listener);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intentHomeActivity = new Intent(SignUpActivity.this, HomeActivity.class);
+        startActivity(intentHomeActivity);
+        finish();
+    }
 }

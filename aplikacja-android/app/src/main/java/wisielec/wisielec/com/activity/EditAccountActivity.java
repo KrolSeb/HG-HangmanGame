@@ -106,6 +106,7 @@ public class EditAccountActivity extends MainActivity {
                         break;
                     case R.id.saveButton:
                         confirmChanges();
+                        finish();
                         break;
                     default:
                         break;
