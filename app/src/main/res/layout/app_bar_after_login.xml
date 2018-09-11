@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/afterlogin"
+    tools:context="wisielec.wisielec.com.activity.AfterLoginActivity">
+
+    <ImageView
+        android:id="@+id/avatarImageView"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="46dp"
+        android:layout_toStartOf="@+id/playButton"/>
+        <!--android:background="@mipmap/avatar"-->
+
+    <TextView
+        android:id="@+id/usernameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/avatarImageView"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="6dp"
+        android:layout_toEndOf="@+id/avatarImageView"
+        android:text="Nazwa użytkownika"
+        android:textColor="#0d2c4b"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/rankingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/usernameTextView"
+        android:layout_below="@+id/usernameTextView"
+        android:layout_marginTop="3dp"
+        android:text="Miejsce w rankingu :"
+        android:textColor="#0d2c4b"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/rankingPositionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/rankingTextView"
+        android:layout_alignBottom="@+id/rankingTextView"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/rankingTextView"
+        android:text="10"
+        android:textColor="#0d2c4b"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/playButton"
+        android:layout_width="156dp"
+        android:layout_height="65dp"
+        android:layout_below="@+id/avatarImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="26dp"
+        android:background="#0d2c4b"
+        android:text="Graj"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="27sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/howToPlayButton"
+        android:layout_width="124dp"
+        android:layout_height="54dp"
+        android:layout_below="@+id/playButton"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="31dp"
+        android:background="#0d2c4b"
+        android:text="Jak grać?"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textSize="21sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/toRankListButton"
+        android:layout_width="114dp"
+        android:layout_height="46dp"
+        android:layout_below="@+id/howToPlayButton"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/button_border"
+        android:text="Ranking"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#0d2c4b"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="95dp">
+
+        <TextView
+            android:id="@+id/firstUserPositionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:text="Użytkownik"
+            android:textColor="#0d2c4b"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_column="0"
+            app:layout_row="0" />
+
+        <TextView
+            android:id="@+id/firstUserPointsTextView"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/firstUserPositionTextView"
+            android:gravity="right"
+            android:text="1000"
+            android:textColor="#0d2c4b"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/firstPointsTextView"
+            android:layout_width="169dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/firstUserPointsTextView"
+            android:layout_marginStart="191dp"
+            android:gravity="left"
+            android:text="pkt"
+            android:textColor="#0d2c4b"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/avatarImageView"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="-46dp">
+
+        <TextView
+            android:id="@+id/secondUserPositionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:text="Użytkownik"
+            android:textColor="#0d2c4b"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/secondUserPointsTextView"
+            android:layout_width="89dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:gravity="right"
+            android:text="500"
+            android:textColor="#0d2c4b"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/secondPointsTextView"
+            android:layout_width="86dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
+            android:gravity="left"
+            android:text="pkt"
+            android:textColor="#0d2c4b"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="0dp">
+
+        <TextView
+            android:id="@+id/thirdUserPositionTextView"
+            android:layout_width="167dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="3dp"
+            android:gravity="center_vertical|center_horizontal|center"
+            android:text="Użytkownik"
+            android:textColor="#0d2c4b"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/thirdUserPointsTextView"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:gravity="right"
+            android:text="200"
+            android:textColor="#0d2c4b"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/thirdPointsTextView"
+            android:layout_width="84dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="left"
+            android:text="pkt"
+            android:textColor="#0d2c4b"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+</RelativeLayout>
+
+
+
+

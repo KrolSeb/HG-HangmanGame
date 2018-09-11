@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <include
+        layout="@layout/app_bar_after_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/usernameTextView" />
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        android:background="#FFFFFF">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/avatarImageViewBar"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                app:srcCompat="@mipmap/avatar" />
+
+            <TextView
+                android:id="@+id/usernameTextViewBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/avatarImageViewBar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
+                android:text="Nazwa użytkownika"
+                android:textColor="#0d2c4b"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/rankingTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/usernameTextViewBar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:text="Miejsce w rankingu:"
+                android:textColor="#0d2c4b"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/rankingPositionTextViewBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rankingTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="4dp"
+                android:text="10"
+                android:textColor="#0d2c4b"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/rankTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rankingPositionTextViewBar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:text="Ranga:"
+                android:textColor="#0d2c4b"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/rankLevelTextViewBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rankTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="4dp"
+                android:text="Szeregowiec"
+                android:textColor="#0d2c4b"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pointsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rankLevelTextViewBar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:text="Punkty:"
+                android:textColor="#0d2c4b"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pointsAmountTextViewBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pointsTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="4dp"
+                android:text="100 pkt"
+                android:textColor="#0d2c4b"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pointsAmountTextViewBar"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/settingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/logoutButton"
+                    android:layout_alignStart="@+id/logoutButton"
+                    android:layout_below="@+id/pointsAmountTextViewBar"
+                    android:layout_marginTop="37dp"
+                    android:layout_weight="1.0"
+                    android:background="@mipmap/administrative_panel_button"
+                    android:text="Ustawienia"
+                    android:textAllCaps="false"
+                    android:textColor="#0d2c4b"
+                    android:textSize="17dp" />
+
+                <Button
+                    android:id="@+id/logoutButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/usernameTextViewBar"
+                    android:layout_alignStart="@+id/usernameTextViewBar"
+                    android:layout_below="@+id/settingsButton"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1.0"
+                    android:background="@mipmap/administrative_panel_button"
+                    android:text="Wyloguj"
+                    android:textAllCaps="false"
+                    android:textColor="#0d2c4b"
+                    android:textSize="17dp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </android.support.design.widget.NavigationView>
+</android.support.v4.widget.DrawerLayout>
