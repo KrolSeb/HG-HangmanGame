@@ -19,6 +19,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -116,7 +117,7 @@ public class UserService {
                     userList.add(user);
                 }
 
-                userList.sort(new Comparator<User>() {
+                Collections.sort(userList,new Comparator<User>() {
                     @Override
                     public int compare(User user1, User user2) {
                         return user2.getPoints() - user1.getPoints();
