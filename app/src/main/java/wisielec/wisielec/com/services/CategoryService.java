@@ -7,10 +7,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
+import java.util.TreeSet;
 
 import wisielec.wisielec.com.domain.Category;
 
@@ -43,9 +42,7 @@ public class CategoryService {
                 }
 
                 List<Category> randomizedCategoryList = new ArrayList<>();
-                Set<Integer> arrayWithRandomizedNumbers = getRandomArray(0, categoryList.size()-1, count);
-
-                System.out.println(arrayWithRandomizedNumbers);
+                TreeSet<Integer> arrayWithRandomizedNumbers = getRandomArray(0, categoryList.size()-1, count);
 
                 for(Integer value : arrayWithRandomizedNumbers){
                     randomizedCategoryList.add(categoryList.get(value));
@@ -60,8 +57,8 @@ public class CategoryService {
         });
     }
 
-    private Set<Integer> getRandomArray(int min, int max, int numOfElements){
-        Set<Integer> A = new HashSet<>();
+    private TreeSet<Integer> getRandomArray(int min, int max, int numOfElements){
+        TreeSet<Integer> A = new TreeSet<>();
         Random random = new Random();
 
         int i = 0;

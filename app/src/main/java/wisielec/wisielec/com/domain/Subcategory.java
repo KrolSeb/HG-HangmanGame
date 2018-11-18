@@ -1,8 +1,9 @@
 package wisielec.wisielec.com.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Subcategory {
+public class Subcategory implements Serializable {
     private String subcategoryName;
     private List<Word> words;
 

@@ -1,6 +1,8 @@
 package wisielec.wisielec.com.domain;
 
-public class Word {
+import java.io.Serializable;
+
+public class Word implements Serializable {
     private int difficultyLevel;
     private String name;
 

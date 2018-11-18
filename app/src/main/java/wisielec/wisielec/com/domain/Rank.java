@@ -1,10 +1,12 @@
 package wisielec.wisielec.com.domain;
 
+import java.io.Serializable;
+
 /**
  * Created by sebastian on 13.01.18.
  */
 
-public class Rank {
+public class Rank implements Serializable {
     private String rank;
 
     public void setRank(String rank) {
