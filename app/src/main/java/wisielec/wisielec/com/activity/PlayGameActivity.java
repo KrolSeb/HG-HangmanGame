@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.Random;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
@@ -31,6 +33,7 @@ import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.domain.Category;
 import wisielec.wisielec.com.domain.Subcategory;
 import wisielec.wisielec.com.domain.Word;
+import wisielec.wisielec.com.enums.Difficulty;
 
 /**
  * Created by sebastian on 12.04.18.
@@ -38,6 +41,33 @@ import wisielec.wisielec.com.domain.Word;
 
 public class PlayGameActivity extends GameActivityAbstract implements Serializable {
     private final static int HANGMAN_ELEMENTS = 5;
+    
+    private final static String WIN_COLOR = "#2E8E3D";
+    private final static String LOSE_COLOR = "#F44336";
+    private final static String BUTTON_ENABLED_BACKGROUND_COLOR = "#0D2C4B";
+    private final static String BUTTON_ENABLED_TEXT_COLOR = "#F4D170";
+    private final static String BUTTON_DISABLED_BACKGROUND_COLOR = "#D1D1D1";
+    private final static String BUTTON_DISABLED_TEXT_COLOR = "#EAEAEA";
+
+    private final static int EASY_LEVEL_WORD_GUESS_POINTS = 5;
+    private final static int MEDIUM_LEVEL_WORD_GUESS_POINTS = 10;
+    private final static int HARD_LEVEL_WORD_GUESS_POINTS = 15;
+
+    private final static int EASY_LEVEL_WORD_MISS_POINTS = 2;
+    private final static int MEDIUM_LEVEL_WORD_MISS_POINTS = 4;
+    private final static int HARD_LEVEL_WORD_MISS_POINTS = 6;
+
+    private final static int THREE_ROUNDS_BONUS_POINTS = 16;
+    private final static int FIVE_ROUNDS_BONUS_POINTS = 32;
+    private final static int SEVEN_ROUNDS_BONUS_POINTS = 64;
+
+    private final static int THREE_ROUNDS_BREAK_GAME_POINTS = 9;
+    private final static int FIVE_ROUNDS_BREAK_GAME_POINTS = 15;
+    private final static int SEVEN_ROUNDS_BREAK_GAME_POINTS = 21;
+
+    protected int fullScore = 0;
+    protected int missCounter = 0;
+    protected int scoredPointsInRound = 0;
 
     protected ArrayList<Category> categoryList;
     protected ArrayList<Subcategory> subcategoryList;
@@ -45,6 +75,7 @@ public class PlayGameActivity extends GameActivityAbstract implements Serializab
     protected Category category;
     protected Subcategory subcategory;
     protected Word word;
+    protected Difficulty difficulty;
 
     protected Random random = new Random();
     protected int randomSubcategoryNumber;
@@ -63,6 +94,7 @@ public class PlayGameActivity extends GameActivityAbstract implements Serializab
     protected int guessLetterCounter = 0;
     protected int drawElementsCounter = 0;
 
+    protected LayerDrawable underlinesDrawable;
     protected Dialog dialog;
     protected Window window;
     protected WindowManager.LayoutParams windowAttributes;
@@ -117,6 +149,7 @@ public class PlayGameActivity extends GameActivityAbstract implements Serializab
         subcategory = getSubcategory(category);
         word = getWord(subcategory);
         setWordAttributes();
+        setDifficultyLevel(difficultyLevel);
 
         System.out.println(categoryName);
         System.out.println(subcategoryName);
@@ -125,6 +158,23 @@ public class PlayGameActivity extends GameActivityAbstract implements Serializab
 
         clearLists();
     }
+
+    private void setDifficultyLevel(int difficultyLevel) {
+        switch (difficultyLevel){
+            case 1:
+                difficulty = Difficulty.EASY;
+                break;
+            case 2:
+                difficulty = Difficulty.MEDIUM;
+                break;
+            case 3:
+                difficulty = Difficulty.HARD;
+                break;
+            default:
+                break;
+        }
+    }
+
 
     private void showLetterUnderlines() {
         letterTextViews = new TextView[wordName.length()];
@@ -145,9 +195,7 @@ public class PlayGameActivity extends GameActivityAbstract implements Serializab
             R.id.buttonPolishA, R.id.buttonPolishC, R.id.buttonPolishE, R.id.buttonPolishL, R.id.buttonPolishN, R.id.buttonPolishO, R.id.buttonPolishS})
     protected void onLetterClick(View view) {
         chosenButton = (Button) view;
-        String letter = chosenButton.getText().toString();
-        checkIfLetterExistsInWord(letter);
-
+        checkIfLetterExistsInWord(chosenButton.getText().toString());
         disableLetterButton();
     }
 
@@ -158,7 +206,7 @@ public class PlayGameActivity extends GameActivityAbstract implements Serializab
             if (letterTextView.getText().toString().equals(letter)) {
                 guessLetterCounter++;
                 isLetterExists = true;
-                letterTextView.setTextColor(Color.parseColor("#F4D170"));
+                letterTextView.setTextColor(Color.parseColor(difficulty.getColor()));
             }
         }
 
@@ -170,7 +218,9 @@ public class PlayGameActivity extends GameActivityAbstract implements Serializab
             if (guessLetterCounter == wordName.replace(" ", "").length()) {
                 guessLetterCounter = 0;
                 drawElementsCounter = 0;
-                showWinPopup();
+                sumPoints();
+                showWinPopup(getScoredPointsInRound());
+
             }
         }
         else if (drawElementsCounter < HANGMAN_ELEMENTS) {
@@ -180,8 +230,47 @@ public class PlayGameActivity extends GameActivityAbstract implements Serializab
             if (drawElementsCounter == HANGMAN_ELEMENTS) {
                 drawElementsCounter = 0;
                 guessLetterCounter = 0;
-                showLosePopup();
+                substractPoints();
+                showLosePopup(getScoredPointsInRound());
             }
+        }
+    }
+
+    protected void sumPoints(){
+        switch (difficulty){
+            case EASY:
+                fullScore += EASY_LEVEL_WORD_GUESS_POINTS;
+                setScoredPointsInRound(EASY_LEVEL_WORD_GUESS_POINTS);
+                break;
+            case MEDIUM:
+                fullScore += MEDIUM_LEVEL_WORD_GUESS_POINTS;
+                setScoredPointsInRound(MEDIUM_LEVEL_WORD_GUESS_POINTS);
+                break;
+            case HARD:
+                fullScore += HARD_LEVEL_WORD_GUESS_POINTS;
+                setScoredPointsInRound(HARD_LEVEL_WORD_GUESS_POINTS);
+                break;
+            default:
+                break;
+        }
+    }
+
+    protected void substractPoints(){
+        switch (difficulty){
+            case EASY:
+                fullScore -= EASY_LEVEL_WORD_MISS_POINTS;
+                setScoredPointsInRound(EASY_LEVEL_WORD_MISS_POINTS);
+                break;
+            case MEDIUM:
+                fullScore -= MEDIUM_LEVEL_WORD_MISS_POINTS;
+                setScoredPointsInRound(MEDIUM_LEVEL_WORD_MISS_POINTS);
+                break;
+            case HARD:
+                fullScore -= HARD_LEVEL_WORD_MISS_POINTS;
+                setScoredPointsInRound(HARD_LEVEL_WORD_MISS_POINTS);
+                break;
+            default:
+                break;
         }
     }
 
@@ -191,9 +280,8 @@ public class PlayGameActivity extends GameActivityAbstract implements Serializab
         initializeDialogComponents();
     }
 
-    private void showWinPopup() {
-        int value = 10;
-        setWinPopupAttributes(value);
+    private void showWinPopup(int scoredPointsInRound) {
+        setWinPopupAttributes(scoredPointsInRound);
         dialog.show();
 
         goFurtherButton.setOnClickListener(v -> {
@@ -202,9 +290,8 @@ public class PlayGameActivity extends GameActivityAbstract implements Serializab
         });
     }
 
-    private void showLosePopup() {
-        int value = 10;
-        setLosePopupAttributes(value);
+    private void showLosePopup(int scoredPointsInRound) {
+        setLosePopupAttributes(scoredPointsInRound);
         dialog.show();
 
         goFurtherButton.setOnClickListener(v -> {
@@ -285,15 +372,15 @@ public class PlayGameActivity extends GameActivityAbstract implements Serializab
 
     private void enableLetterButtons(){
         for (Button button : letterButtons) {
-            button.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(("#0D2C4B"))));
-            button.setTextColor(Color.parseColor("#F4D170"));
+            button.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor((BUTTON_ENABLED_BACKGROUND_COLOR))));
+            button.setTextColor(Color.parseColor(BUTTON_ENABLED_TEXT_COLOR));
             button.setEnabled(true);
         }
     }
 
     private void disableLetterButton(){
-        chosenButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(("#D1D1D1"))));
-        chosenButton.setTextColor(Color.parseColor("#EAEAEA"));
+        chosenButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor((BUTTON_DISABLED_BACKGROUND_COLOR))));
+        chosenButton.setTextColor(Color.parseColor(BUTTON_DISABLED_TEXT_COLOR));
         chosenButton.setEnabled(false);
     }
 
@@ -304,7 +391,7 @@ public class PlayGameActivity extends GameActivityAbstract implements Serializab
     @OnClick(R.id.buttonEndGame)
     protected void onEndGameButtonClick() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Czy na pewno chcesz przerwać rozgrywkę?")
+        builder.setMessage("Czy chcesz przerwać rozgrywkę? Dotychczasowy postęp zostanie utracony. Z Twojego konta zostanie odebranych " +  "punktów.")
                 .setCancelable(false)
                 .setPositiveButton("Tak", (dialog, id) -> {
                     PlayGameActivity.this.finish();
@@ -328,9 +415,15 @@ public class PlayGameActivity extends GameActivityAbstract implements Serializab
         }
     }
 
+    private void setUnderlinesStyle(){
+        underlinesDrawable = (LayerDrawable) ContextCompat.getDrawable(this,R.drawable.letter_underline);
+        underlinesDrawable.setTint(Color.parseColor(difficulty.getColor()));
+    }
+
     private void drawUnderlines(int number){
         if (!letterTextViews[number].getText().equals(" ")) {
-            letterTextViews[number].setBackgroundResource(R.drawable.letter_underline);
+            setUnderlinesStyle();
+            letterTextViews[number].setBackground(underlinesDrawable);
         }
     }
 
@@ -366,7 +459,7 @@ public class PlayGameActivity extends GameActivityAbstract implements Serializab
     }
 
     private void setWinPopupAttributes(int points){
-        statusTextView.setTextColor(Color.parseColor("#3AB54E"));
+        statusTextView.setTextColor(Color.parseColor(WIN_COLOR));
         statusTextView.setText("Wygrana!");
         statusIcon.setImageResource(R.drawable.icon_win);
         pointsTextView.setText("Ilość zdobytych punktów");
@@ -374,7 +467,7 @@ public class PlayGameActivity extends GameActivityAbstract implements Serializab
     }
 
     private void setLosePopupAttributes(int points){
-        statusTextView.setTextColor(Color.parseColor("#F44336"));
+        statusTextView.setTextColor(Color.parseColor(LOSE_COLOR));
         statusTextView.setText("Porażka :(");
         statusIcon.setImageResource(R.drawable.icon_lose);
         pointsTextView.setText("Ilość straconych punktów");
@@ -383,6 +476,14 @@ public class PlayGameActivity extends GameActivityAbstract implements Serializab
 
     private void setCategoryNumber(int categoryNumber) {
         this.categoryNumber = categoryNumber;
+    }
+
+    public void setScoredPointsInRound(int scoredPointsInRound) {
+        this.scoredPointsInRound = scoredPointsInRound;
+    }
+    
+    public int getScoredPointsInRound() {
+        return scoredPointsInRound;
     }
 
     @Override
