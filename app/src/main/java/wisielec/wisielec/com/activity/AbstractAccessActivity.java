@@ -8,7 +8,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 
-import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.interfaces.OnGetDataListener;
 import wisielec.wisielec.com.services.UserService;
 
@@ -26,14 +25,11 @@ public abstract class AbstractAccessActivity extends MainActivity {
     public void changeToAfterLoginActivity() {
         userService.getUser(FirebaseAuth.getInstance().getCurrentUser().getUid(), new OnGetDataListener() {
             @Override
-            public void onStart() {
-                //Do nothing
-            }
+            public void onStart() { }
 
             @Override
             public void onSuccess(DataSnapshot data) {
                 Intent intent = new Intent(AbstractAccessActivity.this, AfterLoginActivity.class);
-                intent.putExtra("user", data.getValue(User.class));
                 startActivity(intent);
                 finish();
             }

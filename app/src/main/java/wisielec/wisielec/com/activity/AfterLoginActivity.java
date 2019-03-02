@@ -5,17 +5,15 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.BindView;
 import butterknife.OnClick;
+
 import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.services.UserService;
@@ -89,9 +87,8 @@ public class AfterLoginActivity extends MainActivity {
     @BindView(R.id.avatarImageViewBar)
     ImageView avatarBar;
 
-
     protected UserService userService = UserService.getInstance();
-    private User user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,66 +96,67 @@ public class AfterLoginActivity extends MainActivity {
         setContentView(R.layout.activity_after_login);
         ButterKnife.bind(this);
 
-        Intent intent = getIntent();
-        user = (User) intent.getSerializableExtra("user");
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        userService.getCurrentUserData(this::bindingDataWithLayout);
+        userService.getBestUsersFromRanking(userList -> {
+            User user;
+            String userName;
 
-        bindingDataWithLayout();
+            user = userList.get(0);
+            userName = (user.getUserName().isEmpty()) ? user.getEmail() : user.getUserName();
+            firstUserFromRanking.setText(String.valueOf(userName));
+            firstUserPoints.setText(String.valueOf(user.getPoints()));
 
-        userService.getBestUsersFromRanking(new UserService.IBestUserCallback() {
-            @Override
-            public void onSuccess(List<User> userList) {
-                User user;
-                String userName;
+            user = userList.get(1);
+            userName = (user.getUserName().isEmpty()) ? user.getEmail() : user.getUserName();
+            secondUserFromRanking.setText(String.valueOf(userName));
+            secondUserPoints.setText(String.valueOf(user.getPoints()));
 
-
-
-
-                user = userList.get(0);
-                userName = (user.getUserName().isEmpty()) ? user.getEmail() : user.getUserName();
-                firstUserFromRanking.setText(String.valueOf(userName));
-                firstUserPoints.setText(String.valueOf(user.getPoints()));
-
-                user = userList.get(1);
-                userName = (user.getUserName().isEmpty()) ? user.getEmail() : user.getUserName();
-                secondUserFromRanking.setText(String.valueOf(userName));
-                secondUserPoints.setText(String.valueOf(user.getPoints()));
-
-                user = userList.get(2);
-                userName = (user.getUserName().isEmpty()) ? user.getEmail() : user.getUserName();
-                thirdUserFromRanking.setText(String.valueOf(userName));
-                thirdUserPoints.setText(String.valueOf(user.getPoints()));
-            }
+            user = userList.get(2);
+            userName = (user.getUserName().isEmpty()) ? user.getEmail() : user.getUserName();
+            thirdUserFromRanking.setText(String.valueOf(userName));
+            thirdUserPoints.setText(String.valueOf(user.getPoints()));
         });
+    }
+
+    private void bindingDataWithLayout(User user) {
+        if (!user.getAvatarURL().isEmpty()) {
+            Picasso.get().load(user.getAvatarURL()).into(avatar);
+            Picasso.get().load(user.getAvatarURL()).into(avatarBar);
+        }
+        username.setText(String.valueOf(user.getUserName()));
+        usernameBar.setText(String.valueOf(user.getUserName()));
+        rankingPosition.setText(String.valueOf(user.getRankingPosition()));
+        rankingPositionBar.setText(String.valueOf(user.getRankingPosition()));
+        rankLevelBar.setText(String.valueOf(user.getRank()));
+        pointsAmountBar.setText(String.valueOf(user.getPoints() + " pkt"));
     }
 
     @OnClick(R.id.howToPlayButton)
     public void onHowToPlayButtonClick() {
-        Intent intentHowToPlay = new Intent(getApplicationContext(), HowToPlayActivity.class);
+        Intent intentHowToPlay = new Intent(AfterLoginActivity.this, HowToPlayActivity.class);
         startActivity(intentHowToPlay);
     }
 
     @OnClick(R.id.playButton)
     public void onPlayGameButtonClick() {
-        Intent intentPlay = new Intent(getApplicationContext(), ChooseCountOfRoundsActivity.class);
+        Intent  intentPlay = new Intent(AfterLoginActivity.this, ChooseCountOfRoundsActivity.class);
         startActivity(intentPlay);
     }
 
     @OnClick(R.id.toRankListButton)
     public void onToRankListButtonClick() {
-        Intent intentRankList = new Intent(getApplicationContext(), RankingActivity.class);
+        Intent intentRankList = new Intent(AfterLoginActivity.this, RankingActivity.class);
         startActivity(intentRankList);
     }
 
     @OnClick(R.id.settingsButton)
     public void onSettingsButtonClick() {
-        Intent intentEditAccount = new Intent(getApplicationContext(), EditAccountActivity.class);
-        intentEditAccount.putExtra("user", user);
+        Intent intentEditAccount = new Intent(AfterLoginActivity.this, EditAccountActivity.class);
         startActivity(intentEditAccount);
     }
 
@@ -168,25 +166,13 @@ public class AfterLoginActivity extends MainActivity {
         finish();
     }
 
-    private void bindingDataWithLayout() {
-        if (!user.getAvatarURL().isEmpty()) {
-            Picasso.get().load(user.getAvatarURL()).into(avatar);
-            Picasso.get().load(user.getAvatarURL()).into(avatarBar);
-        }
-        username.setText(user.getUserName());
-        usernameBar.setText(user.getUserName());
-        rankingPosition.setText(user.getRankingPosition() + "");
-        rankingPositionBar.setText(user.getRankingPosition() + "");
-        rankLevelBar.setText(user.getRank());
-        pointsAmountBar.setText(user.getPoints() + " pkt");
-    }
-
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else {
             super.onBackPressed();
         }
     }
