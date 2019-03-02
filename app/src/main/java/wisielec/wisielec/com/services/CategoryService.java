@@ -32,7 +32,7 @@ public class CategoryService {
     public void getCategoriesFromDatabase(final int count, final ICategoryCallback callback) {
         final DatabaseReference databaseReference = firebaseDatabase.getReference().child("categories");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<Category> categoryList = new ArrayList<>();

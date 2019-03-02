@@ -1,14 +1,14 @@
 package wisielec.wisielec.com.domain;
 
-import java.io.Serializable;
-
+import com.google.firebase.database.IgnoreExtraProperties;
 import wisielec.wisielec.com.enums.Rank;
 
 /**
  * Created by sebastian on 12.01.18(Saturday).
  */
 
-public class User implements Serializable {
+@IgnoreExtraProperties
+public class User {
     private String avatarURL;
     private String email;
     private String id;
