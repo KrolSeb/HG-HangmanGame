@@ -5,9 +5,6 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -19,10 +16,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.interfaces.Callback;
 import wisielec.wisielec.com.interfaces.OnGetDataListener;
@@ -33,14 +28,11 @@ import wisielec.wisielec.com.interfaces.OnGetDataListener;
 
 public class UserService {
     private static final String TAG = "UserService";
-
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-
     private static UserService instance = null;
 
-    private UserService() {
-    }
+    private UserService() { }
 
     public static UserService getInstance() {
         if (instance == null) instance = new UserService();
@@ -51,7 +43,7 @@ public class UserService {
         listener.onStart();
         DatabaseReference userReference = firebaseDatabase.getReference("users/" + UID);
 
-        userReference.addValueEventListener(new ValueEventListener() {
+        userReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 listener.onSuccess(dataSnapshot);
@@ -66,35 +58,31 @@ public class UserService {
 
     public void registerNewUser(final Context context, final User user, final Callback onSuccess) {
         firebaseAuth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
-                .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser authenticatedUser = firebaseAuth.getCurrentUser();
-                            DatabaseReference databaseReference = firebaseDatabase.getReference();
+                .addOnCompleteListener((Activity) context, task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser authenticatedUser = firebaseAuth.getCurrentUser();
+                        DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-                            user.setPassword("");
-                            user.setId(authenticatedUser.getUid());
+                        user.setPassword("");
+                        user.setId(authenticatedUser.getUid());
 
-                            databaseReference.child("users").child(authenticatedUser.getUid()).setValue(user);
-                            onSuccess.event();
-                        } else {
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                        }
+                        databaseReference.child("users").child(authenticatedUser.getUid()).setValue(user);
+                        onSuccess.event();
+                    }
+                    else {
+                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
                     }
                 });
     }
 
     public void loginUser(final Context context, final User user, final Callback onSuccess) {
-        firebaseAuth.signInWithEmailAndPassword(user.getEmail(), user.getPassword()).addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    onSuccess.event();
-                } else {
-                    Log.w(TAG, "signInWithEmail:failure", task.getException());
-                    Toast.makeText(context, "Logowanie użytkownika nie powiodło się: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
+        firebaseAuth.signInWithEmailAndPassword(user.getEmail(), user.getPassword()).addOnCompleteListener((Activity) context, task -> {
+            if (task.isSuccessful()) {
+                onSuccess.event();
+            }
+            else {
+                Log.w(TAG, "signInWithEmail:failure", task.getException());
+                Toast.makeText(context, "Logowanie użytkownika nie powiodło się: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -102,6 +90,21 @@ public class UserService {
     public void logOut(Callback onSuccess) {
         firebaseAuth.signOut();
         onSuccess.event();
+    }
+
+    public void getCurrentUserData(final ICurrentUserCallback callback) {
+        DatabaseReference databaseReference = firebaseDatabase.getReference().child("users");
+        databaseReference.child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                callback.onSuccess(user);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 
     public void getBestUsersFromRanking(final IBestUserCallback callback) {
@@ -117,12 +120,7 @@ public class UserService {
                     userList.add(user);
                 }
 
-                Collections.sort(userList,new Comparator<User>() {
-                    @Override
-                    public int compare(User user1, User user2) {
-                        return user2.getPoints() - user1.getPoints();
-                    }
-                });
+                Collections.sort(userList, (user1, user2) -> user2.getPoints() - user1.getPoints());
                 callback.onSuccess(userList);
             }
 
@@ -133,8 +131,11 @@ public class UserService {
         });
     }
 
-
     public interface IBestUserCallback {
         void onSuccess(List<User> userList);
+    }
+
+    public interface ICurrentUserCallback {
+        void onSuccess(User user);
     }
 }
