@@ -1,6 +1,7 @@
 package wisielec.wisielec.com.activity;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,20 +46,22 @@ public class EditAccountActivity extends MainActivity {
     private ImageView imageView7;
     private ImageView imageView8;
 
-    private View viewDialog;
-    private LayoutInflater inflater;
-    private AlertDialog alertDialog;
+    private View avatarViewDialog;
+    private AlertDialog avatarAlertDialog;
 
     private ArrayList<String> listOfURLs;
     private String imageURL = "";
-    private String username = "";
     private boolean isAvatarUpdated = false;
+    
+    private String username = "";
     private boolean isUsernameUpdated = false;
 
     private UserService userService = UserService.getInstance();
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+
+    private Intent afterRemoveUserIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,49 +136,49 @@ public class EditAccountActivity extends MainActivity {
     }
 
     @OnClick(R.id.chooseNewAvatarButton)
-    protected void chooseAvatar(){
+    protected void onChooseNewAvatarButtonClick(){
         initDialogComponents();
         getImagesFromURLs();
-        alertDialog = new AlertDialog.Builder(EditAccountActivity.this).setTitle("Wybierz avatar").setView(viewDialog).create();
-        alertDialog.show();
+        avatarAlertDialog = new AlertDialog.Builder(EditAccountActivity.this).setTitle("Wybierz avatar").setView(avatarViewDialog).create();
+        avatarAlertDialog.show();
 
         final View.OnClickListener listener = view -> {
             switch (view.getId()){
                 case R.id.imageView0:
                     imageURL = listOfURLs.get(0);
-                    alertDialog.dismiss();
+                    avatarAlertDialog.dismiss();
                     break;
                 case R.id.imageView1:
                     imageURL = listOfURLs.get(1);
-                    alertDialog.dismiss();
+                    avatarAlertDialog.dismiss();
                     break;
                 case R.id.imageView2:
                     imageURL = listOfURLs.get(2);
-                    alertDialog.dismiss();
+                    avatarAlertDialog.dismiss();
                     break;
                 case R.id.imageView3:
                     imageURL = listOfURLs.get(3);
-                    alertDialog.dismiss();
+                    avatarAlertDialog.dismiss();
                     break;
                 case R.id.imageView4:
                     imageURL = listOfURLs.get(4);
-                    alertDialog.dismiss();
+                    avatarAlertDialog.dismiss();
                     break;
                 case R.id.imageView5:
                     imageURL = listOfURLs.get(5);
-                    alertDialog.dismiss();
+                    avatarAlertDialog.dismiss();
                     break;
                 case R.id.imageView6:
                     imageURL = listOfURLs.get(6);
-                    alertDialog.dismiss();
+                    avatarAlertDialog.dismiss();
                     break;
                 case R.id.imageView7:
                     imageURL = listOfURLs.get(7);
-                    alertDialog.dismiss();
+                    avatarAlertDialog.dismiss();
                     break;
                 case R.id.imageView8:
                     imageURL = listOfURLs.get(8);
-                    alertDialog.dismiss();
+                    avatarAlertDialog.dismiss();
                     break;
                 default:
                     break;
@@ -192,21 +195,60 @@ public class EditAccountActivity extends MainActivity {
         imageView7.setOnClickListener(listener);
         imageView8.setOnClickListener(listener);
 
-        viewDialog = null;
+        avatarViewDialog = null;
+    }
+    
+    
+    @OnClick(R.id.deleteAccountButton)
+    protected void onDeleteAccountButtonClick() {
+        showDeleteAccountDialog();
     }
 
+    private void showDeleteAccountDialog() {
+        AlertDialog.Builder deleteDialogBuilder = new AlertDialog.Builder(EditAccountActivity.this);
+        deleteDialogBuilder.setTitle("Czy na pewno?");
+        deleteDialogBuilder.setMessage("Potwierdzenie operacji oznacza usunięcie konta użytkownika wraz z wszystkimi danymi. " +
+                "Czy chcesz kontynuować?");
+
+        deleteDialogBuilder.setPositiveButton("OK", (dialog, which) -> userService.removeUserAccount(new UserService.IRemoveUserCallback() {
+            @Override
+            public void onSuccess() {
+                Toast.makeText(EditAccountActivity.this, "Usunięcie konta zakończone sukcesem",Toast.LENGTH_SHORT).show();
+                userService.logOut(() -> finish());
+                prepareAfterRemoveAccountIntent();
+                startActivity(afterRemoveUserIntent);
+            }
+            @Override
+            public void onFailed() {
+                Toast.makeText(EditAccountActivity.this, "Nie udało się usunąć konta",Toast.LENGTH_SHORT).show();
+            }
+        }));
+
+        deleteDialogBuilder.setNegativeButton("Odrzuć", (dialog, which) -> dialog.dismiss());
+
+        AlertDialog deleteDialog = deleteDialogBuilder.create();
+        deleteDialog.show();
+    }
+
+    private void prepareAfterRemoveAccountIntent(){
+        afterRemoveUserIntent = new Intent(EditAccountActivity.this,SignInActivity.class);
+        afterRemoveUserIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        afterRemoveUserIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    }
+
+
     private void initDialogComponents(){
-        inflater = LayoutInflater.from(this);
-        viewDialog = inflater.inflate(R.layout.dialog_choose_avatar, null);
-        imageView0 = viewDialog.findViewById(R.id.imageView0);
-        imageView1 = viewDialog.findViewById(R.id.imageView1);
-        imageView2 = viewDialog.findViewById(R.id.imageView2);
-        imageView3 = viewDialog.findViewById(R.id.imageView3);
-        imageView4 = viewDialog.findViewById(R.id.imageView4);
-        imageView5 = viewDialog.findViewById(R.id.imageView5);
-        imageView6 = viewDialog.findViewById(R.id.imageView6);
-        imageView7 = viewDialog.findViewById(R.id.imageView7);
-        imageView8 = viewDialog.findViewById(R.id.imageView8);
+        LayoutInflater avatarInflater = LayoutInflater.from(this);
+        avatarViewDialog = avatarInflater.inflate(R.layout.dialog_choose_avatar, null);
+        imageView0 = avatarViewDialog.findViewById(R.id.imageView0);
+        imageView1 = avatarViewDialog.findViewById(R.id.imageView1);
+        imageView2 = avatarViewDialog.findViewById(R.id.imageView2);
+        imageView3 = avatarViewDialog.findViewById(R.id.imageView3);
+        imageView4 = avatarViewDialog.findViewById(R.id.imageView4);
+        imageView5 = avatarViewDialog.findViewById(R.id.imageView5);
+        imageView6 = avatarViewDialog.findViewById(R.id.imageView6);
+        imageView7 = avatarViewDialog.findViewById(R.id.imageView7);
+        imageView8 = avatarViewDialog.findViewById(R.id.imageView8);
     }
 
     private void getImagesFromURLs(){
