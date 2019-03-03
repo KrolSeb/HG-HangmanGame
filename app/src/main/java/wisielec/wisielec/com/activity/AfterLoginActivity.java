@@ -1,5 +1,6 @@
 package wisielec.wisielec.com.activity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -8,7 +9,6 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import butterknife.ButterKnife;
 import butterknife.BindView;
@@ -89,7 +89,6 @@ public class AfterLoginActivity extends MainActivity {
 
     protected UserService userService = UserService.getInstance();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +100,15 @@ public class AfterLoginActivity extends MainActivity {
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        getCurrentUserData();
+        getBestUsersFromRanking();
+    }
+
+    private void getCurrentUserData(){
         userService.getCurrentUserData(this::bindingDataWithLayout);
+    }
+
+    private void getBestUsersFromRanking(){
         userService.getBestUsersFromRanking(userList -> {
             User user;
             String userName;
@@ -162,18 +169,23 @@ public class AfterLoginActivity extends MainActivity {
 
     @OnClick(R.id.logoutButton)
     public void onLogoutButtonClick() {
-        startActivity(new Intent(AfterLoginActivity.this, SignInActivity.class));
-        finish();
+        logoutOperations();
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-        if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else {
-            super.onBackPressed();
-        }
+        AlertDialog.Builder quitDialogBuilder = new AlertDialog.Builder(AfterLoginActivity.this);
+        quitDialogBuilder.setTitle("Wyjście");
+        quitDialogBuilder.setMessage("Czy chcesz się wylogować z aplikacji?");
+        quitDialogBuilder.setPositiveButton("Tak", (dialog, which) -> logoutOperations());
+        quitDialogBuilder.setNegativeButton("Cofnij", (dialog, which) -> dialog.dismiss());
+        AlertDialog quitDialog = quitDialogBuilder.create();
+        quitDialog.show();
+    }
+
+    private void logoutOperations(){
+        Intent signInActivityIntent = new Intent(AfterLoginActivity.this,SignInActivity.class);
+        startActivity(signInActivityIntent);
+        userService.logOut(() -> finish());
     }
 }
