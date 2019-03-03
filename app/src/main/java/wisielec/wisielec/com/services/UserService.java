@@ -131,11 +131,29 @@ public class UserService {
         });
     }
 
+    public void removeUserAccount(final IRemoveUserCallback callback){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        user.delete().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        callback.onSuccess();
+                    }
+                    else {
+                        callback.onFailed();
+                    }
+                });
+    }
+
     public interface IBestUserCallback {
         void onSuccess(List<User> userList);
     }
 
     public interface ICurrentUserCallback {
         void onSuccess(User user);
+    }
+
+    public interface IRemoveUserCallback {
+        void onSuccess();
+        void onFailed();
     }
 }
