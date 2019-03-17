@@ -1,65 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="wisielec.wisielec.com.activity.SignInActivity"
-    android:background="@mipmap/login">
+    android:background="@drawable/background_with_border"
+    tools:context="wisielec.wisielec.com.activity.SignInActivity">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="Logowanie"
+        android:textAlignment="center"
+        android:textColor="#0d2c4b"
+        android:textStyle="bold"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="14sp"
+        app:autoSizeMaxTextSize="25sp"
+        app:autoSizeStepGranularity="2sp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal1" />
 
     <EditText
         android:id="@+id/emailInput"
-        android:layout_width="270dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="150dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_gravity="center"
+        android:background="@drawable/style_edittext_border"
         android:hint="Podaj email"
-        android:textStyle="bold"
-        android:textColor="#7c8085"
         android:textAlignment="center"
-        android:background="@drawable/edittext_border"
-        android:inputType="textEmailAddress" />
+        android:textColor="#7c8085"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal4"
+        app:layout_constraintEnd_toEndOf="@id/guidelineVertical6"
+        app:layout_constraintStart_toStartOf="@id/guidelineVertical2"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal3" />
 
     <EditText
         android:id="@+id/passwordInput"
-        android:layout_width="270dp"
-        android:layout_height="65dp"
-        android:inputType="textPassword"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="235dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_gravity="center"
+        android:background="@drawable/style_edittext_border"
         android:hint="Podaj hasło"
-        android:textStyle="bold"
-        android:textColor="#7c8085"
+        android:inputType="textPassword"
         android:textAlignment="center"
-        android:background="@drawable/edittext_border"/>
+        android:textColor="#7c8085"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal6"
+        app:layout_constraintEnd_toEndOf="@id/guidelineVertical6"
+        app:layout_constraintStart_toStartOf="@id/guidelineVertical2"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal5" />
 
     <Button
         android:id="@+id/buttonLogin"
-        android:layout_width="140dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="173dp"
-        android:layout_marginTop="320dp"
+        android:layout_width="0sp"
+        android:layout_height="0sp"
         android:layout_gravity="center"
         android:background="#0d2c4b"
+        android:padding="10sp"
         android:text="Zaloguj"
-        android:textColor="#f4d170"
-        android:textSize="25sp"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#F4D170"
         android:textStyle="bold"
-        android:textAppearance="@android:style/TextAppearance.Small.Inverse"/>
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="14sp"
+        app:autoSizeMaxTextSize="26sp"
+        app:autoSizeStepGranularity="2sp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal8"
+        app:layout_constraintLeft_toRightOf="@id/guidelineVertical4"
+        app:layout_constraintRight_toLeftOf="@id/guidelineVertical6"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal7" />
+
+    <TextView
+        android:id="@+id/categoryTextView"
+        android:layout_width="0sp"
+        android:layout_height="0sp"
+        android:gravity="center"
+        android:text="Nie masz konta?"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#0d2c4b"
+        android:textStyle="bold"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="18sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal10"
+        app:layout_constraintLeft_toRightOf="@id/guidelineVertical2"
+        app:layout_constraintRight_toLeftOf="@id/guidelineVertical6"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal9" />
 
     <Button
         android:id="@+id/buttonRegistration"
-        android:layout_width="119dp"
-        android:layout_height="52dp"
+        android:layout_width="0sp"
+        android:layout_height="0sp"
         android:layout_gravity="center"
-        android:layout_marginTop="473dp"
-        android:layout_marginStart="45dp"
+        android:background="@drawable/style_button_border"
         android:text="Rejestracja"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
         android:textColor="#0d2c4b"
-        android:textSize="20sp"
         android:textStyle="bold"
-        android:background="@drawable/button_border"
-        android:textAppearance="@android:style/TextAppearance.Small.Inverse"/>
+        android:padding="10sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="22sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal12"
+        app:layout_constraintLeft_toRightOf="@id/guidelineVertical3"
+        app:layout_constraintRight_toLeftOf="@id/guidelineVertical5"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal11" />
 
-</RelativeLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.14" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.54" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.86" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.04" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.11" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.235" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.34" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.375" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.48" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.52" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.62" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.795" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.855" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.865" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.945" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
