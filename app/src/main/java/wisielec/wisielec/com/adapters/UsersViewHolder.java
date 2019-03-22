@@ -13,8 +13,8 @@ public class UsersViewHolder extends RecyclerView.ViewHolder {
 
     public UsersViewHolder(@NonNull View itemView) {
         super(itemView);
-        usernameTextView= itemView.findViewById(R.id.list_desc);
-        pointsTextView = itemView.findViewById(R.id.position);
+        usernameTextView= itemView.findViewById(R.id.usernameTextView);
+        pointsTextView = itemView.findViewById(R.id.pointsTextView);
     }
 
     public TextView getUsernameTextView() {

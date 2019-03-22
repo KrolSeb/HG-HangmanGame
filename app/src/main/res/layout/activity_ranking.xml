@@ -94,16 +94,16 @@
         android:id="@+id/userStatsTextView"
         android:layout_width="0sp"
         android:layout_height="0sp"
+        android:text="Najlepsi gracze"
         android:textAlignment="center"
         android:textColor="#0d2c4b"
         android:textStyle="bold"
-        android:text="Lista rankingowa"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="16sp"
         app:autoSizeMaxTextSize="22sp"
+        app:autoSizeMinTextSize="16sp"
         app:autoSizeStepGranularity="2sp"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal7"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toRightOf="@id/guidelineVertical1"
         app:layout_constraintRight_toLeftOf="@id/guidelineVertical6"
         app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal6" />
@@ -112,6 +112,7 @@
         android:id="@+id/recycler_view_best_users"
         android:layout_width="0sp"
         android:layout_height="0sp"
+        android:overScrollMode="never"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal9"
         app:layout_constraintLeft_toRightOf="@id/guidelineVertical1"
         app:layout_constraintRight_toLeftOf="@id/guidelineVertical6"
@@ -201,14 +202,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.355" />
+        app:layout_constraintGuide_percent="0.35" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontal7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.405" />
+        app:layout_constraintGuide_percent="0.40" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontal8"
