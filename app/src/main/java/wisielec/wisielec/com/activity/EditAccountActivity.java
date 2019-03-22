@@ -82,10 +82,14 @@ public class EditAccountActivity extends MainActivity {
     }
 
     private void updateLayoutTextViews() {
-        userService.getCurrentUserData(user -> {
+        userService.getUserData(user -> {
             if(!user.getAvatarURL().isEmpty()) {
                 Picasso.get().load(user.getAvatarURL()).into(avatarImageView);
             }
+            else {
+                avatarImageView.setImageResource(R.drawable.avatar);
+            }
+
             usernameTextView.setText(user.getUserName());
         });
     }
