@@ -3,7 +3,6 @@ package wisielec.wisielec.com.activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
@@ -16,6 +15,7 @@ import butterknife.OnClick;
 
 import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.domain.User;
+import wisielec.wisielec.com.services.RankService;
 import wisielec.wisielec.com.services.UserService;
 
 public class AfterLoginActivity extends MainActivity {
@@ -24,76 +24,66 @@ public class AfterLoginActivity extends MainActivity {
      * TextViews
      */
     @BindView(R.id.usernameTextView)
-    TextView username;
-    @BindView(R.id.rankingPositionTextView)
-    TextView rankingPosition;
+    protected TextView username;
     @BindView(R.id.firstUserPositionTextView)
-    TextView firstUserFromRanking;
+    protected TextView firstUserFromRanking;
     @BindView(R.id.firstUserPointsTextView)
-    TextView firstUserPoints;
+    protected TextView firstUserPoints;
     @BindView(R.id.secondUserPositionTextView)
-    TextView secondUserFromRanking;
+    protected TextView secondUserFromRanking;
     @BindView(R.id.secondUserPointsTextView)
-    TextView secondUserPoints;
+    protected TextView secondUserPoints;
     @BindView(R.id.thirdUserPositionTextView)
-    TextView thirdUserFromRanking;
+    protected TextView thirdUserFromRanking;
     @BindView(R.id.thirdUserPointsTextView)
-    TextView thirdUserPoints;
-
-    /**
-     * ActivityLoginElements
-     * Buttons
-     */
-    @BindView(R.id.playButton)
-    Button playButton;
-    @BindView(R.id.howToPlayButton)
-    Button howToPlayButton;
-    @BindView(R.id.toRankListButton)
-    Button toRankListButton;
+    protected TextView thirdUserPoints;
 
     /**
      * ActivityLoginElements
      * Images
      */
     @BindView(R.id.avatarImageView)
-    ImageView avatar;
+    protected ImageView avatar;
 
     /**
      * UserPanelBarElements
      * TextViews
      */
     @BindView(R.id.usernameTextViewBar)
-    TextView usernameBar;
+    protected TextView usernameBar;
     @BindView(R.id.rankingPositionTextViewBar)
-    TextView rankingPositionBar;
+    protected TextView rankingPositionBar;
     @BindView(R.id.rankLevelTextViewBar)
-    TextView rankLevelBar;
+    protected TextView rankLevelBar;
     @BindView(R.id.pointsAmountTextViewBar)
-    TextView pointsAmountBar;
-
-    /**
-     * UserPanelBarElements
-     * Buttons
-     */
-    @BindView(R.id.settingsButton)
-    Button settingsButton;
-    @BindView(R.id.logoutButton)
-    Button logoutButton;
+    protected TextView pointsAmountBar;
 
     /**
      * UserPanelBarElements
      * Images
      */
     @BindView(R.id.avatarImageViewBar)
-    ImageView avatarBar;
+    protected ImageView avatarBar;
 
-    protected UserService userService = UserService.getInstance();
+    /**
+     * UserService
+     * Object used to do actions on current user.
+     */
+    private UserService userService;
+
+    /**
+     * RankService
+     * Object used to get users ranking.
+     */
+    private RankService rankService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_after_login);
+        setContentView(R.layout.app_bar_after_login);
         ButterKnife.bind(this);
+        userService = UserService.getInstance();
+        rankService = RankService.getInstance();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -101,15 +91,15 @@ public class AfterLoginActivity extends MainActivity {
         toggle.syncState();
 
         getCurrentUserData();
-        getBestUsersFromRanking();
+        getThreeBestUsersFromRanking();
     }
 
     private void getCurrentUserData(){
-        userService.getCurrentUserData(this::bindingDataWithLayout);
+        userService.getUserData(this::bindingDataWithLayout);
     }
 
-    private void getBestUsersFromRanking(){
-        userService.getBestUsersFromRanking(userList -> {
+    private void getThreeBestUsersFromRanking(){
+        rankService.getThreeBestUsersFromRanking(userList -> {
             User user;
             String userName;
 
@@ -135,12 +125,20 @@ public class AfterLoginActivity extends MainActivity {
             Picasso.get().load(user.getAvatarURL()).into(avatar);
             Picasso.get().load(user.getAvatarURL()).into(avatarBar);
         }
+        else {
+            avatar.setImageResource(R.drawable.avatar);
+            avatarBar.setImageResource(R.drawable.avatar);
+        }
+
         username.setText(String.valueOf(user.getUserName()));
         usernameBar.setText(String.valueOf(user.getUserName()));
-        rankingPosition.setText(String.valueOf(user.getRankingPosition()));
-        rankingPositionBar.setText(String.valueOf(user.getRankingPosition()));
         rankLevelBar.setText(String.valueOf(user.getRank()));
         pointsAmountBar.setText(String.valueOf(user.getPoints() + " pkt"));
+        bindUserRankingPosition();
+    }
+
+    private void bindUserRankingPosition(){
+        rankService.getUserRankingPosition(userRankingPosition -> rankingPositionBar.setText(String.valueOf(userRankingPosition)));
     }
 
     @OnClick(R.id.howToPlayButton)
@@ -186,6 +184,6 @@ public class AfterLoginActivity extends MainActivity {
     private void logoutOperations(){
         Intent signInActivityIntent = new Intent(AfterLoginActivity.this,SignInActivity.class);
         startActivity(signInActivityIntent);
-        userService.logOut(() -> finish());
+        userService.logOut(this::finish);
     }
 }
