@@ -33,7 +33,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        app:srcCompat="@drawable/avatar"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guidelineVertical1"
         app:layout_constraintEnd_toEndOf="@+id/guidelineVertical5"

@@ -35,7 +35,7 @@ public class User {
         this.isActuallyLogged = true;
         this.password = "";
         this.points = 0;
-        this.rank = Rank.SZEREGOWY.toString();
+        this.rank = Rank.PRIVATE.toString();
         this.rankingPosition = 0;
         this.userName = "";
     }

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@mipmap/categories">
+    android:background="@drawable/background_without_border">
 
     <Button
         android:id="@+id/changeCategoryButton"
@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="37dp"
         android:layout_marginStart="36dp"
-        android:background="@drawable/button_border"
+        android:background="@drawable/style_button_border"
         android:text="Zmień kategorie"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
         android:textColor="#0d2c4b"
