@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="wisielec.wisielec.com.activity.HowToPlayActivity"
-    android:background="@mipmap/howtoplay">
+    android:background="@drawable/background_with_border">
 
     <TextView
         android:layout_width="305dp"

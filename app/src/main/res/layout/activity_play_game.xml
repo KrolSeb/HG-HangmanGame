@@ -592,7 +592,7 @@
         android:layout_width="0sp"
         android:layout_height="0sp"
         android:orientation="horizontal"
-        android:background="@drawable/line_shape"
+        android:background="@drawable/style_line_shape"
         android:gravity="center_horizontal|center_vertical"
         app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal12"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal13"

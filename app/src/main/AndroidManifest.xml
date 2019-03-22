@@ -5,6 +5,8 @@
     package="wisielec.wisielec.com">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -69,6 +71,7 @@
         <activity
             android:name=".activity.ChooseCountOfRoundsActivity"
             android:screenOrientation="portrait"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme" >
         </activity>
 

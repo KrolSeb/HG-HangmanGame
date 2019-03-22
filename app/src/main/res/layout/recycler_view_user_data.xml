@@ -21,10 +21,9 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/list_title"
+            android:id="@+id/position"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Title"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:textStyle="bold" />

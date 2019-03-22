@@ -11,30 +11,28 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
+import androidx.annotation.NonNull;
 import wisielec.wisielec.com.domain.Category;
 
 public class CategoryService {
-
     private static final String TAG = "CategoryService";
+    private static CategoryService instance = null;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
-    private static CategoryService instance = null;
-
-    private CategoryService() {
-    }
+    private CategoryService() { }
 
     public static CategoryService getInstance() {
-        if (instance == null) instance = new CategoryService();
+        if (instance == null) {
+            instance = new CategoryService();
+        }
         return instance;
     }
 
-
     public void getCategoriesFromDatabase(final int count, final ICategoryCallback callback) {
         final DatabaseReference databaseReference = firebaseDatabase.getReference().child("categories");
-
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Category> categoryList = new ArrayList<>();
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     Category category = ds.getValue(Category.class);
@@ -51,9 +49,7 @@ public class CategoryService {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
     }
 
@@ -61,14 +57,12 @@ public class CategoryService {
         HashSet<Integer> A = new HashSet<>();
         Random random = new Random();
 
-        int i = 0;
         while(A.size() < numOfElements) {
             A.add(random.nextInt((max - min) + 1) + min);
         }
 
         return A;
     }
-
 
     public interface ICategoryCallback {
         void onSuccess(List<Category> categoryList);
