@@ -11,6 +11,7 @@ import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.domain.User;
 
 public class UsersRankingAdapter extends RecyclerView.Adapter<UsersViewHolder> {
+    private final String POINTS_ABBREVIATION = "pkt";
     private Context context;
     private ArrayList<User> users;
 
@@ -22,18 +23,18 @@ public class UsersRankingAdapter extends RecyclerView.Adapter<UsersViewHolder> {
     @NonNull
     @Override
     public UsersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new UsersViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_view_user_data, parent, false));
+        return new UsersViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_view_user_data_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull UsersViewHolder usersViewHolder, int position) {
         usersViewHolder.getUsernameTextView().setText(String.valueOf(users.get(position).getUserName()));
-        usersViewHolder.getPointsTextView().setText(String.valueOf(users.get(position).getPoints() +  " pkt"));
+        usersViewHolder.getPointsTextView().setText(String.valueOf(users.get(position).getPoints() +  " " + POINTS_ABBREVIATION));
     }
 
     @Override
     public int getItemCount() {
         return users.size();
     }
-}
 
+}
