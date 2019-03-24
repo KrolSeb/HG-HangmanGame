@@ -39,8 +39,8 @@ public class CategoryService {
                     categoryList.add(category);
                 }
 
-                List<Category> randomizedCategoryList = new ArrayList<>();
-                HashSet<Integer> arrayWithRandomizedNumbers = getRandomArray(0, categoryList.size()-1, count);
+                ArrayList<Category> randomizedCategoryList = new ArrayList<>();
+                HashSet<Integer> arrayWithRandomizedNumbers = getRandomArray(0, categoryList.size() - 1, count);
 
                 for(Integer value : arrayWithRandomizedNumbers){
                     randomizedCategoryList.add(categoryList.get(value));
@@ -65,7 +65,7 @@ public class CategoryService {
     }
 
     public interface ICategoryCallback {
-        void onSuccess(List<Category> categoryList);
+        void onSuccess(ArrayList<Category> categoryList);
     }
 
 }
