@@ -29,6 +29,15 @@ import wisielec.wisielec.com.R;
  */
 
 public class EditAccountActivity extends MainActivity {
+    private final String DIALOG_DELETE_ACCOUNT_HEADER_MESSAGE = "Czy na pewno?";
+    private final String DIALOG_DELETE_ACCOUNT_MAIN_MESSAGE = "Potwierdzenie operacji oznacza usunięcie konta użytkownika wraz z wszystkimi danymi. Czy chcesz kontynuować?";
+    private final String DIALOG_CONFIRM_ANSWER = "OK";
+    private final String DIALOG_DENY_ANSWER = "Odrzuć";
+    private final String DELETE_ACCOUNT_SUCCESS = "Usunięcie konta zakończone sukcesem";
+    private final String DELETE_ACCOUNT_FAILED = "Nie udało się usunąć konta";
+    private final String UPDATE_DATA_SUCCESS = "Zaktualizowano dane";
+    private final String UPDATE_DATA_FAILED = "Nie zaktualizowano danych";
+    
     @BindView(R.id.avatarImageView) ImageView avatarImageView;
     @BindView(R.id.usernameTextView) TextView usernameTextView;
     @BindView(R.id.newUsernameEditText) EditText newUsernameEditText;
@@ -117,25 +126,15 @@ public class EditAccountActivity extends MainActivity {
     }
 
     private void notifyAboutChanges(){
-        if(isUsernameUpdated && isAvatarUpdated) {
-            Toast.makeText(EditAccountActivity.this, "Zaktualizowano nazwę użytkownika i avatar",Toast.LENGTH_SHORT).show();
+        if(isUsernameUpdated || isAvatarUpdated) {
+            Toast.makeText(EditAccountActivity.this, UPDATE_DATA_SUCCESS,Toast.LENGTH_SHORT).show();
             isUsernameUpdated = false;
             isAvatarUpdated = false;
             username = "";
-            imageURL = "";
-        }
-        else if(isUsernameUpdated) {
-            Toast.makeText(EditAccountActivity.this, "Zaktualizowano nazwę użytkownika",Toast.LENGTH_SHORT).show();
-            isUsernameUpdated = false;
-            username = "";
-        }
-        else if(isAvatarUpdated) {
-            Toast.makeText(EditAccountActivity.this, "Zaktualizowano avatar",Toast.LENGTH_SHORT).show();
-            isAvatarUpdated = false;
             imageURL = "";
         }
         else {
-            Toast.makeText(EditAccountActivity.this, "Nie zaktualizowano danych",Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditAccountActivity.this, UPDATE_DATA_FAILED,Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -210,25 +209,24 @@ public class EditAccountActivity extends MainActivity {
 
     private void showDeleteAccountDialog() {
         AlertDialog.Builder deleteDialogBuilder = new AlertDialog.Builder(EditAccountActivity.this);
-        deleteDialogBuilder.setTitle("Czy na pewno?");
-        deleteDialogBuilder.setMessage("Potwierdzenie operacji oznacza usunięcie konta użytkownika wraz z wszystkimi danymi. " +
-                "Czy chcesz kontynuować?");
+        deleteDialogBuilder.setTitle(DIALOG_DELETE_ACCOUNT_HEADER_MESSAGE);
+        deleteDialogBuilder.setMessage(DIALOG_DELETE_ACCOUNT_MAIN_MESSAGE);
 
-        deleteDialogBuilder.setPositiveButton("OK", (dialog, which) -> userService.removeUserAccount(new UserService.IRemoveUserCallback() {
+        deleteDialogBuilder.setPositiveButton(DIALOG_CONFIRM_ANSWER, (dialog, which) -> userService.removeUserAccount(new UserService.IRemoveUserCallback() {
             @Override
             public void onSuccess() {
-                Toast.makeText(EditAccountActivity.this, "Usunięcie konta zakończone sukcesem",Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditAccountActivity.this, DELETE_ACCOUNT_SUCCESS,Toast.LENGTH_SHORT).show();
                 userService.logOut(() -> finish());
                 prepareAfterRemoveAccountIntent();
                 startActivity(afterRemoveUserIntent);
             }
             @Override
             public void onFailed() {
-                Toast.makeText(EditAccountActivity.this, "Nie udało się usunąć konta",Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditAccountActivity.this, DELETE_ACCOUNT_FAILED,Toast.LENGTH_SHORT).show();
             }
         }));
 
-        deleteDialogBuilder.setNegativeButton("Odrzuć", (dialog, which) -> dialog.dismiss());
+        deleteDialogBuilder.setNegativeButton(DIALOG_DENY_ANSWER, (dialog, which) -> dialog.dismiss());
 
         AlertDialog deleteDialog = deleteDialogBuilder.create();
         deleteDialog.show();
