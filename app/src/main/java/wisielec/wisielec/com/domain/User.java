@@ -9,6 +9,8 @@ import wisielec.wisielec.com.enums.Rank;
 
 @IgnoreExtraProperties
 public class User {
+    private final String DEFAULT_AVATAR = "https://firebasestorage.googleapis.com/v0/b/gra-w-wisielca.appspot.com/o/avatar.png?alt=media&token=829e201b-98ec-4a66-9064-2d6405bc8dc5";
+
     private String avatarURL;
     private String email;
     private String id;
@@ -17,7 +19,6 @@ public class User {
     private String password;
     private int points;
     private String rank;
-    private int rankingPosition;
     private String userName;
 
     public User(String email, String password) {
@@ -28,7 +29,7 @@ public class User {
     }
 
     public User() {
-        this.avatarURL = "";
+        this.avatarURL = DEFAULT_AVATAR;
         this.email = "";
         this.id = "";
         this.isAccountActivated = true;
@@ -36,7 +37,6 @@ public class User {
         this.password = "";
         this.points = 0;
         this.rank = Rank.PRIVATE.toString();
-        this.rankingPosition = 0;
         this.userName = "";
     }
 
@@ -104,14 +104,6 @@ public class User {
         this.rank = rank;
     }
 
-    public int getRankingPosition() {
-        return rankingPosition;
-    }
-
-    public void setRankingPosition(int rankingPosition) {
-        this.rankingPosition = rankingPosition;
-    }
-
     public String getUserName() {
         return userName;
     }
@@ -131,7 +123,6 @@ public class User {
                 ", password='" + password + '\'' +
                 ", points=" + points +
                 ", rank='" + rank + '\'' +
-                ", rankingPosition=" + rankingPosition +
                 ", userName='" + userName + '\'' +
                 '}';
     }
