@@ -41,7 +41,7 @@
         android:id="@+id/usernameTextView"
         android:layout_width="0sp"
         android:layout_height="0sp"
-        android:gravity="left|center"
+        android:gravity="center"
         android:textColor="#0d2c4b"
         android:textStyle="bold"
         android:text=""
@@ -51,7 +51,7 @@
         app:autoSizeStepGranularity="2sp"
         app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal3"
         app:layout_constraintLeft_toRightOf="@+id/guidelineVertical6"
-        app:layout_constraintRight_toLeftOf="@+id/guidelineVertical11"
+        app:layout_constraintRight_toLeftOf="@+id/guidelineVertical12"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal4"/>
 
     <TextView
@@ -68,7 +68,7 @@
         app:autoSizeStepGranularity="2sp"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal6"
         app:layout_constraintLeft_toRightOf="@id/guidelineVertical1"
-        app:layout_constraintRight_toLeftOf="@id/guidelineVertical6"
+        app:layout_constraintRight_toLeftOf="@id/guidelineVertical7"
         app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal5" />
 
     <TextView
@@ -84,8 +84,8 @@
         app:autoSizeMaxTextSize="24sp"
         app:autoSizeStepGranularity="4sp"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal6"
-        app:layout_constraintLeft_toRightOf="@id/guidelineVertical7"
-        app:layout_constraintRight_toLeftOf="@id/guidelineVertical10"
+        app:layout_constraintLeft_toRightOf="@id/guidelineVertical8"
+        app:layout_constraintRight_toLeftOf="@id/guidelineVertical11"
         app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal5" />
 
     <TextView
@@ -102,7 +102,7 @@
         app:autoSizeStepGranularity="2sp"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal8"
         app:layout_constraintLeft_toRightOf="@id/guidelineVertical1"
-        app:layout_constraintRight_toLeftOf="@id/guidelineVertical6"
+        app:layout_constraintRight_toLeftOf="@id/guidelineVertical7"
         app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal7" />
 
     <TextView
@@ -118,8 +118,8 @@
         app:autoSizeMaxTextSize="24sp"
         app:autoSizeStepGranularity="4sp"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal8"
-        app:layout_constraintLeft_toRightOf="@id/guidelineVertical7"
-        app:layout_constraintRight_toLeftOf="@id/guidelineVertical10"
+        app:layout_constraintLeft_toRightOf="@id/guidelineVertical8"
+        app:layout_constraintRight_toLeftOf="@id/guidelineVertical11"
         app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal7" />
 
     <TextView
@@ -136,7 +136,7 @@
         app:autoSizeStepGranularity="2sp"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal10"
         app:layout_constraintLeft_toRightOf="@id/guidelineVertical1"
-        app:layout_constraintRight_toLeftOf="@id/guidelineVertical6"
+        app:layout_constraintRight_toLeftOf="@id/guidelineVertical7"
         app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal9" />
 
     <TextView
@@ -152,8 +152,8 @@
         app:autoSizeMaxTextSize="24sp"
         app:autoSizeStepGranularity="4sp"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal10"
-        app:layout_constraintLeft_toRightOf="@id/guidelineVertical7"
-        app:layout_constraintRight_toLeftOf="@id/guidelineVertical10"
+        app:layout_constraintLeft_toRightOf="@id/guidelineVertical8"
+        app:layout_constraintRight_toLeftOf="@id/guidelineVertical11"
         app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal9" />
 
     <TextView
@@ -171,7 +171,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal12"
         app:layout_constraintLeft_toRightOf="@id/guidelineVertical1"
-        app:layout_constraintRight_toLeftOf="@id/guidelineVertical12"
+        app:layout_constraintRight_toLeftOf="@id/guidelineVertical13"
         app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal11" />
 
     <TextView
@@ -188,7 +188,7 @@
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal17"
         app:layout_constraintLeft_toRightOf="@id/guidelineVertical4"
-        app:layout_constraintRight_toLeftOf="@id/guidelineVertical8"
+        app:layout_constraintRight_toLeftOf="@id/guidelineVertical9"
         app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal16" />
 
     <TextView
@@ -205,7 +205,7 @@
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal21"
         app:layout_constraintLeft_toRightOf="@id/guidelineVertical4"
-        app:layout_constraintRight_toLeftOf="@id/guidelineVertical8"
+        app:layout_constraintRight_toLeftOf="@id/guidelineVertical9"
         app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal20" />
 
     <TextView
@@ -276,8 +276,8 @@
         app:autoSizeMaxTextSize="20sp"
         app:autoSizeStepGranularity="2sp"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal14"
-        app:layout_constraintLeft_toRightOf="@+id/guidelineVertical8"
-        app:layout_constraintRight_toLeftOf="@id/guidelineVertical12"
+        app:layout_constraintLeft_toRightOf="@+id/guidelineVertical9"
+        app:layout_constraintRight_toLeftOf="@id/guidelineVertical13"
         app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal13"  />
 
     <TextView
@@ -294,8 +294,8 @@
         app:autoSizeMaxTextSize="24sp"
         app:autoSizeStepGranularity="2sp"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal18"
-        app:layout_constraintLeft_toRightOf="@id/guidelineVertical8"
-        app:layout_constraintRight_toLeftOf="@id/guidelineVertical12"
+        app:layout_constraintLeft_toRightOf="@id/guidelineVertical9"
+        app:layout_constraintRight_toLeftOf="@id/guidelineVertical13"
         app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal15" />
 
     <TextView
@@ -312,8 +312,8 @@
         app:autoSizeMaxTextSize="24sp"
         app:autoSizeStepGranularity="2sp"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal22"
-        app:layout_constraintLeft_toRightOf="@id/guidelineVertical8"
-        app:layout_constraintRight_toLeftOf="@id/guidelineVertical12"
+        app:layout_constraintLeft_toRightOf="@id/guidelineVertical9"
+        app:layout_constraintRight_toLeftOf="@id/guidelineVertical13"
         app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal19" />
 
     <Button
@@ -331,7 +331,7 @@
         app:autoSizeMaxTextSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal24"
         app:layout_constraintLeft_toRightOf="@+id/guidelineVertical3"
-        app:layout_constraintRight_toLeftOf="@+id/guidelineVertical9"
+        app:layout_constraintRight_toLeftOf="@+id/guidelineVertical10"
         app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal23" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -346,7 +346,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.20" />
+        app:layout_constraintGuide_percent="0.14" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical3"
@@ -367,52 +367,59 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.45" />
-    
+        app:layout_constraintGuide_percent="0.39" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.50" />
+        app:layout_constraintGuide_percent="0.43" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.55" />
+        app:layout_constraintGuide_percent="0.50" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.65" />
+        app:layout_constraintGuide_percent="0.55" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.66" />
+        app:layout_constraintGuide_percent="0.65" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.71" />
+        app:layout_constraintGuide_percent="0.66" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.92" />
+        app:layout_constraintGuide_percent="0.71" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.86" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"

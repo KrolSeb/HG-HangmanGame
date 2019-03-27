@@ -2,6 +2,7 @@ package wisielec.wisielec.com.services;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -12,6 +13,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Objects;
 
@@ -26,14 +29,17 @@ import wisielec.wisielec.com.interfaces.OnGetDataListener;
 
 public class UserService {
     private static final String TAG = "UserService";
+    private static UserService instance = null;
+
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private static UserService instance = null;
 
     private UserService() { }
 
     public static UserService getInstance() {
-        if (instance == null) instance = new UserService();
+        if (instance == null){
+            instance = new UserService();
+        }
         return instance;
     }
 
@@ -76,14 +82,14 @@ public class UserService {
     public void loginUser(final Context context, final User user, final Callback onSuccess) {
         firebaseAuth.signInWithEmailAndPassword(user.getEmail(), user.getPassword())
                 .addOnCompleteListener((Activity) context, task -> {
-                if (task.isSuccessful()) {
-                    onSuccess.event();
-                }
-                else {
-                    Log.w(TAG, "signInWithEmail:failure", task.getException());
-                    Toast.makeText(context, "Logowanie użytkownika nie powiodło się: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
-                }
-        });
+                    if (task.isSuccessful()) {
+                        onSuccess.event();
+                    }
+                    else {
+                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                        Toast.makeText(context, "Logowanie użytkownika nie powiodło się: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     public void logOut(Callback onSuccess) {
@@ -91,6 +97,27 @@ public class UserService {
         onSuccess.event();
     }
 
+    public void updateUserName(String username) {
+        final DatabaseReference databaseReference = firebaseDatabase.getReference().child("users");
+        databaseReference.child(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid()).child("userName").setValue(username);
+    }
+
+    public void updateAvatar(Uri imageURI,final IUsernameAndAvatarUpdateCallback callback) {
+        String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String finalUploadPath = "avatars/" + UID + "/avatar.jpg";
+        final StorageReference storageReference = FirebaseStorage.getInstance().getReference(finalUploadPath);
+        final DatabaseReference databaseReference = firebaseDatabase.getReference().child("users");
+
+        storageReference.putFile(imageURI).continueWithTask(task -> {
+            if (!task.isSuccessful()) {
+                throw task.getException();
+            }
+            return storageReference.getDownloadUrl();
+        }).addOnSuccessListener(downloadUri -> {
+            databaseReference.child(firebaseAuth.getCurrentUser().getUid()).child("avatarURL").setValue(downloadUri.toString());
+            callback.onSuccess(true);
+        });
+    }
 
     public void getUserData(final IUsernameAndUserRankCallback callback) {
         final DatabaseReference databaseReference = firebaseDatabase.getReference().child("users");
@@ -106,7 +133,7 @@ public class UserService {
         });
     }
 
-    public void getUserDataOnce(final IUsernameAndUserRankCallback callback){
+    public void getUserDataOnce(final IUsernameAndUserRankCallback callback) {
         final DatabaseReference databaseReference = firebaseDatabase.getReference().child("users");
         databaseReference.child(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -120,17 +147,20 @@ public class UserService {
         });
     }
 
-    public void removeUserAccount(final IRemoveUserCallback callback){
+    public void removeUserAccount(final IRemoveUserCallback callback) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         user.delete().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 callback.onSuccess();
-            }
-            else {
+            } else {
                 callback.onFailed();
             }
         });
+    }
+
+    public interface IUsernameAndAvatarUpdateCallback {
+        void onSuccess(boolean result);
     }
 
     public interface IUsernameAndUserRankCallback {
