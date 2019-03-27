@@ -34,9 +34,9 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guidelineVertical1"
-        app:layout_constraintEnd_toEndOf="@+id/guidelineVertical5"
         app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal3"
+        app:layout_constraintStart_toStartOf="@+id/guidelineVertical2"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineVertical3"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal4" />
 
     <TextView
@@ -72,24 +72,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toRightOf="@+id/guidelineVertical1"
         app:layout_constraintRight_toLeftOf="@+id/guidelineVertical5"
-        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal7"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal8" />
-
-    <Button
-        android:id="@+id/chooseNewAvatarButton"
-        android:layout_width="0sp"
-        android:layout_height="0sp"
-        android:layout_gravity="center"
-        android:background="#0d2c4b"
-        android:text="Wybierz nowy avatar"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
-        android:textColor="#f4d170"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintLeft_toRightOf="@+id/guidelineVertical1"
-        app:layout_constraintRight_toLeftOf="@+id/guidelineVertical5"
         app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal9"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal10" />
 
@@ -103,15 +85,33 @@
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
         android:textColor="#f4d170"
         android:textStyle="bold"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="16sp"
         app:autoSizeMaxTextSize="26sp"
+        app:autoSizeMinTextSize="16sp"
         app:autoSizeStepGranularity="5sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal12"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toRightOf="@+id/guidelineVertical2"
         app:layout_constraintRight_toLeftOf="@+id/guidelineVertical4"
-        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal11"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal12" />
+        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal11" />
+
+    <Button
+        android:id="@+id/changeAvatarButton"
+        android:layout_width="0sp"
+        android:layout_height="0sp"
+        android:layout_gravity="center"
+        android:background="#0d2c4b"
+        android:text="Zmień avatar"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.Small.Inverse"
+        android:textColor="#f4d170"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toRightOf="@+id/guidelineVertical1"
+        app:layout_constraintRight_toLeftOf="@+id/guidelineVertical5"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal7"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal8" />
 
     <Button
         android:id="@+id/deleteAccountButton"
