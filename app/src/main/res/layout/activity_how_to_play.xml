@@ -1,22 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="wisielec.wisielec.com.activity.HowToPlayActivity"
-    android:background="@drawable/background_with_border">
+    android:background="@drawable/background_with_border"
+    tools:context="wisielec.wisielec.com.activity.HowToPlayActivity">
 
     <TextView
-        android:layout_width="305dp"
-        android:layout_height="450dp"
-        android:text="1. Użytkownik wybiera ilość rund: 3, 5 lub 7.\n2. Losowane są kategorie, a użytkownik ma możliwość ich zmiany.\n3. Po wyborze kategorii użytkownik klika „ROZPOCZNIJ ROZGRYWKĘ”.\n4. Na ekranie pojawia się nazwa kategorii z rozsypanką wyrazową. Kolor podkreśleń _ określa stopień trudności hasła, ilośc podkreśleń określa długość hasła.\n5. Rozgrywka: Użytkownik wybiera literkę z  rozsypanki i klika na nią:\n
-        a. Jeżeli trafił, literka przestaje być aktywna i pojawia się w odpowiednim miejscu w haśle.\n
-        b. Jeżeli nie trafił, literka przestaje być aktywna i buduje się WISIELEC.\n
-        c. Jeżeli odgadł hasło przechodzi do następnej rundy z dodatnią ilości punktów, jeżeli najpierw zbudował się WISIELEC użytkownik przechodzi do następnej rundy z ujemną ilością punktów.\n6. Po zakończeniu rozgrywki punkty użytkownika z rund są sumowane i wyświetlane na ekranie. Użytkownik wciska przycisk zakończ rozgrywkę, a jego punkty są dodawane do rankingu.\n7. Użytkownik w każdej chwili podczas rozgrywki może przerwać grę, dostając za to punkty ujemne."
+        android:id="@+id/titleTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="Jak grać?"
+        android:textAlignment="center"
         android:textColor="#0d2c4b"
-        android:layout_marginTop="86dp"
-        android:layout_marginStart="29dp"
         android:textStyle="bold"
-        android:textSize="12dp"/>
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="14sp"
+        app:autoSizeMaxTextSize="25sp"
+        app:autoSizeStepGranularity="2sp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal1" />
 
-</RelativeLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/imageViewPager"
+        android:layout_width="0sp"
+        android:layout_height="0sp"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal4"
+        app:layout_constraintLeft_toRightOf="@+id/guidelineVertical2"
+        app:layout_constraintRight_toLeftOf="@+id/guidelineVertical3"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal3" />
+
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="0sp"
+        android:layout_height="0sp"
+        android:gravity="center"
+        android:textColor="#0d2c4b"
+        android:textStyle="bold"
+        app:autoSizeMaxTextSize="16sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal6"
+        app:layout_constraintLeft_toRightOf="@+id/guidelineVertical2"
+        app:layout_constraintRight_toLeftOf="@+id/guidelineVertical3"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal5" />
+
+    <LinearLayout
+        android:id="@+id/sliderDotsLayout"
+        android:layout_width="0sp"
+        android:layout_height="0sp"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal7"
+        app:layout_constraintLeft_toRightOf="@+id/guidelineVertical1"
+        app:layout_constraintRight_toLeftOf="@+id/guidelineVertical4"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal6">
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.065" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.22" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.78" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.935" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.04" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.11" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.81" />
+    
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.90" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
