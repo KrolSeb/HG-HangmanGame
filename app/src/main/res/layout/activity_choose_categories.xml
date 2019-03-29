@@ -37,8 +37,8 @@
         android:textStyle="bold"
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="14sp"
-        app:autoSizeMaxTextSize="28sp"
-        app:autoSizeStepGranularity="2sp"
+        app:autoSizeMaxTextSize="21sp"
+        app:autoSizeStepGranularity="1sp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal6"
         app:layout_constraintLeft_toRightOf="@id/guidelineVertical2"
         app:layout_constraintRight_toLeftOf="@id/guidelineVertical4"
@@ -51,14 +51,14 @@
         android:layout_gravity="center"
         android:padding="10sp"
         android:background="#0d2c4b"
-        android:text="Rozpocznij rozgrywkę"
+        android:text="Zacznij rozgrywkę"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
         android:textColor="#f4d170"
         android:textStyle="bold"
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="14sp"
-        app:autoSizeMaxTextSize="28sp"
-        app:autoSizeStepGranularity="2sp"
+        app:autoSizeMaxTextSize="21sp"
+        app:autoSizeStepGranularity="1sp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal6"
         app:layout_constraintLeft_toRightOf="@id/guidelineVertical5"
         app:layout_constraintRight_toLeftOf="@id/guidelineVertical7"
@@ -101,14 +101,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.395" />
+        app:layout_constraintGuide_percent="0.385" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.605" />
+        app:layout_constraintGuide_percent="0.615" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical6"
@@ -164,7 +164,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.835" />
+        app:layout_constraintGuide_percent="0.845" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontal6"
