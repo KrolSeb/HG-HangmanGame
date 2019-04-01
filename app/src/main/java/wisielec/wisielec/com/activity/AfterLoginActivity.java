@@ -5,20 +5,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.squareup.picasso.Picasso;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.drawerlayout.widget.DrawerLayout;
-import butterknife.ButterKnife;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
-
 import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.services.RankService;
 import wisielec.wisielec.com.services.UserService;
 
+
 public class AfterLoginActivity extends MainActivity {
+    private static final String MESSAGE_SUCCESSFUL_LOGOUT = "Wylogowano z aplikacji.";
+
     /**
      * ActivityLoginElements
      * TextViews
@@ -183,7 +187,14 @@ public class AfterLoginActivity extends MainActivity {
 
     private void logoutOperations(){
         Intent signInActivityIntent = new Intent(AfterLoginActivity.this,SignInActivity.class);
-        startActivity(signInActivityIntent);
-        userService.logOut(this::finish);
+        userService.logOut(() -> {
+            showToast(MESSAGE_SUCCESSFUL_LOGOUT,Toast.LENGTH_SHORT);
+            startActivity(signInActivityIntent);
+            finish();
+        });
+    }
+
+    private void showToast(String message,int length){
+        Toast.makeText(AfterLoginActivity.this,message,length).show();
     }
 }

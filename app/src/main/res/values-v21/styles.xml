@@ -1,13 +1,19 @@
 <resources>
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">true</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="colorPrimary">#0D2C4B</item>
+        <item name="colorPrimaryDark">#191919</item>
+        <item name="colorAccent">#F39F69</item>
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="DialogAnimation">
         <item name="android:windowEnterAnimation">@anim/slide_up</item>
         <item name="android:windowExitAnimation">@anim/slide_bottom</item>
     </style>
+
 </resources>
