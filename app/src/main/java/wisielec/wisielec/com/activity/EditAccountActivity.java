@@ -14,13 +14,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import wisielec.wisielec.com.services.UserService;
-
 import com.squareup.picasso.Picasso;
-import butterknife.ButterKnife;
+
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import wisielec.wisielec.com.R;
+import wisielec.wisielec.com.interfaces.UpdateUserAvatarCallback;
+import wisielec.wisielec.com.interfaces.UpdateUsernameCallback;
+import wisielec.wisielec.com.interfaces.UserRemoveCallback;
+import wisielec.wisielec.com.services.UserService;
 
 public class EditAccountActivity extends MainActivity {
     private static final String DIALOG_DELETE_ACCOUNT_HEADER_MESSAGE = "Czy na pewno?";
@@ -55,10 +58,6 @@ public class EditAccountActivity extends MainActivity {
     private Uri imageURI;
 
     private Intent afterRemoveUserIntent;
-
-    private boolean isUsernameUpdated = false;
-    private String username = "";
-
     private UserService userService = UserService.getInstance();
 
     @Override
@@ -86,34 +85,38 @@ public class EditAccountActivity extends MainActivity {
     @OnClick(R.id.saveButton)
     protected void onSaveButtonClick() {
         updateUserName();
-        notifyAboutUsernameChange();
     }
 
     private void updateUserName() {
-        username = newUsernameEditText.getText().toString();
+        String username = newUsernameEditText.getText().toString();
         if (!username.equals("")){
-            userService.updateUserName(username);
-            isUsernameUpdated = true;
-        }
-    }
+            userService.updateUserName(username, new UpdateUsernameCallback() {
+                @Override
+                public void onSuccess() {
+                    showToast(UPDATE_USERNAME_SUCCESS,Toast.LENGTH_SHORT);
+                }
 
-    private void notifyAboutUsernameChange(){
-        if(isUsernameUpdated) {
-            Toast.makeText(EditAccountActivity.this, UPDATE_USERNAME_SUCCESS,Toast.LENGTH_SHORT).show();
-            isUsernameUpdated = false;
-            username = "";
-        }
-        else {
-            Toast.makeText(EditAccountActivity.this, UPDATE_USERNAME_FAILED,Toast.LENGTH_SHORT).show();
+                @Override
+                public void onFailed() {
+                    showToast(UPDATE_USERNAME_FAILED,Toast.LENGTH_SHORT);
+                }
+            });
         }
     }
 
     private void updateAvatar() {
         if (imageURI != null){
-            userService.updateAvatar(imageURI, result -> Toast.makeText(EditAccountActivity.this, DIALOG_UPDATE_AVATAR_SUCCESS,Toast.LENGTH_SHORT).show());
-        }
-        else {
-            Toast.makeText(EditAccountActivity.this, DIALOG_UPDATE_AVATAR_FAILED,Toast.LENGTH_SHORT).show();
+            userService.updateAvatar(imageURI, new UpdateUserAvatarCallback() {
+                @Override
+                public void onSuccess() {
+                    showToast(DIALOG_UPDATE_AVATAR_SUCCESS,Toast.LENGTH_SHORT);
+                }
+
+                @Override
+                public void onFailed() {
+                    showToast(DIALOG_UPDATE_AVATAR_FAILED,Toast.LENGTH_SHORT);
+                }
+            });
         }
 
         alertDialogAvatar.dismiss();
@@ -194,6 +197,9 @@ public class EditAccountActivity extends MainActivity {
         startActivityForResult(intent,PICK_IMAGE_REQUEST);
     }
 
+    private void showToast(String message,int length){
+        Toast.makeText(EditAccountActivity.this,message,length).show();
+    }
 
     @OnClick(R.id.deleteAccountButton)
     protected void onDeleteAccountButtonClick() {
@@ -205,22 +211,21 @@ public class EditAccountActivity extends MainActivity {
         deleteDialogBuilder.setTitle(DIALOG_DELETE_ACCOUNT_HEADER_MESSAGE);
         deleteDialogBuilder.setMessage(DIALOG_DELETE_ACCOUNT_MAIN_MESSAGE);
 
-        deleteDialogBuilder.setPositiveButton(DIALOG_CONFIRM_ANSWER, (dialog, which) -> userService.removeUserAccount(new UserService.IRemoveUserCallback() {
+        deleteDialogBuilder.setPositiveButton(DIALOG_CONFIRM_ANSWER, (dialog, which) -> userService.removeUserAccount(new UserRemoveCallback() {
             @Override
             public void onSuccess() {
-                Toast.makeText(EditAccountActivity.this, DELETE_ACCOUNT_SUCCESS,Toast.LENGTH_SHORT).show();
+                showToast(DELETE_ACCOUNT_SUCCESS,Toast.LENGTH_SHORT);
                 userService.logOut(() -> finish());
                 prepareIntentAfterRemoveAccount();
                 startActivity(afterRemoveUserIntent);
             }
             @Override
             public void onFailed() {
-                Toast.makeText(EditAccountActivity.this, DELETE_ACCOUNT_FAILED,Toast.LENGTH_SHORT).show();
+                showToast(DELETE_ACCOUNT_FAILED,Toast.LENGTH_SHORT);
             }
         }));
 
         deleteDialogBuilder.setNegativeButton(DIALOG_DENY_ANSWER, (dialog, which) -> dialog.dismiss());
-
         AlertDialog deleteDialog = deleteDialogBuilder.create();
         deleteDialog.show();
     }
