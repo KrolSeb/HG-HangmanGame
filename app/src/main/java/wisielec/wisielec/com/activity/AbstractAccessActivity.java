@@ -7,7 +7,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 
-import wisielec.wisielec.com.interfaces.UserGetDataCallback;
+import wisielec.wisielec.com.interfaces.GetUserDataCallback;
 import wisielec.wisielec.com.services.UserService;
 
 
@@ -15,7 +15,7 @@ public abstract class AbstractAccessActivity extends MainActivity {
     public UserService userService = UserService.getInstance();
 
     public void changeToAfterLoginActivity() {
-        userService.getUser(FirebaseAuth.getInstance().getCurrentUser().getUid(), new UserGetDataCallback() {
+        userService.getUser(FirebaseAuth.getInstance().getCurrentUser().getUid(), new GetUserDataCallback() {
             @Override
             public void onStart() { }
 
