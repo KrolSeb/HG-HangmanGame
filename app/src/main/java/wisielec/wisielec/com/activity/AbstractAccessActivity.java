@@ -12,7 +12,8 @@ import wisielec.wisielec.com.services.UserService;
 
 
 public abstract class AbstractAccessActivity extends MainActivity {
-    public UserService userService = UserService.getInstance();
+    private static final String MESSAGE_AN_ERROR_OCCURED = "Wystąpił błąd: ";
+    private UserService userService = UserService.getInstance();
 
     public void changeToAfterLoginActivity() {
         userService.getUser(FirebaseAuth.getInstance().getCurrentUser().getUid(), new GetUserDataCallback() {
@@ -28,7 +29,7 @@ public abstract class AbstractAccessActivity extends MainActivity {
 
             @Override
             public void onFailed(DatabaseError databaseError) {
-                Toast.makeText(AbstractAccessActivity.this, "Wystąpił błąd: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AbstractAccessActivity.this, MESSAGE_AN_ERROR_OCCURED + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

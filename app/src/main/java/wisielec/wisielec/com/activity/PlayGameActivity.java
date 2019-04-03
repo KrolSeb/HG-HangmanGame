@@ -1,5 +1,6 @@
 package wisielec.wisielec.com.activity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,13 +23,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
-import butterknife.ButterKnife;
 import butterknife.BindView;
 import butterknife.BindViews;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.domain.Category;
@@ -35,13 +38,27 @@ import wisielec.wisielec.com.domain.Subcategory;
 import wisielec.wisielec.com.domain.Word;
 import wisielec.wisielec.com.enums.Difficulty;
 
-/**
- * Created by sebastian on 12.04.18.
- */
 
 public class PlayGameActivity extends GameActivityAbstract {
     private final static int HANGMAN_ELEMENTS = 5;
-    
+    private final static int OPEN_POPUP_DELAY = 600;
+    private final static int CLOSE_POPUP_DELAY = 400;
+
+    private final static String SPACE = " ";
+    private final static String EMPTY_STRING = "";
+    private final static String INTENT_KEY_CATEGORY_COUNT = "categoryCount";
+    private final static String INTENT_KEY_CATEGORY_LIST = "categoryList";
+    private final static String INTENT_KEY_SCORE = "score";
+    private final static String INTENT_KEY_BONUS_POINTS = "bonusPoints";
+
+    private final static String CATEGORY = "Kategoria:";
+    private final static String DIALOG_MESSAGE_WIN = "Wygrana!";
+    private final static String DIALOG_MESSAGE_LOSE = "Porażka :(";
+    private final static String DIALOG_MESSAGE_BREAK_GAME = "Czy chcesz przerwać rozgrywkę? Dotychczasowy postęp zostanie utracony. Z Twojego konta zostanie odebranych";
+    private final static String DIALOG_MESSAGE_BREAK_GAME_POINTS = "punktów.";
+    private final static String DIALOG_POSITIVE_ANSWER = "Tak";
+    private final static String DIALOG_NEGATIVE_ANSWER = "Nie";
+
     private final static String WIN_COLOR = "#2E8E3D";
     private final static String LOSE_COLOR = "#E51616";
     private final static String BUTTON_ENABLED_BACKGROUND_COLOR = "#0D2C4B";
@@ -73,19 +90,18 @@ public class PlayGameActivity extends GameActivityAbstract {
     private ArrayList<Subcategory> subcategoryList;
     private ArrayList<Word> wordsList;
     private Category category;
-    private Subcategory subcategory;
     private Word word;
     private Difficulty difficulty;
 
+    private Handler handler;
     private Random random;
     private int categoryCount;
     private int categoryNumber = 0;
     private int difficultyLevel;
 
     private String categoryName;
-    private String subcategoryName;
     private String wordName;
-    private TextView [] letterTextViews;
+    private TextView[] letterTextViews;
 
     private Button chosenButton;
     private boolean isLetterExists;
@@ -124,6 +140,7 @@ public class PlayGameActivity extends GameActivityAbstract {
         setContentView(R.layout.activity_play_game);
         ButterKnife.bind(this);
         random = new Random();
+        handler = new Handler();
 
         getDataFromIntent();
         initializeLists();
@@ -137,21 +154,15 @@ public class PlayGameActivity extends GameActivityAbstract {
 
     private void loadData(int categoryNumber) {
         category = getCategory(categoryNumber);
-        subcategory = getSubcategory(category);
+        Subcategory subcategory = getSubcategory(category);
         word = getWord(subcategory);
         setWordAttributes();
         setDifficultyLevel(difficultyLevel);
-
-        System.out.println(categoryName);
-        System.out.println(subcategoryName);
-        System.out.println(difficultyLevel);
-        System.out.println(wordName);
-
         clearLists();
     }
 
     private void setDifficultyLevel(int difficultyLevel) {
-        switch (difficultyLevel){
+        switch (difficultyLevel) {
             case 1:
                 difficulty = Difficulty.EASY;
                 break;
@@ -165,10 +176,9 @@ public class PlayGameActivity extends GameActivityAbstract {
                 break;
         }
     }
-    
+
     private void showLetterUnderlines() {
         letterTextViews = new TextView[wordName.length()];
-        wordLettersLayout.removeAllViews();
 
         for (int i = 0; i < wordName.length(); i++) {
             letterTextViews[i] = new TextView(this);
@@ -186,7 +196,7 @@ public class PlayGameActivity extends GameActivityAbstract {
     protected void onLetterClick(View view) {
         chosenButton = (Button) view;
         checkIfLetterExistsInWord(chosenButton.getText().toString());
-        disableLetterButton();
+        disableOneLetterButton();
     }
 
     private void checkIfLetterExistsInWord(String letter) {
@@ -204,39 +214,49 @@ public class PlayGameActivity extends GameActivityAbstract {
 
     private void processLetterCheckResult() {
         if (isLetterExists) {
-            if (guessLetterCounter == wordName.replace(" ", "").length()) {
+            if (guessLetterCounter == wordName.replace(SPACE, EMPTY_STRING).length()) {
                 guessLetterCounter = 0;
                 drawElementsCounter = 0;
+                disableLetterButtons();
                 sumPoints();
-                showWinPopup();
+                delayAndShowWinPopup();
             }
         }
         else if (drawElementsCounter < HANGMAN_ELEMENTS) {
             drawHangman(drawElementsCounter);
             drawElementsCounter++;
-
             if (drawElementsCounter == HANGMAN_ELEMENTS) {
                 drawElementsCounter = 0;
                 guessLetterCounter = 0;
                 missCounter++;
+                disableLetterButtons();
                 substractPoints();
-                showLosePopup();
+                delayAndShowLosePopup();
             }
         }
     }
 
-    private void sumPoints(){
-        switch (difficulty){
+    private void delayAndShowWinPopup() {
+        handler.postDelayed(this::showWinPopup, OPEN_POPUP_DELAY);
+    }
+
+    private void delayAndShowLosePopup() {
+        handler.postDelayed(this::showLosePopup, OPEN_POPUP_DELAY);
+    }
+
+    private void delayAndClosePopup() {
+        handler.postDelayed(() -> dialog.dismiss(), CLOSE_POPUP_DELAY);
+    }
+
+    private void sumPoints() {
+        switch (difficulty) {
             case EASY:
-                setScoredPointsInRound(EASY_LEVEL_WORD_GUESS_POINTS);
                 score += EASY_LEVEL_WORD_GUESS_POINTS;
                 break;
             case MEDIUM:
-                setScoredPointsInRound(MEDIUM_LEVEL_WORD_GUESS_POINTS);
                 score += MEDIUM_LEVEL_WORD_GUESS_POINTS;
                 break;
             case HARD:
-                setScoredPointsInRound(HARD_LEVEL_WORD_GUESS_POINTS);
                 score += HARD_LEVEL_WORD_GUESS_POINTS;
                 break;
             default:
@@ -244,18 +264,15 @@ public class PlayGameActivity extends GameActivityAbstract {
         }
     }
 
-    private void substractPoints(){
-        switch (difficulty){
+    private void substractPoints() {
+        switch (difficulty) {
             case EASY:
-                setScoredPointsInRound(EASY_LEVEL_WORD_MISS_POINTS);
                 score -= EASY_LEVEL_WORD_MISS_POINTS;
                 break;
             case MEDIUM:
-                setScoredPointsInRound(MEDIUM_LEVEL_WORD_MISS_POINTS);
                 score -= MEDIUM_LEVEL_WORD_MISS_POINTS;
                 break;
             case HARD:
-                setScoredPointsInRound(HARD_LEVEL_WORD_MISS_POINTS);
                 score -= HARD_LEVEL_WORD_MISS_POINTS;
                 break;
             default:
@@ -263,31 +280,49 @@ public class PlayGameActivity extends GameActivityAbstract {
         }
     }
 
-    private void preparePopups(){
+    private void preparePopups() {
         setDialogProperties();
         setDialogWindowProperties();
         initializeDialogComponents();
     }
 
+    private void removePreviousRoundContent() {
+        removeWordLettersFromView();
+        removeCategoryFromView();
+        hideHangmanImageViews();
+        enableLetterButtons();
+    }
+
+    private void removeWordLettersFromView() {
+        wordLettersLayout.removeAllViews();
+    }
+
+    private void removeCategoryFromView() {
+        categoryNameTextView.setText(EMPTY_STRING);
+    }
+
     private void showWinPopup() {
         setWinPopupAttributes();
-        dialog.show();
-
+        showDialog();
         goFurtherButton.setOnClickListener(v -> onGoFurtherButtonClick());
     }
 
     private void showLosePopup() {
         setLosePopupAttributes();
-        dialog.show();
-
+        showDialog();
         goFurtherButton.setOnClickListener(v -> onGoFurtherButtonClick());
+    }
+
+    private void showDialog() {
+        dialog.show();
     }
 
     private void onGoFurtherButtonClick() {
         categoryNumber++;
         if (categoryNumber < categoryCount) {
+            removePreviousRoundContent();
             loadNextRound();
-            dialog.dismiss();
+            delayAndClosePopup();
         }
         else if (categoryNumber == categoryCount) {
             calculateExtraPoints();
@@ -296,8 +331,8 @@ public class PlayGameActivity extends GameActivityAbstract {
     }
 
     private void calculateExtraPoints() {
-        if (missCounter == 0){
-            switch (categoryCount){
+        if (missCounter == 0) {
+            switch (categoryCount) {
                 case 3:
                     bonusPoints = THREE_ROUNDS_BONUS_POINTS;
                     break;
@@ -314,7 +349,7 @@ public class PlayGameActivity extends GameActivityAbstract {
     }
 
     private void calculateBreakGamePoints() {
-        switch (categoryCount){
+        switch (categoryCount) {
             case 3:
                 score = THREE_ROUNDS_BREAK_GAME_POINTS;
                 break;
@@ -329,58 +364,57 @@ public class PlayGameActivity extends GameActivityAbstract {
         }
     }
 
-    private void goToSummaryActivity(){
+    private void goToSummaryActivity() {
         Intent intentSummary = new Intent(PlayGameActivity.this, SummaryActivity.class);
-        intentSummary.putExtra("score", score);
-        intentSummary.putExtra("bonusPoints", bonusPoints);
+        intentSummary.putExtra(INTENT_KEY_SCORE, score);
+        intentSummary.putExtra(INTENT_KEY_BONUS_POINTS, bonusPoints);
         finish();
         startActivity(intentSummary);
     }
 
-    private void loadNextRound(){
+    private void loadNextRound() {
         setCategoryNumber(categoryNumber);
         loadData(categoryNumber);
         showLetterUnderlines();
         showCategory();
-        hideHangmanImageViews();
-        enableLetterButtons();
     }
 
-    private void getDataFromIntent(){
+    @SuppressWarnings("unchecked")
+    private void getDataFromIntent() {
         Intent intent = getIntent();
-        categoryCount = (int) intent.getSerializableExtra("categoryCount");
-        categoryList = (ArrayList<Category>) intent.getSerializableExtra("categoryList");
+        categoryCount = (int) intent.getSerializableExtra(INTENT_KEY_CATEGORY_COUNT);
+        categoryList = (ArrayList<Category>) intent.getSerializableExtra(INTENT_KEY_CATEGORY_LIST);
     }
 
-    private void initializeLists(){
+    private void initializeLists() {
         subcategoryList = new ArrayList<>();
         wordsList = new ArrayList<>();
     }
 
-    private Category getCategory(int categoryNumber){
+    private Category getCategory(int categoryNumber) {
         return categoryList.get(categoryNumber);
     }
 
-    private Subcategory getSubcategory(Category category){
+    private Subcategory getSubcategory(Category category) {
         subcategoryList.addAll(category.getSubcategories());
         int randomSubcategoryNumber = random.nextInt(subcategoryList.size());
         return subcategoryList.get(randomSubcategoryNumber);
     }
 
-    private Word getWord(Subcategory subcategory){
+    private Word getWord(Subcategory subcategory) {
         wordsList.addAll(subcategory.getWords());
         int randomWordNumber = random.nextInt(wordsList.size());
         return wordsList.get(randomWordNumber);
     }
 
-    private void setWordAttributes(){
+    private void setWordAttributes() {
         categoryName = category.getCategoryName();
-        subcategoryName = subcategory.getSubcategoryName();
+        //String subcategoryName = subcategory.getSubcategoryName();
         difficultyLevel = word.getDifficultyLevel();
         wordName = word.getName();
     }
 
-    private void clearLists(){
+    private void clearLists() {
         subcategoryList.clear();
         wordsList.clear();
     }
@@ -391,7 +425,7 @@ public class PlayGameActivity extends GameActivityAbstract {
         }
     }
 
-    private void enableLetterButtons(){
+    private void enableLetterButtons() {
         for (Button button : letterButtons) {
             button.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor((BUTTON_ENABLED_BACKGROUND_COLOR))));
             button.setTextColor(Color.parseColor(BUTTON_ENABLED_TEXT_COLOR));
@@ -399,7 +433,13 @@ public class PlayGameActivity extends GameActivityAbstract {
         }
     }
 
-    private void disableLetterButton(){
+    private void disableLetterButtons() {
+        for (Button button : letterButtons) {
+            button.setEnabled(false);
+        }
+    }
+
+    private void disableOneLetterButton() {
         chosenButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor((BUTTON_DISABLED_BACKGROUND_COLOR))));
         chosenButton.setTextColor(Color.parseColor(BUTTON_DISABLED_TEXT_COLOR));
         chosenButton.setEnabled(false);
@@ -409,69 +449,73 @@ public class PlayGameActivity extends GameActivityAbstract {
         hangmanImageViews[drawElementsCounter].setVisibility(View.VISIBLE);
     }
 
-    private void drawUnderlines(int number){
-        if (!letterTextViews[number].getText().equals(" ")) {
+    private void drawUnderlines(int number) {
+        if (!letterTextViews[number].getText().equals(SPACE)) {
             setUnderlinesStyle();
             letterTextViews[number].setBackground(underlinesDrawable);
         }
     }
 
-    private void setLettersAppearance(int number){
+    private void setLettersAppearance(int number) {
         letterTextViews[number].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
         letterTextViews[number].setGravity(Gravity.CENTER);
         letterTextViews[number].setTextColor(Color.TRANSPARENT);
         letterTextViews[number].setTextSize(22);
 
-        if (letterTextViews[number].getText().equals(" ")) {
+        if (letterTextViews[number].getText().equals(SPACE)) {
             letterTextViews[number].setLetterSpacing((float) 0.5);
         }
     }
 
-    private void setUnderlinesStyle(){
-        underlinesDrawable = (LayerDrawable) ContextCompat.getDrawable(this,R.drawable.style_letter_underline);
+    private void setUnderlinesStyle() {
+        underlinesDrawable = (LayerDrawable) ContextCompat.getDrawable(this, R.drawable.style_letter_underline);
         underlinesDrawable.setTint(Color.parseColor(difficulty.getColor()));
     }
 
     private void showCategory() {
-        categoryNameTextView.setText("Kategoria: " + categoryName);
+        String fullCategory = CATEGORY + SPACE + categoryName;
+        categoryNameTextView.setText(fullCategory);
     }
 
-    private void initializeDialogComponents(){
+    private void initializeDialogComponents() {
         statusTextView = dialogView.findViewById(R.id.statusTextView);
         statusIcon = dialogView.findViewById(R.id.statusIcon);
         goFurtherButton = dialogView.findViewById(R.id.goFurtherButton);
     }
 
-    private void setDialogProperties(){
-        dialog = new Dialog(this,android.R.style.Theme_Translucent_NoTitleBar);
+    @SuppressLint("InflateParams")
+    private void setDialogProperties() {
+        dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         LayoutInflater inflater = this.getLayoutInflater();
         dialogView = inflater.inflate(R.layout.game_popup, null);
         dialog.setContentView(dialogView);
-        dialog.getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+
+        Objects.requireNonNull(dialog.getWindow()).setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
     }
 
-    private void setDialogWindowProperties(){
+    private void setDialogWindowProperties() {
         Window window = dialog.getWindow();
-        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        WindowManager.LayoutParams windowAttributes = Objects.requireNonNull(window).getAttributes();
         windowAttributes.gravity = Gravity.CENTER;
         window.setAttributes(windowAttributes);
     }
 
-    private void setWinPopupAttributes(){
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor(WIN_COLOR)));
-        statusTextView.setText("Wygrana!");
+    private void setWinPopupAttributes() {
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.parseColor(WIN_COLOR)));
+        statusTextView.setText(DIALOG_MESSAGE_WIN);
         statusIcon.setImageResource(R.drawable.icon_win);
         goFurtherButton.setTextColor(Color.parseColor(WIN_COLOR));
     }
 
-    private void setLosePopupAttributes(){
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor(LOSE_COLOR)));
-        statusTextView.setText("Porażka :(");
+    private void setLosePopupAttributes() {
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.parseColor(LOSE_COLOR)));
+        statusTextView.setText(DIALOG_MESSAGE_LOSE);
         statusIcon.setImageResource(R.drawable.icon_lose);
         goFurtherButton.setTextColor(Color.parseColor(LOSE_COLOR));
     }
@@ -480,31 +524,27 @@ public class PlayGameActivity extends GameActivityAbstract {
         this.categoryNumber = categoryNumber;
     }
 
-    private void setScoredPointsInRound(int scoredPointsInRound) {
-        int scoredPointsInRound1 = scoredPointsInRound;
-    }
-
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Czy chcesz przerwać rozgrywkę? Dotychczasowy postęp zostanie utracony. Z Twojego konta zostanie odebranych " + getBrakeGamePoints() +  " punktów.")
+        builder.setMessage(DIALOG_MESSAGE_BREAK_GAME + SPACE + getBrakeGamePoints() + SPACE + DIALOG_MESSAGE_BREAK_GAME_POINTS)
                 .setCancelable(false)
-                .setPositiveButton("Tak", (dialog, id) -> {
+                .setPositiveButton(DIALOG_POSITIVE_ANSWER, (dialog, id) -> {
                     calculateBreakGamePoints();
                     Intent intentSummary = new Intent(PlayGameActivity.this, SummaryActivity.class);
-                    intentSummary.putExtra("score", score);
-                    intentSummary.putExtra("bonusPoints", bonusPoints);
+                    intentSummary.putExtra(INTENT_KEY_SCORE, score);
+                    intentSummary.putExtra(INTENT_KEY_BONUS_POINTS, bonusPoints);
                     finish();
                     startActivity(intentSummary);
                 })
-                .setNegativeButton("Nie", (dialog, id) -> dialog.cancel());
+                .setNegativeButton(DIALOG_NEGATIVE_ANSWER, (dialog, id) -> dialog.cancel());
         AlertDialog alert = builder.create();
         alert.show();
     }
 
-    private int getBrakeGamePoints(){
+    private int getBrakeGamePoints() {
         int lostPoints = 0;
-        switch (categoryCount){
+        switch (categoryCount) {
             case 3:
                 lostPoints = THREE_ROUNDS_BREAK_GAME_POINTS;
                 break;
@@ -517,7 +557,7 @@ public class PlayGameActivity extends GameActivityAbstract {
             default:
                 break;
         }
-        return (lostPoints = -lostPoints);
+        return -lostPoints;
     }
 
 }
