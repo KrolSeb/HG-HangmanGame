@@ -7,13 +7,13 @@ import java.util.regex.Pattern;
 
 import wisielec.wisielec.com.interfaces.Validator;
 
-public class PasswordValidator implements Validator {
+public class PasswordValidatorService implements Validator {
     private static final String PASSWORD_PATTERN = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[~!@#$%^&*()\\-_.=+\\[{\\]}|;:<>/?,]).{8,40})";
     private static final int MINIMAL_PASSWORD_LENGTH = 8;
     private Pattern pattern;
     private Matcher matcher;
 
-    public PasswordValidator() {
+    public PasswordValidatorService() {
         pattern = Pattern.compile(PASSWORD_PATTERN);
     }
 
