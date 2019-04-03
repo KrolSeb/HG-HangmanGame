@@ -1,10 +1,7 @@
 package wisielec.wisielec.com.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -16,8 +13,8 @@ import butterknife.OnClick;
 import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.interfaces.UserRegisterCallback;
-import wisielec.wisielec.com.services.EmailValidator;
-import wisielec.wisielec.com.services.PasswordValidator;
+import wisielec.wisielec.com.services.EmailValidatorService;
+import wisielec.wisielec.com.services.PasswordValidatorService;
 import wisielec.wisielec.com.services.UserService;
 
 public class SignUpActivity extends AbstractAccessActivity {
@@ -33,8 +30,8 @@ public class SignUpActivity extends AbstractAccessActivity {
     private static final String MESSAGE_SUCCESSFUL_REGISTER = "Pomyślnie utworzono konto.";
 
     private UserService userService = UserService.getInstance();
-    private EmailValidator emailValidator;
-    private PasswordValidator passwordValidator;
+    private EmailValidatorService emailValidatorService;
+    private PasswordValidatorService passwordValidatorService;
 
     @BindView(R.id.buttonRegistration)
     protected Button buttonRegistration;
@@ -49,8 +46,8 @@ public class SignUpActivity extends AbstractAccessActivity {
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
 
-        emailValidator = new EmailValidator();
-        passwordValidator = new PasswordValidator();
+        emailValidatorService = new EmailValidatorService();
+        passwordValidatorService = new PasswordValidatorService();
 
         setInputCursorPositions();
     }
@@ -68,16 +65,7 @@ public class SignUpActivity extends AbstractAccessActivity {
 
     @OnClick(R.id.buttonRegistration)
     public void onButtonRegistrationClick(){
-        hideKeyboard();
         registerUser();
-    }
-
-    private void hideKeyboard() {
-        View view = getCurrentFocus();
-        if (view != null) {
-            ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).
-                    hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-        }
     }
 
     private void registerUser() {
@@ -87,12 +75,13 @@ public class SignUpActivity extends AbstractAccessActivity {
         if (email.isEmpty() || password.isEmpty()){
             showNotificationIfEmptyInput(email,password);
         }
-        else if(emailValidator.validate(emailInput) && passwordValidator.validate(passwordInput)) {
+        else if(emailValidatorService.validate(emailInput) && passwordValidatorService.validate(passwordInput)) {
             User user = new User(email, password);
             userService.registerNewUser(SignUpActivity.this, user, new UserRegisterCallback() {
                 @Override
                 public void onSuccess() {
                     showToast(MESSAGE_SUCCESSFUL_REGISTER,Toast.LENGTH_SHORT);
+                    changeToAfterLoginActivity();
                 }
 
                 @Override
@@ -119,10 +108,10 @@ public class SignUpActivity extends AbstractAccessActivity {
     }
 
     private void showIncorrectDataNotification() {
-        if(!emailValidator.validate(emailInput)){
+        if(!emailValidatorService.validate(emailInput)){
             showToast(MESSAGE_INCORRECT_EMAIL,Toast.LENGTH_LONG);
         }
-        else if(!passwordValidator.validate(passwordInput)){
+        else if(!passwordValidatorService.validate(passwordInput)){
             showToast(MESSAGE_INCORRECT_PASSWORD,Toast.LENGTH_SHORT);
             showToast(MESSAGE_INCORRECT_PASSWORD_DETAILS,Toast.LENGTH_LONG);
         }

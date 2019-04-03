@@ -15,7 +15,7 @@ import butterknife.OnClick;
 import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.interfaces.UserLoginCallback;
-import wisielec.wisielec.com.services.EmailValidator;
+import wisielec.wisielec.com.services.EmailValidatorService;
 import wisielec.wisielec.com.services.UserService;
 
 
@@ -26,7 +26,7 @@ public class SignInActivity extends AbstractAccessActivity {
     private static final String MESSAGE_SUCCESSFUL_LOGIN = "Pomyślnie zalogowano.";
 
     private UserService userService;
-    private EmailValidator emailValidator;
+    private EmailValidatorService emailValidatorService;
 
     @BindView(R.id.emailInput)
     protected TextInputEditText emailInput;
@@ -44,7 +44,7 @@ public class SignInActivity extends AbstractAccessActivity {
         ButterKnife.bind(this);
 
         userService = UserService.getInstance();
-        emailValidator = new EmailValidator();
+        emailValidatorService = new EmailValidatorService();
     }
 
     @OnClick(R.id.buttonLogin)
@@ -65,7 +65,7 @@ public class SignInActivity extends AbstractAccessActivity {
         if (email.isEmpty() || password.isEmpty()){
             showNotificationIfEmptyInput(email,password);
         }
-        else if(emailValidator.validate(emailInput)) {
+        else if(emailValidatorService.validate(emailInput)) {
             userService.loginUser(SignInActivity.this,
                     new User(Objects.requireNonNull(emailInput.getText()).toString(), Objects.requireNonNull(passwordInput.getText()).toString()), new UserLoginCallback() {
                         @Override
