@@ -3,8 +3,10 @@ package wisielec.wisielec.com.services;
 import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,14 +32,13 @@ import wisielec.wisielec.com.interfaces.UserRemoveCallback;
 
 public class UserService {
     private static final String TAG = "UserService";
-    private static final String MESSAGE_LOGIN_FAILED = "Hasło i/lub e-mail niepoprawne, spróbuj ponownie.";
-    private static final String MESSAGE_REGISTER_FAILED = "Nie udało się zarejestrować, spróbuj ponownie.";
     private static final String USERS_CHILD_REFERENCE = "users";
     private static final String USERS_USERNAME_REFERENCE = "userName";
     private static final String USERS_AVATAR_REFERENCE = "avatarURL";
     private static final String AVATARS_CHILD_REFERENCE = "avatars";
     private static final String AVATARS_IMAGE_REFERENCE = "avatar.jpg";
     private static final String PATH_SEPARATOR = "/";
+    private static final String EMPTY_STRING = "";
 
     private static UserService instance = null;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -70,20 +71,32 @@ public class UserService {
     }
 
     public void registerNewUser(final Context context, final User user, final UserRegisterCallback callback) {
+        final String MESSAGE_REGISTER_MAIL_EXISTS = "Dla podanego adresu e-mail konto już istnieje.";
+        final String MESSAGE_REGISTER_FAILED = "Nie udało się zarejestrować, spróbuj ponownie.";
+
         firebaseAuth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
                 .addOnCompleteListener((Activity) context, task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser authenticatedUser = firebaseAuth.getCurrentUser();
                         DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-                        user.setPassword("");
-                        user.setId(authenticatedUser.getUid());
-                        databaseReference.child(USERS_CHILD_REFERENCE).child(authenticatedUser.getUid()).setValue(user);
+                        user.setPassword(EMPTY_STRING);
+                        user.setId(Objects.requireNonNull(authenticatedUser).getUid());
 
+                        databaseReference.child(USERS_CHILD_REFERENCE).child(authenticatedUser.getUid()).setValue(user);
                         callback.onSuccess();
                     }
                     else {
-                        callback.onFailed(MESSAGE_REGISTER_FAILED);
+                        try {
+                            throw Objects.requireNonNull(task.getException());
+                        }
+                        catch (FirebaseAuthUserCollisionException existEmail) {
+                            callback.onFailed(MESSAGE_REGISTER_MAIL_EXISTS);
+                        }
+                        catch (Exception e) {
+                            callback.onFailed(MESSAGE_REGISTER_FAILED);
+                            e.printStackTrace();
+                        }
                     }
                 });
     }
@@ -95,7 +108,7 @@ public class UserService {
                         callback.onSuccess();
                     }
                     else {
-                        callback.onFailed(MESSAGE_LOGIN_FAILED);
+                        callback.onFailed();
                     }
                 });
     }
@@ -107,13 +120,14 @@ public class UserService {
 
     public void updateUserName(String username, final UpdateUsernameCallback callback) {
         final DatabaseReference databaseReference = firebaseDatabase.getReference().child(USERS_CHILD_REFERENCE);
-        databaseReference.child(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid()).child(USERS_USERNAME_REFERENCE).setValue(username).
-                addOnSuccessListener(aVoid -> callback.onSuccess())
+        databaseReference.child(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid())
+                .child(USERS_USERNAME_REFERENCE).setValue(username)
+                .addOnSuccessListener(aVoid -> callback.onSuccess())
                 .addOnFailureListener(e -> callback.onFailed());
     }
 
     public void updateAvatar(Uri imageURI, final UpdateUserAvatarCallback callback) {
-        final String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        final String userID = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         final String finalUploadPath = AVATARS_CHILD_REFERENCE + PATH_SEPARATOR + userID + PATH_SEPARATOR + AVATARS_IMAGE_REFERENCE;
 
         final StorageReference storageReference = FirebaseStorage.getInstance().getReference(finalUploadPath);
@@ -121,18 +135,19 @@ public class UserService {
 
         storageReference.putFile(imageURI).continueWithTask(task -> {
             if (!task.isSuccessful()) {
-                throw task.getException();
+                throw Objects.requireNonNull(task.getException());
             }
             return storageReference.getDownloadUrl();
         }).addOnSuccessListener(downloadUri -> {
-            databaseReference.child(userID).child(USERS_AVATAR_REFERENCE).setValue(downloadUri.toString());
-            callback.onSuccess();
+                databaseReference.child(userID).child(USERS_AVATAR_REFERENCE).setValue(downloadUri.toString());
+                callback.onSuccess();
         }).addOnFailureListener(e -> callback.onFailed());
     }
 
     public void getUserData(final GetUserRankAndUsernameCallback callback) {
         final DatabaseReference databaseReference = firebaseDatabase.getReference().child(USERS_CHILD_REFERENCE);
-        databaseReference.child(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid()).addValueEventListener(new ValueEventListener() {
+        databaseReference.child(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid())
+                .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user;
@@ -147,13 +162,15 @@ public class UserService {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w(TAG, "getUserData:onCancelled", databaseError.toException());
             }
         });
     }
 
     public void getUserDataOnce(final GetUserRankAndUsernameCallback callback) {
         final DatabaseReference databaseReference = firebaseDatabase.getReference().child(USERS_CHILD_REFERENCE);
-        databaseReference.child(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
@@ -162,14 +179,17 @@ public class UserService {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w(TAG, "getUserDataOnce:onCancelled", databaseError.toException());
             }
         });
     }
 
     public void removeUserAccount(final UserRemoveCallback callback) {
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        firebaseDatabase.getReference().child(USERS_CHILD_REFERENCE).child(Objects.requireNonNull(user).getUid()).removeValue().
-                addOnCompleteListener(removeUserDataTask -> {
+
+        firebaseDatabase.getReference().child(USERS_CHILD_REFERENCE).child(Objects.requireNonNull(user).getUid())
+                .removeValue()
+                .addOnCompleteListener(removeUserDataTask -> {
                     if (removeUserDataTask.isSuccessful()) {
                         Objects.requireNonNull(user).delete().addOnCompleteListener(removeUserTask -> {
                             if (removeUserTask.isSuccessful()) {
