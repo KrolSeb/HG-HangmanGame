@@ -27,6 +27,7 @@
 
         <ImageView
             android:id="@+id/statusIcon"
+            android:contentDescription="@string/dialog_game_popup_image_view_description"
             android:layout_width="0sp"
             android:layout_height="0sp"
             android:layout_gravity="center"
@@ -45,7 +46,7 @@
             android:textAppearance="@android:style/TextAppearance.Small.Inverse"
             android:textStyle="bold"
             android:padding="10dp"
-            android:text="Przejdź dalej"
+            android:text="@string/dialog_game_popup_go_further_button"
             app:autoSizeTextType="uniform"
             app:autoSizeMinTextSize="14sp"
             app:autoSizeMaxTextSize="26sp"

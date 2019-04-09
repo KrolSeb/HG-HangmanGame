@@ -10,6 +10,7 @@
 
     <ImageView
         android:id="@+id/avatarImageView"
+        android:contentDescription="@string/activity_after_login_avatar_description"
         android:layout_width="0sp"
         android:layout_height="0sp"
         android:layout_alignParentTop="true"
@@ -25,9 +26,10 @@
         android:id="@+id/usernameTextView"
         android:layout_width="0sp"
         android:layout_height="0sp"
-        android:gravity="left|center"
+        android:gravity="start|center"
         android:textColor="#0d2c4b"
         android:textStyle="bold"
+        android:text=""
         app:autoSizeMaxTextSize="20sp"
         app:autoSizeMinTextSize="12sp"
         app:autoSizeStepGranularity="2sp"
@@ -46,7 +48,7 @@
         android:textColor="#f4d170"
         android:textStyle="bold"
         android:padding="10dp"
-        android:text="Graj"
+        android:text="@string/activity_after_login_play_game_button"
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="24sp"
         app:autoSizeStepGranularity="2sp"
@@ -64,7 +66,7 @@
         android:textColor="#f4d170"
         android:textStyle="bold"
         android:padding="10dp"
-        android:text="Jak grać?"
+        android:text="@string/activity_after_login_how_to_play_button"
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="12sp"
         app:autoSizeMaxTextSize="22sp"
@@ -83,7 +85,7 @@
         android:textColor="#0d2c4b"
         android:textStyle="bold"
         android:padding="10sp"
-        android:text="Ranking"
+        android:text="@string/activity_after_login_ranking_button"
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="12sp"
         app:autoSizeMaxTextSize="22sp"
@@ -99,11 +101,11 @@
         android:layout_width="0sp"
         android:layout_height="0sp"
         android:gravity="center"
-        android:text="Top 3 - punkty"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
         android:textColor="#0d2c4b"
         android:textStyle="bold"
+        android:text="@string/activity_after_login_best_players"
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="12sp"
         app:autoSizeMaxTextSize="20sp"
@@ -116,6 +118,7 @@
 
     <ImageView
         android:id="@+id/firstBadgeImageView"
+        android:contentDescription="@string/activity_after_login_first_badge_image_description"
         android:layout_width="0sp"
         android:layout_height="0sp"
         app:srcCompat="@drawable/badge_first"
@@ -126,6 +129,7 @@
 
     <ImageView
         android:id="@+id/secondBadgeImageView"
+        android:contentDescription="@string/activity_after_login_second_badge_image_description"
         android:layout_width="0sp"
         android:layout_height="0sp"
         app:srcCompat="@drawable/badge_second"
@@ -136,6 +140,7 @@
 
     <ImageView
         android:id="@+id/thirdBadgeImageView"
+        android:contentDescription="@string/activity_after_login_third_badge_image_description"
         android:layout_width="0sp"
         android:layout_height="0sp"
         app:srcCompat="@drawable/badge_third"

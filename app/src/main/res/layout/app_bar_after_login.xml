@@ -9,8 +9,7 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <include
-        layout="@layout/activity_after_login"
+    <include layout="@layout/activity_after_login"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
@@ -30,6 +29,7 @@
 
             <ImageView
                 android:id="@+id/avatarImageViewBar"
+                android:contentDescription="@string/app_bar_after_login_avatar_description"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_alignParentTop="true"
@@ -68,7 +68,7 @@
                 android:textAlignment="center"
                 android:textColor="#0d2c4b"
                 android:textStyle="bold"
-                android:text="Miejsce w rankingu"
+                android:text="@string/app_bar_after_login_ranking"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="12sp"
                 app:autoSizeMaxTextSize="19sp"
@@ -106,7 +106,7 @@
                 android:textAlignment="center"
                 android:textColor="#0d2c4b"
                 android:textStyle="bold"
-                android:text="Ranga"
+                android:text="@string/app_bar_after_login_rank"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="12sp"
                 app:autoSizeMaxTextSize="19sp"
@@ -144,7 +144,7 @@
                 android:textAlignment="center"
                 android:textColor="#0d2c4b"
                 android:textStyle="bold"
-                android:text="Punkty"
+                android:text="@string/app_bar_after_login_points"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="12sp"
                 app:autoSizeMaxTextSize="19sp"
@@ -182,7 +182,7 @@
                 android:textAllCaps="false"
                 android:textColor="#0d2c4b"
                 android:padding="10sp"
-                android:text="Ustawienia"
+                android:text="@string/app_bar_after_login_settings_button"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="14sp"
                 app:autoSizeMaxTextSize="20sp"
@@ -201,7 +201,7 @@
                 android:textAllCaps="false"
                 android:textColor="#0d2c4b"
                 android:padding="10sp"
-                android:text="Wyloguj"
+                android:text="@string/app_bar_after_login_logout_button"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="14sp"
                 app:autoSizeMaxTextSize="20sp"

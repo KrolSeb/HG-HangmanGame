@@ -8,6 +8,7 @@
 
     <ImageView
         android:id="@+id/imageView"
+        android:contentDescription="@string/view_pager_item_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/style_imageview_border"
