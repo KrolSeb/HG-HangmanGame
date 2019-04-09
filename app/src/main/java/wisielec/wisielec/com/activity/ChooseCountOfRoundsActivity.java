@@ -2,62 +2,54 @@ package wisielec.wisielec.com.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import wisielec.wisielec.com.R;
 
-/**
- * Created by sebastian on 12.04.18.
- */
 
-public class ChooseCountOfRoundsActivity extends GameActivityAbstract{
+public class ChooseCountOfRoundsActivity extends MainActivity{
+    private static final String INTENT_KEY_CATEGORY_COUNT = "categoryCount";
+    private static final int THREE_ROUNDS = 3;
+    private static final int FIVE_ROUNDS = 5;
+    private static final int SEVEN_ROUNDS = 7;
+
+    @BindView(R.id.threeRoundsButton)
     protected Button threeRoundsButton;
+    @BindView(R.id.fiveRoundsButton)
     protected Button fiveRoundsButton;
+    @BindView(R.id.sevenRoundsButton)
     protected Button sevenRoundsButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_count_of_rounds);
-
-        threeRoundsButton = findViewById(R.id.threeRoundsButton);
-        fiveRoundsButton = findViewById(R.id.fiveRoundsButton);
-        sevenRoundsButton = findViewById(R.id.sevenRoundsButton);
-        onClickListeners();
+        ButterKnife.bind(this);
     }
 
-    //Parametr dotyczący liczby kategorii - dodać
-    private void onClickListeners() {
-        final View.OnClickListener listener = new View.OnClickListener() {
-            Intent intentChooseCategories;
-            @Override
-            public void onClick(View view) {
-                switch (view.getId()){
-                    case R.id.threeRoundsButton:
-                        intentChooseCategories = new Intent(getApplicationContext(), ChooseCategoriesActivity.class);
-                        intentChooseCategories.putExtra("categoryNumber", 3);
-                        startActivity(intentChooseCategories);
-                        break;
-                    case R.id.fiveRoundsButton:
-                        intentChooseCategories = new Intent(getApplicationContext(), ChooseCategoriesActivity.class);
-                        intentChooseCategories.putExtra("categoryNumber", 5);
-                        startActivity(intentChooseCategories);
-                        break;
-                    case R.id.sevenRoundsButton:
-                        intentChooseCategories = new Intent(getApplicationContext(), ChooseCategoriesActivity.class);
-                        intentChooseCategories.putExtra("categoryNumber", 7);
-                        startActivity(intentChooseCategories);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        };
-        threeRoundsButton.setOnClickListener(listener);
-        fiveRoundsButton.setOnClickListener(listener);
-        sevenRoundsButton.setOnClickListener(listener);
+    @OnClick(R.id.threeRoundsButton)
+    public void onThreeRoundsButtonClick(){
+        Intent intentChooseCategories = new Intent(ChooseCountOfRoundsActivity.this, ChooseCategoriesActivity.class);
+        intentChooseCategories.putExtra(INTENT_KEY_CATEGORY_COUNT, THREE_ROUNDS);
+        startActivity(intentChooseCategories);
     }
 
+    @OnClick(R.id.fiveRoundsButton)
+    public void onFiveRoundsButtonClick(){
+        Intent intentChooseCategories = new Intent(ChooseCountOfRoundsActivity.this, ChooseCategoriesActivity.class);
+        intentChooseCategories.putExtra(INTENT_KEY_CATEGORY_COUNT, FIVE_ROUNDS);
+        startActivity(intentChooseCategories);
+    }
+
+    @OnClick(R.id.sevenRoundsButton)
+    public void onSevenRoundsButtonClick(){
+        Intent intentChooseCategories = new Intent(ChooseCountOfRoundsActivity.this, ChooseCategoriesActivity.class);
+        intentChooseCategories.putExtra(INTENT_KEY_CATEGORY_COUNT, SEVEN_ROUNDS);
+        startActivity(intentChooseCategories);
+    }
 
 }

@@ -1,67 +1,69 @@
 package wisielec.wisielec.com.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import wisielec.wisielec.com.R;
 
-/**
- * Created by X on 2018-01-17.
- */
 
-public class HomeActivity extends MainActivity {
-
-    Button buttonLogin;
-    Button buttonRegistration;
-    Button buttonExit;
+public class HomeActivity extends AppCompatActivity {
+    @BindView(R.id.buttonLogin)
+    protected Button buttonLogin;
+    @BindView(R.id.buttonRegistration)
+    protected Button buttonRegistration;
+    @BindView(R.id.buttonApplicationInformation)
+    protected Button buttonApplicationInformation;
+    @BindView(R.id.buttonExit)
+    protected Button buttonExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        buttonLogin = (Button) findViewById(R.id.buttonLogin);
-        buttonRegistration = (Button) findViewById(R.id.buttonRegistration);
-        buttonExit = (Button) findViewById(R.id.buttonExit);
-        OnClickListeners();
+        ButterKnife.bind(this);
     }
 
-    protected void OnClickListeners() {
-        final View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.buttonLogin:
-                        Context contextLogin;
-                        contextLogin = getApplicationContext();
-                        Intent intentLogin = new Intent(contextLogin, SignInActivity.class);
-                        startActivity(intentLogin);
-                        finish();
-                        break;
-                    case R.id.buttonRegistration:
-                        Context contextRegistration;
-                        contextRegistration = getApplicationContext();
-                        Intent intentRegistration = new Intent(contextRegistration, SignUpActivity.class);
-                        startActivity(intentRegistration);
-                        finish();
-                        break;
-                    case R.id.buttonExit:
-                        Intent intentExit = new Intent(Intent.ACTION_MAIN);
-                        intentExit.addCategory(Intent.CATEGORY_HOME);
-                        intentExit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intentExit);
-                        finish();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        };
-        buttonLogin.setOnClickListener(listener);
-        buttonRegistration.setOnClickListener(listener);
-        buttonExit.setOnClickListener(listener);
+    @OnClick(R.id.buttonLogin)
+    public void onButtonLoginClick() {
+        Intent intentLogin = new Intent(HomeActivity.this, SignInActivity.class);
+        startActivity(intentLogin);
+        finish();
     }
 
+    @OnClick(R.id.buttonRegistration)
+    public void onButtonRegistrationClick() {
+        Intent intentRegistration = new Intent(HomeActivity.this, SignUpActivity.class);
+        startActivity(intentRegistration);
+        finish();
+    }
+
+    @OnClick(R.id.buttonApplicationInformation)
+    public void onButtonApplicationInformationClick() {
+        Intent intentApplicationInformation = new Intent(HomeActivity.this, ApplicationInformationActivity.class);
+        startActivity(intentApplicationInformation);
+        finish();
+    }
+
+    private void closeApp() {
+        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+        homeIntent.addCategory(Intent.CATEGORY_HOME);
+        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(homeIntent);
+    }
+
+    @OnClick(R.id.buttonExit)
+    public void onButtonExitClick() {
+        closeApp();
+    }
+
+    @Override
+    public void onBackPressed() {
+        closeApp();
+    }
+    
 }
