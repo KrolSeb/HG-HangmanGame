@@ -1,6 +1,7 @@
 package wisielec.wisielec.com.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -16,15 +17,14 @@ public abstract class AbstractEditAccountActivity extends MainActivity {
     private static final String MESSAGE_GRANTED_READ_EXTERNAL_STORAGE_PERMISSION = "Przyznano uprawnienie do odczytu pamięci zewnętrznej.";
     private static final String DIALOG_TITLE = "Potrzebne uprawnienie";
     private static final String DIALOG_EXTERNAL_STORAGE_PERMISSION_REASON = "Odczyt z pamięci zewnętrznej jest potrzebny do zmiany avatara.";
-    private static final String DIALOG_ACCEPT_BUTTON_TEXT = "OK";
-    private static final String DIALOG_DENY_BUTTON_TEXT = "Cofnij";
-
+    private static final String DIALOG_CONFIRM_ANSWER = "OK";
+    private static final String DIALOG_DENY_ANSWER = "Cofnij";
     private static final String PERMISSION_STATE_KEY = "permissionState";
     private static final int READ_EXTERNAL_STORAGE_PERMISSION_CODE = 1;
 
-    private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPreferencesEditor;
 
+    
     public void grantReadExternalStoragePermission(){
         setSharedPreferencesObjects();
         int currentApiVersion = android.os.Build.VERSION.SDK_INT;
@@ -41,7 +41,7 @@ public abstract class AbstractEditAccountActivity extends MainActivity {
         if (requestCode == READ_EXTERNAL_STORAGE_PERMISSION_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 passPermissionState(true);
-                showToast(MESSAGE_GRANTED_READ_EXTERNAL_STORAGE_PERMISSION, Toast.LENGTH_SHORT);
+                showToast();
             }
             else {
                 passPermissionState(false);
@@ -52,7 +52,7 @@ public abstract class AbstractEditAccountActivity extends MainActivity {
     private void requestStoragePermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(AbstractEditAccountActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
             passPermissionState(false);
-            buildAlertDialog(DIALOG_TITLE,DIALOG_EXTERNAL_STORAGE_PERMISSION_REASON,Manifest.permission.READ_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE_PERMISSION_CODE).show();
+            buildAlertDialog().show();
         }
         else {
             ActivityCompat.requestPermissions(AbstractEditAccountActivity.this,new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, READ_EXTERNAL_STORAGE_PERMISSION_CODE);
@@ -60,8 +60,9 @@ public abstract class AbstractEditAccountActivity extends MainActivity {
     }
 
 
+    @SuppressLint("CommitPrefEdits")
     private void setSharedPreferencesObjects(){
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPreferencesEditor = sharedPreferences.edit();
     }
 
@@ -70,17 +71,17 @@ public abstract class AbstractEditAccountActivity extends MainActivity {
         sharedPreferencesEditor.apply();
     }
 
-    private AlertDialog buildAlertDialog(String title,String message,String permissionType,int permissionCode){
-        return new AlertDialog.Builder(AbstractEditAccountActivity.this).setTitle(title)
-                .setMessage(message)
-                .setPositiveButton(DIALOG_ACCEPT_BUTTON_TEXT, (dialog, which) ->
-                        ActivityCompat.requestPermissions(this, new String[]{permissionType}, permissionCode))
-                .setNegativeButton(DIALOG_DENY_BUTTON_TEXT, (dialog, which) -> dialog.dismiss())
+    private AlertDialog buildAlertDialog(){
+        return new AlertDialog.Builder(AbstractEditAccountActivity.this).setTitle(DIALOG_TITLE)
+                .setMessage(DIALOG_EXTERNAL_STORAGE_PERMISSION_REASON)
+                .setPositiveButton(DIALOG_CONFIRM_ANSWER, (dialog, which) ->
+                        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_EXTERNAL_STORAGE_PERMISSION_CODE))
+                .setNegativeButton(DIALOG_DENY_ANSWER, (dialog, which) -> dialog.dismiss())
                 .create();
     }
 
-    private void showToast(String message,int length){
-        Toast.makeText(AbstractEditAccountActivity.this,message,length).show();
+    private void showToast(){
+        Toast.makeText(AbstractEditAccountActivity.this, MESSAGE_GRANTED_READ_EXTERNAL_STORAGE_PERMISSION, Toast.LENGTH_SHORT).show();
     }
 
 }

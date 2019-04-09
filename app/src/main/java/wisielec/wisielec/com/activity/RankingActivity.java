@@ -16,16 +16,10 @@ import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.services.RankService;
 import wisielec.wisielec.com.services.UserService;
 
-/**
- * Created by X on 2018-04-18.
- */
 
 public class RankingActivity extends MainActivity {
-    /**
-     * RankingActivityElements
-     * RecyclerView
-     * UsersRankingAdapter
-     */
+    private UserService userService;
+    private RankService rankService;
     private RecyclerView recyclerView;
     private UsersRankingAdapter usersRankingAdapter;
 
@@ -36,8 +30,6 @@ public class RankingActivity extends MainActivity {
     @BindView(R.id.rankPlaceValueTextView)
     protected TextView rankPlaceValueTextView;
 
-    private UserService userService;
-    private RankService rankService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

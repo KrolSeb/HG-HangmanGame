@@ -39,48 +39,48 @@ import wisielec.wisielec.com.domain.Word;
 import wisielec.wisielec.com.enums.Difficulty;
 
 
-public class PlayGameActivity extends GameActivityAbstract {
-    private final static int HANGMAN_ELEMENTS = 5;
-    private final static int OPEN_POPUP_DELAY = 600;
-    private final static int CLOSE_POPUP_DELAY = 400;
+public class PlayGameActivity extends MainActivity {
+    private static final int HANGMAN_ELEMENTS = 5;
+    private static final int OPEN_POPUP_DELAY = 600;
+    private static final int CLOSE_POPUP_DELAY = 400;
 
-    private final static String SPACE = " ";
-    private final static String EMPTY_STRING = "";
-    private final static String INTENT_KEY_CATEGORY_COUNT = "categoryCount";
-    private final static String INTENT_KEY_CATEGORY_LIST = "categoryList";
-    private final static String INTENT_KEY_SCORE = "score";
-    private final static String INTENT_KEY_BONUS_POINTS = "bonusPoints";
+    private static final String SPACE = " ";
+    private static final String EMPTY_STRING = "";
+    private static final String INTENT_KEY_CATEGORY_COUNT = "categoryCount";
+    private static final String INTENT_KEY_CATEGORY_LIST = "categoryList";
+    private static final String INTENT_KEY_SCORE = "score";
+    private static final String INTENT_KEY_BONUS_POINTS = "bonusPoints";
 
-    private final static String CATEGORY = "Kategoria:";
-    private final static String DIALOG_MESSAGE_WIN = "Wygrana!";
-    private final static String DIALOG_MESSAGE_LOSE = "Porażka :(";
-    private final static String DIALOG_MESSAGE_BREAK_GAME = "Czy chcesz przerwać rozgrywkę? Dotychczasowy postęp zostanie utracony. Z Twojego konta zostanie odebranych";
-    private final static String DIALOG_MESSAGE_BREAK_GAME_POINTS = "punktów.";
-    private final static String DIALOG_POSITIVE_ANSWER = "Tak";
-    private final static String DIALOG_NEGATIVE_ANSWER = "Nie";
+    private static final String CATEGORY = "Kategoria:";
+    private static final String DIALOG_MESSAGE_WIN = "Wygrana!";
+    private static final String DIALOG_MESSAGE_LOSE = "Porażka :(";
+    private static final String DIALOG_MESSAGE_BREAK_GAME = "Czy chcesz przerwać rozgrywkę? Dotychczasowy postęp zostanie utracony. Z Twojego konta zostanie odebranych";
+    private static final String DIALOG_MESSAGE_BREAK_GAME_POINTS = "punktów.";
+    private static final String DIALOG_POSITIVE_ANSWER = "Tak";
+    private static final String DIALOG_NEGATIVE_ANSWER = "Nie";
 
-    private final static String WIN_COLOR = "#2E8E3D";
-    private final static String LOSE_COLOR = "#E51616";
-    private final static String BUTTON_ENABLED_BACKGROUND_COLOR = "#0D2C4B";
-    private final static String BUTTON_ENABLED_TEXT_COLOR = "#F4D170";
-    private final static String BUTTON_DISABLED_BACKGROUND_COLOR = "#D1D1D1";
-    private final static String BUTTON_DISABLED_TEXT_COLOR = "#EAEAEA";
+    private static final String WIN_COLOR = "#2E8E3D";
+    private static final String LOSE_COLOR = "#E51616";
+    private static final String BUTTON_ENABLED_BACKGROUND_COLOR = "#0D2C4B";
+    private static final String BUTTON_ENABLED_TEXT_COLOR = "#F4D170";
+    private static final String BUTTON_DISABLED_BACKGROUND_COLOR = "#D1D1D1";
+    private static final String BUTTON_DISABLED_TEXT_COLOR = "#EAEAEA";
 
-    private final static int EASY_LEVEL_WORD_GUESS_POINTS = 5;
-    private final static int MEDIUM_LEVEL_WORD_GUESS_POINTS = 10;
-    private final static int HARD_LEVEL_WORD_GUESS_POINTS = 15;
+    private static final int EASY_LEVEL_WORD_GUESS_POINTS = 5;
+    private static final int MEDIUM_LEVEL_WORD_GUESS_POINTS = 10;
+    private static final int HARD_LEVEL_WORD_GUESS_POINTS = 15;
 
-    private final static int EASY_LEVEL_WORD_MISS_POINTS = 2;
-    private final static int MEDIUM_LEVEL_WORD_MISS_POINTS = 4;
-    private final static int HARD_LEVEL_WORD_MISS_POINTS = 6;
+    private static final int EASY_LEVEL_WORD_MISS_POINTS = 2;
+    private static final int MEDIUM_LEVEL_WORD_MISS_POINTS = 4;
+    private static final int HARD_LEVEL_WORD_MISS_POINTS = 6;
 
-    private final static int THREE_ROUNDS_BONUS_POINTS = 16;
-    private final static int FIVE_ROUNDS_BONUS_POINTS = 32;
-    private final static int SEVEN_ROUNDS_BONUS_POINTS = 48;
+    private static final int THREE_ROUNDS_BONUS_POINTS = 16;
+    private static final int FIVE_ROUNDS_BONUS_POINTS = 32;
+    private static final int SEVEN_ROUNDS_BONUS_POINTS = 48;
 
-    private final static int THREE_ROUNDS_BREAK_GAME_POINTS = -18;
-    private final static int FIVE_ROUNDS_BREAK_GAME_POINTS = -30;
-    private final static int SEVEN_ROUNDS_BREAK_GAME_POINTS = -42;
+    private static final int THREE_ROUNDS_BREAK_GAME_POINTS = -18;
+    private static final int FIVE_ROUNDS_BREAK_GAME_POINTS = -30;
+    private static final int SEVEN_ROUNDS_BREAK_GAME_POINTS = -42;
 
     private int missCounter = 0;
     private int score = 0;
@@ -116,7 +116,7 @@ public class PlayGameActivity extends GameActivityAbstract {
     private ImageView statusIcon;
     private Button goFurtherButton;
 
-    @BindView(R.id.mainLayout)
+    @BindView(R.id.gameConstraintLayout)
     protected ConstraintLayout mainLayout;
 
     @BindView(R.id.wordLettersLayout)
@@ -133,6 +133,7 @@ public class PlayGameActivity extends GameActivityAbstract {
             R.id.buttonT, R.id.buttonU, R.id.buttonV, R.id.buttonW, R.id.buttonX, R.id.buttonY, R.id.buttonZ, R.id.buttonPolishZ1, R.id.buttonPolishZ2,
             R.id.buttonPolishA, R.id.buttonPolishC, R.id.buttonPolishE, R.id.buttonPolishL, R.id.buttonPolishN, R.id.buttonPolishO, R.id.buttonPolishS})
     protected List<Button> letterButtons;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,7 +194,7 @@ public class PlayGameActivity extends GameActivityAbstract {
             R.id.buttonJ, R.id.buttonK, R.id.buttonL, R.id.buttonM, R.id.buttonN, R.id.buttonO, R.id.buttonP, R.id.buttonQ, R.id.buttonR, R.id.buttonS,
             R.id.buttonT, R.id.buttonU, R.id.buttonV, R.id.buttonW, R.id.buttonX, R.id.buttonY, R.id.buttonZ, R.id.buttonPolishZ1, R.id.buttonPolishZ2,
             R.id.buttonPolishA, R.id.buttonPolishC, R.id.buttonPolishE, R.id.buttonPolishL, R.id.buttonPolishN, R.id.buttonPolishO, R.id.buttonPolishS})
-    protected void onLetterClick(View view) {
+    protected void onLetterButtonClick(View view) {
         chosenButton = (Button) view;
         checkIfLetterExistsInWord(chosenButton.getText().toString());
         disableOneLetterButton();
@@ -368,8 +369,8 @@ public class PlayGameActivity extends GameActivityAbstract {
         Intent intentSummary = new Intent(PlayGameActivity.this, SummaryActivity.class);
         intentSummary.putExtra(INTENT_KEY_SCORE, score);
         intentSummary.putExtra(INTENT_KEY_BONUS_POINTS, bonusPoints);
-        finish();
         startActivity(intentSummary);
+        finish();
     }
 
     private void loadNextRound() {
@@ -490,7 +491,7 @@ public class PlayGameActivity extends GameActivityAbstract {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         LayoutInflater inflater = this.getLayoutInflater();
-        dialogView = inflater.inflate(R.layout.game_popup, null);
+        dialogView = inflater.inflate(R.layout.dialog_game_popup, null);
         dialog.setContentView(dialogView);
 
         Objects.requireNonNull(dialog.getWindow()).setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);

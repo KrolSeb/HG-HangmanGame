@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -15,11 +17,12 @@ import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.services.GameService;
 import wisielec.wisielec.com.services.UserService;
 
-/**
- * Created by sebastian on 13.04.18.
- */
 
 public class SummaryActivity extends MainActivity {
+    private static final String MESSAGE_END_GAME_BUTTON = "Aby wyjść z gry, kliknij przycisk Zakończ rozgrywkę";
+    private static final String INTENT_KEY_SCORE = "score";
+    private static final String INTENT_KEY_BONUS_POINTS = "bonusPoints";
+
     @BindView(R.id.avatarImageView)
     protected ImageView avatar;
     @BindView(R.id.usernameTextView)
@@ -72,8 +75,8 @@ public class SummaryActivity extends MainActivity {
 
     private void getDataFromIntent() {
         Intent playGameActivityIntent = getIntent();
-        score = playGameActivityIntent.getIntExtra("score",0);
-        bonusPoints = playGameActivityIntent.getIntExtra("bonusPoints",0);
+        score = playGameActivityIntent.getIntExtra(INTENT_KEY_SCORE,0);
+        bonusPoints = playGameActivityIntent.getIntExtra(INTENT_KEY_BONUS_POINTS,0);
 
         calculateFinalScore();
         bindDataFromIntent();
@@ -122,6 +125,12 @@ public class SummaryActivity extends MainActivity {
         finish();
     }
 
+    private void showToast() {
+        Toast.makeText(SummaryActivity.this, MESSAGE_END_GAME_BUTTON, Toast.LENGTH_SHORT).show();
+    }
+
     @Override
-    public void onBackPressed() { }
+    public void onBackPressed() {
+        showToast();
+    }
 }

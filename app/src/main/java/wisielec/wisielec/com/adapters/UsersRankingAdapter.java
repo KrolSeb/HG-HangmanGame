@@ -10,10 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.domain.User;
 
+
 public class UsersRankingAdapter extends RecyclerView.Adapter<UsersViewHolder> {
-    private final String POINTS_ABBREVIATION = "pkt";
-    private Context context;
+    private static final String POINTS_ABBREVIATION = "pkt";
+    private static final String SPACE = " ";
+
     private ArrayList<User> users;
+    private Context context;
+
 
     public UsersRankingAdapter(Context context, ArrayList<User> users) {
         this.context = context;
@@ -29,7 +33,7 @@ public class UsersRankingAdapter extends RecyclerView.Adapter<UsersViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull UsersViewHolder usersViewHolder, int position) {
         usersViewHolder.getUsernameTextView().setText(String.valueOf(users.get(position).getUserName()));
-        usersViewHolder.getPointsTextView().setText(String.valueOf(users.get(position).getPoints() +  " " + POINTS_ABBREVIATION));
+        usersViewHolder.getPointsTextView().setText(String.valueOf(users.get(position).getPoints() +  SPACE + POINTS_ABBREVIATION));
     }
 
     @Override

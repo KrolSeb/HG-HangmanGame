@@ -4,6 +4,7 @@ import android.widget.EditText;
 import wisielec.wisielec.com.interfaces.Validator;
 import static android.util.Patterns.EMAIL_ADDRESS;
 
+
 public class EmailValidatorService implements Validator {
     public EmailValidatorService() { }
 

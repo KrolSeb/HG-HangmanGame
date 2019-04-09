@@ -1,5 +1,7 @@
 package wisielec.wisielec.com.services;
 
+import android.util.Log;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -14,9 +16,16 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import wisielec.wisielec.com.domain.User;
+import wisielec.wisielec.com.interfaces.GetBestThreeUsersCallback;
+import wisielec.wisielec.com.interfaces.GetBestUsersCallback;
+import wisielec.wisielec.com.interfaces.UserRankingPositionCallback;
+
 
 public class RankService {
     private static final String TAG = "RankService";
+    private static final String USERS_CHILD_REFERENCE = "users";
+    private static final String POINTS_CHILD_REFERENCE = "points";
+
     private static RankService instance = null;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
@@ -29,10 +38,10 @@ public class RankService {
         return instance;
     }
 
-    public void getUserRankingPosition(final IUserRankingPositionCallback callback) {
+    public void getUserRankingPosition(final UserRankingPositionCallback callback) {
         String currentUserUID =  FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        final Query query = firebaseDatabase.getReference().child("users").orderByChild("points").limitToFirst(50);
+        final Query query = firebaseDatabase.getReference().child(USERS_CHILD_REFERENCE).orderByChild(POINTS_CHILD_REFERENCE).limitToFirst(50);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -51,13 +60,14 @@ public class RankService {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) { }
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w(TAG, "getUserRankingPosition:onCancelled", databaseError.toException());
+            }
         });
     }
 
-
-    public void getBestUsersFromRanking(final IBestUsersCallback callback) {
-        final DatabaseReference databaseReference = firebaseDatabase.getReference().child("users");
+    public void getBestUsersFromRanking(final GetBestUsersCallback callback) {
+        final DatabaseReference databaseReference = firebaseDatabase.getReference().child(USERS_CHILD_REFERENCE);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -73,14 +83,14 @@ public class RankService {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w(TAG, "getBestUsersFromRanking:onCancelled", databaseError.toException());
             }
         });
     }
-
-
-    public void getThreeBestUsersFromRanking(final IThreeBestUsersCallback callback) {
+    
+    public void getThreeBestUsersFromRanking(final GetBestThreeUsersCallback callback) {
         final DatabaseReference databaseReference = firebaseDatabase.getReference();
-        Query queryRef = databaseReference.child("users").orderByChild("points");
+        Query queryRef = databaseReference.child(USERS_CHILD_REFERENCE).orderByChild(POINTS_CHILD_REFERENCE);
 
         queryRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -97,20 +107,9 @@ public class RankService {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w(TAG, "getThreeBestUsersFromRanking:onCancelled", databaseError.toException());
             }
         });
-    }
-
-    public interface IUserRankingPositionCallback {
-        void onSuccess(int userRankingPosition);
-    }
-
-    public interface IBestUsersCallback {
-        void onSuccess(ArrayList<User> userList);
-    }
-
-    public interface IThreeBestUsersCallback {
-        void onSuccess(List<User> userList);
     }
 
 }

@@ -1,5 +1,6 @@
 package wisielec.wisielec.com.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import wisielec.wisielec.com.R;
+
 
 public class HowToPlayViewPagerAdapter extends PagerAdapter {
     private static final String IMAGE_DESCRIPTION_1 = "Na początku wybierz liczbę rund - 3,5 lub 7.";
@@ -32,16 +35,18 @@ public class HowToPlayViewPagerAdapter extends PagerAdapter {
     private Map<String,Integer> imagesMap;
     private Context context;
 
+
     public HowToPlayViewPagerAdapter(Context context) {
         this.context = context;
         imagesMap = new LinkedHashMap<>();
         addDrawableToImagesMap();
     }
 
+    @NonNull
     @Override
-    public Object instantiateItem(ViewGroup container, final int position) {
+    public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.view_pager_item, null);
+        @SuppressLint("InflateParams") View view = layoutInflater.inflate(R.layout.view_pager_item, null);
         ImageView imageView = view.findViewById(R.id.imageView);
         imageView.setImageResource(imagesMap.get(Objects.requireNonNull(imagesMap.keySet().toArray())[position]));
 
@@ -51,14 +56,14 @@ public class HowToPlayViewPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         ViewPager vp = (ViewPager) container;
         View view = (View) object;
         vp.removeView(view);
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == object;
     }
 

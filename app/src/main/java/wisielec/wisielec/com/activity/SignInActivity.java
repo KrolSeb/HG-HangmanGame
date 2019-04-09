@@ -7,8 +7,6 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.util.Objects;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -20,10 +18,11 @@ import wisielec.wisielec.com.services.UserService;
 
 
 public class SignInActivity extends AbstractAccessActivity {
+    private static final String MESSAGE_LOGIN_SUCCESS = "Pomyślnie zalogowano";
+    private static final String MESSAGE_LOGIN_FAILED = "Hasło i/lub e-mail niepoprawne, spróbuj ponownie.";
     private static final String MESSAGE_EMPTY_EMAIL_AND_PASSWORD_INPUT = "Brak podanego e-maila i hasła";
     private static final String MESSAGE_EMPTY_EMAIL_INPUT = "Brak podanego e-maila";
     private static final String MESSAGE_EMPTY_PASSWORD_INPUT = "Brak podanego hasła";
-    private static final String MESSAGE_SUCCESSFUL_LOGIN = "Pomyślnie zalogowano.";
 
     private UserService userService;
     private EmailValidatorService emailValidatorService;
@@ -49,7 +48,7 @@ public class SignInActivity extends AbstractAccessActivity {
 
     @OnClick(R.id.buttonLogin)
     public void onButtonLoginClick(){
-        signIn();
+        loginUser();
     }
 
     @OnClick(R.id.buttonRegistration)
@@ -58,25 +57,25 @@ public class SignInActivity extends AbstractAccessActivity {
         startActivity(intentRegistration);
     }
 
-    public void signIn() {
-        String email = emailInput.getText().toString();
-        String password = passwordInput.getText().toString();
+    public void loginUser() {
+        String email = String.valueOf(emailInput.getText());
+        String password = String.valueOf(passwordInput.getText());
 
         if (email.isEmpty() || password.isEmpty()){
             showNotificationIfEmptyInput(email,password);
         }
         else if(emailValidatorService.validate(emailInput)) {
             userService.loginUser(SignInActivity.this,
-                    new User(Objects.requireNonNull(emailInput.getText()).toString(), Objects.requireNonNull(passwordInput.getText()).toString()), new UserLoginCallback() {
+                    new User(email, password), new UserLoginCallback() {
                         @Override
                         public void onSuccess() {
-                            showToast(MESSAGE_SUCCESSFUL_LOGIN,Toast.LENGTH_SHORT);
                             changeToAfterLoginActivity();
+                            showToast(MESSAGE_LOGIN_SUCCESS,Toast.LENGTH_LONG);
                         }
 
                         @Override
-                        public void onFailed(String loginFailedMessage) {
-                            showToast(loginFailedMessage,Toast.LENGTH_LONG);
+                        public void onFailed() {
+                            showToast(MESSAGE_LOGIN_FAILED,Toast.LENGTH_LONG);
                         }
                     });
         }

@@ -16,20 +16,21 @@ import wisielec.wisielec.com.adapters.CategoriesAdapter;
 import wisielec.wisielec.com.domain.Category;
 import wisielec.wisielec.com.services.CategoryService;
 
-/**
- * Created by sebastian on 12.04.18.
- */
 
-public class ChooseCategoriesActivity extends GameActivityAbstract {
+public class ChooseCategoriesActivity extends MainActivity {
+    private static final String INTENT_KEY_CATEGORY_COUNT = "categoryCount";
+    private static final String INTENT_KEY_CATEGORY_LIST = "categoryList";
+
     @BindView(R.id.startGameButton)
     protected Button startGameButton;
 
     private RecyclerView recyclerView;
     private CategoriesAdapter categoriesAdapter;
 
-    private int categoryCount;
     private ArrayList<Category> randomizedCategoryList;
     private CategoryService categoryService;
+    private int categoryCount;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class ChooseCategoriesActivity extends GameActivityAbstract {
 
     private void getDataFromIntent() {
         Intent intent = getIntent();
-        categoryCount = (int) intent.getSerializableExtra("categoryNumber");
+        categoryCount = (int) intent.getSerializableExtra(INTENT_KEY_CATEGORY_COUNT);
     }
 
     private void setRecyclerViewProperties() {
@@ -68,8 +69,8 @@ public class ChooseCategoriesActivity extends GameActivityAbstract {
     @OnClick(R.id.startGameButton)
     public void changeActivity(){
         Intent intentPlayGame = new Intent(getApplicationContext(), PlayGameActivity.class);
-        intentPlayGame.putExtra("categoryCount", categoryCount);
-        intentPlayGame.putExtra("categoryList", randomizedCategoryList);
+        intentPlayGame.putExtra(INTENT_KEY_CATEGORY_COUNT, categoryCount);
+        intentPlayGame.putExtra(INTENT_KEY_CATEGORY_LIST, randomizedCategoryList);
         startActivity(intentPlayGame);
         finish();
     }

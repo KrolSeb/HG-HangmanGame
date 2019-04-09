@@ -17,9 +17,9 @@ import wisielec.wisielec.com.services.EmailValidatorService;
 import wisielec.wisielec.com.services.PasswordValidatorService;
 import wisielec.wisielec.com.services.UserService;
 
-public class SignUpActivity extends AbstractAccessActivity {
-    private static final String TAG = "SignUpActivity";
 
+public class SignUpActivity extends AbstractAccessActivity {
+    private static final String MESSAGE_REGISTER_SUCCESSFUL = "Pomyślnie zarejestrowano, logowanie...";
     private static final String MESSAGE_EMPTY_EMAIL_AND_PASSWORD_INPUT = "Brak podanego e-maila i hasła";
     private static final String MESSAGE_EMPTY_EMAIL_INPUT = "Brak podanego e-maila";
     private static final String MESSAGE_EMPTY_PASSWORD_INPUT = "Brak podanego hasła";
@@ -27,9 +27,8 @@ public class SignUpActivity extends AbstractAccessActivity {
     private static final String MESSAGE_INCORRECT_PASSWORD = "Niepoprawne hasło - musi zawierać co najmniej";
     private static final String MESSAGE_INCORRECT_PASSWORD_DETAILS = "8 znaków, 1 wielką i małą literę, 1 cyfrę oraz 1 znak specjalny.";
     private static final String MESSAGE_INCORRECT_EMAIL_AND_PASSWORD = "Niepoprawny e-mail i/lub hasło.";
-    private static final String MESSAGE_SUCCESSFUL_REGISTER = "Pomyślnie utworzono konto.";
 
-    private UserService userService = UserService.getInstance();
+    private UserService userService;
     private EmailValidatorService emailValidatorService;
     private PasswordValidatorService passwordValidatorService;
 
@@ -46,6 +45,7 @@ public class SignUpActivity extends AbstractAccessActivity {
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
 
+        userService = UserService.getInstance();
         emailValidatorService = new EmailValidatorService();
         passwordValidatorService = new PasswordValidatorService();
 
@@ -69,8 +69,8 @@ public class SignUpActivity extends AbstractAccessActivity {
     }
 
     private void registerUser() {
-        String email = emailInput.getText().toString();
-        String password = passwordInput.getText().toString();
+        String email = String.valueOf(emailInput.getText());
+        String password = String.valueOf(passwordInput.getText());
 
         if (email.isEmpty() || password.isEmpty()){
             showNotificationIfEmptyInput(email,password);
@@ -80,13 +80,13 @@ public class SignUpActivity extends AbstractAccessActivity {
             userService.registerNewUser(SignUpActivity.this, user, new UserRegisterCallback() {
                 @Override
                 public void onSuccess() {
-                    showToast(MESSAGE_SUCCESSFUL_REGISTER,Toast.LENGTH_SHORT);
                     changeToAfterLoginActivity();
+                    showToast(MESSAGE_REGISTER_SUCCESSFUL,Toast.LENGTH_LONG);
                 }
 
                 @Override
                 public void onFailed(String registerFailedMessage) {
-                    showToast(registerFailedMessage,Toast.LENGTH_SHORT);
+                    showToast(registerFailedMessage,Toast.LENGTH_LONG);
                 }
             });
         }

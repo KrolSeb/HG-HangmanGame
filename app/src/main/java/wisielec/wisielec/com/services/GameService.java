@@ -8,13 +8,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 
-import android.util.Log;
 import androidx.annotation.NonNull;
 import wisielec.wisielec.com.domain.User;
 import wisielec.wisielec.com.enums.Rank;
 
+
 public class GameService {
     private static final String TAG = "GameService";
+    private static final String USERS_CHILD_REFERENCE = "users";
+
     private static GameService instance = null;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -29,7 +31,8 @@ public class GameService {
     private final static int MAJOR_RANK_MAX_VALUE = 4499;
     private final static int COLONEL_RANK_MAX_VALUE = 6999;
 
-    public GameService() { }
+
+    private GameService() { }
 
     public static GameService getInstance() {
         if (instance == null) {
@@ -39,7 +42,7 @@ public class GameService {
     }
 
     public void updateUserDataAfterGame(int fullScore){
-        final DatabaseReference databaseReference = firebaseDatabase.getReference().child("users").child(firebaseAuth.getCurrentUser().getUid());
+        final DatabaseReference databaseReference = firebaseDatabase.getReference().child(USERS_CHILD_REFERENCE).child(firebaseAuth.getCurrentUser().getUid());
         databaseReference.runTransaction(new Transaction.Handler() {
             @NonNull
             @Override
@@ -55,9 +58,7 @@ public class GameService {
             }
 
             @Override
-            public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
-                Log.d(TAG, "postTransaction:onComplete:" + databaseError);
-            }
+            public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) { }
         });
     }
 

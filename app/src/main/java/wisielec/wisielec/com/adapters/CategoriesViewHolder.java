@@ -6,15 +6,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import wisielec.wisielec.com.R;
 
-public class CategoriesViewHolder extends RecyclerView.ViewHolder  {
+
+class CategoriesViewHolder extends RecyclerView.ViewHolder  {
     private Button singleCategoryButton;
 
-    public CategoriesViewHolder(@NonNull View itemView) {
+    CategoriesViewHolder(@NonNull View itemView) {
         super(itemView);
         singleCategoryButton= itemView.findViewById(R.id.singleCategoryButton);
     }
 
-    public Button getSingleCategoryButton() {
+    Button getSingleCategoryButton() {
         return singleCategoryButton;
     }
 

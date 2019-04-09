@@ -13,6 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 import wisielec.wisielec.com.R;
 import wisielec.wisielec.com.adapters.HowToPlayViewPagerAdapter;
 
+
 public class HowToPlayActivity extends MainActivity {
     private static final int ZERO = 0;
     private static final int DEFAULT_MARGIN = 8;
@@ -22,11 +23,12 @@ public class HowToPlayActivity extends MainActivity {
     private LinearLayout sliderDotsLayout;
     private List<ImageView> dots;
     private List<String> descriptions;
+    private TextView descriptionTextView;
+
     private int dotsCount;
     private int currentPosition;
     private int scrollState;
 
-    private TextView descriptionTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

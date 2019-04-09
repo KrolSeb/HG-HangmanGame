@@ -1,5 +1,7 @@
 package wisielec.wisielec.com.services;
 
+import android.util.Log;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -14,8 +16,11 @@ import java.util.Random;
 import androidx.annotation.NonNull;
 import wisielec.wisielec.com.domain.Category;
 
+
 public class CategoryService {
     private static final String TAG = "CategoryService";
+    private static final String CATEGORIES_CHILD_REFERENCE = "categories";
+
     private static CategoryService instance = null;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
@@ -29,7 +34,7 @@ public class CategoryService {
     }
 
     public void getCategoriesFromDatabase(final int count, final ICategoryCallback callback) {
-        final DatabaseReference databaseReference = firebaseDatabase.getReference().child("categories");
+        final DatabaseReference databaseReference = firebaseDatabase.getReference().child(CATEGORIES_CHILD_REFERENCE);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -40,7 +45,7 @@ public class CategoryService {
                 }
 
                 ArrayList<Category> randomizedCategoryList = new ArrayList<>();
-                HashSet<Integer> arrayWithRandomizedNumbers = getRandomArray(0, categoryList.size() - 1, count);
+                HashSet<Integer> arrayWithRandomizedNumbers = getRandomArray(categoryList.size() - 1, count);
 
                 for(Integer value : arrayWithRandomizedNumbers){
                     randomizedCategoryList.add(categoryList.get(value));
@@ -49,16 +54,18 @@ public class CategoryService {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) { }
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w(TAG, "getCategoriesFromDatabase:onCancelled", databaseError.toException());
+            }
         });
     }
 
-    private HashSet<Integer> getRandomArray(int min, int max, int numOfElements){
+    private HashSet<Integer> getRandomArray(int max, int numOfElements){
         HashSet<Integer> A = new HashSet<>();
         Random random = new Random();
 
         while(A.size() < numOfElements) {
-            A.add(random.nextInt((max - min) + 1) + min);
+            A.add(random.nextInt((max) + 1));
         }
 
         return A;

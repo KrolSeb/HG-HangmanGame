@@ -7,11 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import wisielec.wisielec.com.R;
 
+
 public class UsersViewHolder extends RecyclerView.ViewHolder {
     private TextView usernameTextView;
     private TextView pointsTextView;
 
-    public UsersViewHolder(@NonNull View itemView) {
+    UsersViewHolder(@NonNull View itemView) {
         super(itemView);
         usernameTextView= itemView.findViewById(R.id.usernameTextView);
         pointsTextView = itemView.findViewById(R.id.pointsTextView);
@@ -21,7 +22,7 @@ public class UsersViewHolder extends RecyclerView.ViewHolder {
         return usernameTextView;
     }
 
-    public TextView getPointsTextView() {
+    TextView getPointsTextView() {
         return pointsTextView;
     }
 

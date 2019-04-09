@@ -22,11 +22,15 @@ import wisielec.wisielec.com.services.UserService;
 
 public class AfterLoginActivity extends MainActivity {
     private static final String MESSAGE_SUCCESSFUL_LOGOUT = "Wylogowano z aplikacji.";
+    private static final String DIALOG_TITLE = "Wyjście";
+    private static final String DIALOG_MESSAGE = "Czy chcesz się wylogować z aplikacji?";
+    private static final String DIALOG_CONFIRM_ANSWER = "OK";
+    private static final String DIALOG_DENY_ANSWER = "Cofnij";
+    private static final String POINTS_ABBREVIATION = "pkt";
+    private static final String SPACE = " ";
 
-    /**
-     * ActivityLoginElements
-     * TextViews
-     */
+    @BindView(R.id.avatarImageView)
+    protected ImageView avatar;
     @BindView(R.id.usernameTextView)
     protected TextView username;
     @BindView(R.id.firstUserPositionTextView)
@@ -42,17 +46,8 @@ public class AfterLoginActivity extends MainActivity {
     @BindView(R.id.thirdUserPointsTextView)
     protected TextView thirdUserPoints;
 
-    /**
-     * ActivityLoginElements
-     * Images
-     */
-    @BindView(R.id.avatarImageView)
-    protected ImageView avatar;
-
-    /**
-     * UserPanelBarElements
-     * TextViews
-     */
+    @BindView(R.id.avatarImageViewBar)
+    protected ImageView avatarBar;
     @BindView(R.id.usernameTextViewBar)
     protected TextView usernameBar;
     @BindView(R.id.rankingPositionTextViewBar)
@@ -62,24 +57,9 @@ public class AfterLoginActivity extends MainActivity {
     @BindView(R.id.pointsAmountTextViewBar)
     protected TextView pointsAmountBar;
 
-    /**
-     * UserPanelBarElements
-     * Images
-     */
-    @BindView(R.id.avatarImageViewBar)
-    protected ImageView avatarBar;
-
-    /**
-     * UserService
-     * Object used to do actions on current user.
-     */
     private UserService userService;
-
-    /**
-     * RankService
-     * Object used to get users ranking.
-     */
     private RankService rankService;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,13 +69,16 @@ public class AfterLoginActivity extends MainActivity {
         userService = UserService.getInstance();
         rankService = RankService.getInstance();
 
+        setNavigationDrawerProperties();
+        getCurrentUserData();
+        getThreeBestUsersFromRanking();
+    }
+
+    private void setNavigationDrawerProperties() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        getCurrentUserData();
-        getThreeBestUsersFromRanking();
     }
 
     private void getCurrentUserData(){
@@ -137,7 +120,7 @@ public class AfterLoginActivity extends MainActivity {
         username.setText(String.valueOf(user.getUserName()));
         usernameBar.setText(String.valueOf(user.getUserName()));
         rankLevelBar.setText(String.valueOf(user.getRank()));
-        pointsAmountBar.setText(String.valueOf(user.getPoints() + " pkt"));
+        pointsAmountBar.setText(String.valueOf(user.getPoints() + SPACE + POINTS_ABBREVIATION));
         bindUserRankingPosition();
     }
 
@@ -177,10 +160,10 @@ public class AfterLoginActivity extends MainActivity {
     @Override
     public void onBackPressed() {
         AlertDialog.Builder quitDialogBuilder = new AlertDialog.Builder(AfterLoginActivity.this);
-        quitDialogBuilder.setTitle("Wyjście");
-        quitDialogBuilder.setMessage("Czy chcesz się wylogować z aplikacji?");
-        quitDialogBuilder.setPositiveButton("Tak", (dialog, which) -> logoutOperations());
-        quitDialogBuilder.setNegativeButton("Cofnij", (dialog, which) -> dialog.dismiss());
+        quitDialogBuilder.setTitle(DIALOG_TITLE);
+        quitDialogBuilder.setMessage(DIALOG_MESSAGE);
+        quitDialogBuilder.setPositiveButton(DIALOG_CONFIRM_ANSWER, (dialog, which) -> logoutOperations());
+        quitDialogBuilder.setNegativeButton(DIALOG_DENY_ANSWER, (dialog, which) -> dialog.dismiss());
         AlertDialog quitDialog = quitDialogBuilder.create();
         quitDialog.show();
     }
@@ -188,13 +171,13 @@ public class AfterLoginActivity extends MainActivity {
     private void logoutOperations(){
         Intent signInActivityIntent = new Intent(AfterLoginActivity.this,SignInActivity.class);
         userService.logOut(() -> {
-            showToast(MESSAGE_SUCCESSFUL_LOGOUT,Toast.LENGTH_SHORT);
             startActivity(signInActivityIntent);
             finish();
+            showToast();
         });
     }
 
-    private void showToast(String message,int length){
-        Toast.makeText(AfterLoginActivity.this,message,length).show();
+    private void showToast(){
+        Toast.makeText(AfterLoginActivity.this, MESSAGE_SUCCESSFUL_LOGOUT, Toast.LENGTH_SHORT).show();
     }
 }

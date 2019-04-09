@@ -31,6 +31,7 @@ import wisielec.wisielec.com.services.UserService;
 
 public class EditAccountActivity extends AbstractEditAccountActivity {
     private static final String MESSAGE_DENIED_READ_EXTERNAL_STORAGE_PERMISSION = "Odmówiono przyznania uprawnień.";
+    private static final String EMPTY_STRING = "";
 
     private static final String DIALOG_DELETE_ACCOUNT_HEADER_MESSAGE = "Czy na pewno?";
     private static final String DIALOG_DELETE_ACCOUNT_MAIN_MESSAGE = "Potwierdzenie operacji oznacza usunięcie konta użytkownika wraz z wszystkimi danymi. Czy chcesz kontynuować?";
@@ -51,10 +52,9 @@ public class EditAccountActivity extends AbstractEditAccountActivity {
 
     private static final String INTENT_FILE_TYPES = "image/*";
     private static final String INTENT_FILE_TYPE_JPEG = "image/jpeg";
-    private static final String INTENT_FILE_TYPE_PNG = "image/jpeg";
+    private static final String INTENT_FILE_TYPE_PNG = "image/png";
     private static final String PERMISSION_STATE_KEY = "permissionState";
     private String[] mimeTypes = {INTENT_FILE_TYPE_JPEG, INTENT_FILE_TYPE_PNG};
-
 
     @BindView(R.id.avatarImageView)
     ImageView avatarImageView;
@@ -109,7 +109,7 @@ public class EditAccountActivity extends AbstractEditAccountActivity {
 
     private void updateUserName() {
         String username = newUsernameEditText.getText().toString();
-        if (!username.equals("")) {
+        if (!username.equals(EMPTY_STRING)) {
             userService.updateUserName(username, new UpdateUsernameCallback() {
                 @Override
                 public void onSuccess() {
@@ -224,14 +224,13 @@ public class EditAccountActivity extends AbstractEditAccountActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageURI = data.getData();
-            Picasso.get().load(imageURI).into(dialogImageView);
+            Picasso.get().load(imageURI).fit().centerInside().into(dialogImageView);
             enableUpdateButton();
         }
     }
 
     private void openFileChooser() {
         Intent intent = new Intent();
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType(INTENT_FILE_TYPES);
         intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
         intent.setAction(Intent.ACTION_GET_CONTENT);
