@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_with_border"
-    tools:context="wisielec.wisielec.com.activity.HowToPlayActivity">
+    tools:context="com.android.hangman.activity.HowToPlayActivity">
 
     <TextView
         android:id="@+id/titleTextView"

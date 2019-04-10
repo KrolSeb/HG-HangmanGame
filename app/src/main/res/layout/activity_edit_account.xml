@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_with_border"
-    tools:context="wisielec.wisielec.com.activity.EditAccountActivity">
+    tools:context="com.android.hangman.activity.EditAccountActivity">
 
     <TextView
         android:id="@+id/titleTextView"
@@ -45,19 +45,20 @@
         android:layout_width="0sp"
         android:layout_height="0sp"
         android:layout_gravity="center"
+        android:gravity="center"
         android:text=""
+        android:textAlignment="center"
         android:textColor="#0d2c4b"
         android:textStyle="bold"
-        android:textAlignment="center"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="14sp"
         app:autoSizeMaxTextSize="26sp"
+        app:autoSizeMinTextSize="14sp"
         app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal6"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toRightOf="@+id/guidelineVertical1"
         app:layout_constraintRight_toLeftOf="@+id/guidelineVertical5"
-        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal5"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal6" />
+        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal5" />
 
 
     <EditText
@@ -65,18 +66,19 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center"
+        android:autofillHints="email"
         android:background="@drawable/style_edittext_border"
+        android:gravity="center"
         android:hint="@string/activity_edit_account_new_username_hint"
+        android:inputType="textAutoCorrect"
         android:textAlignment="center"
         android:textColor="#7c8085"
         android:textStyle="bold"
-        android:autofillHints="email"
-        android:inputType="textAutoCorrect"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal10"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toRightOf="@+id/guidelineVertical1"
         app:layout_constraintRight_toLeftOf="@+id/guidelineVertical5"
         app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal9"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal10"
         tools:targetApi="o" />
 
     <Button

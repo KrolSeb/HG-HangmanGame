@@ -161,16 +161,17 @@
         android:id="@+id/userStatsTextView"
         android:layout_width="0sp"
         android:layout_height="0sp"
+        android:gravity="center"
+        android:text="@string/activity_summary_user_statistics"
         android:textAlignment="center"
         android:textColor="#0d2c4b"
         android:textStyle="bold"
-        android:text="@string/activity_summary_user_statistics"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="16sp"
         app:autoSizeMaxTextSize="22sp"
+        app:autoSizeMinTextSize="16sp"
         app:autoSizeStepGranularity="2sp"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal12"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toRightOf="@id/guidelineVertical1"
         app:layout_constraintRight_toLeftOf="@id/guidelineVertical13"
         app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal11" />
@@ -347,7 +348,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.14" />
+        app:layout_constraintGuide_percent="0.17" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical3"
@@ -368,14 +369,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.39" />
+        app:layout_constraintGuide_percent="0.42" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.43" />
+        app:layout_constraintGuide_percent="0.46" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical7"

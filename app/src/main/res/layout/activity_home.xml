@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_without_border"
-    tools:context="wisielec.wisielec.com.activity.HomeActivity">
+    tools:context="com.android.hangman.activity.HomeActivity">
 
     <ImageView
         android:id="@+id/applicationIconImageView"
