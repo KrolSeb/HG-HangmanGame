@@ -2,7 +2,7 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="wisielec.wisielec.com">
+    package="com.android.hangman">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -11,17 +11,13 @@
     <application
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:allowBackup="true"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:largeHeap="true"
         android:theme="@style/AppTheme"
-        android:appComponentFactory="whateverString"
-        tools:replace="android:appComponentFactory"
-        tools:ignore="GoogleAppIndexingWarning"
-        tools:targetApi="p" >
+        android:allowBackup="false"
+        tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".activity.HomeActivity"
+        <activity
+            android:name="com.android.hangman.activity.HomeActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
@@ -33,66 +29,72 @@
         </activity>
 
         <activity
-            android:name=".activity.AfterLoginActivity"
+            android:name="com.android.hangman.activity.AfterLoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
         </activity>
 
         <activity
-            android:name=".activity.SignInActivity"
+            android:name="com.android.hangman.activity.SignInActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
         </activity>
 
         <activity
-            android:name=".activity.SignUpActivity"
+            android:name="com.android.hangman.activity.SignUpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
         </activity>
 
         <activity
-            android:name=".activity.EditAccountActivity"
+            android:name="com.android.hangman.activity.EditAccountActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
         </activity>
 
         <activity
-            android:name=".activity.HowToPlayActivity"
+            android:name="com.android.hangman.activity.HowToPlayActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
         </activity>
 
         <activity
-            android:name=".activity.RankingActivity"
+            android:name="com.android.hangman.activity.RankingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
         </activity>
 
         <activity
-            android:name=".activity.ChooseCountOfRoundsActivity"
+            android:name="com.android.hangman.activity.ChooseCountOfRoundsActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme" >
         </activity>
 
         <activity
-            android:name=".activity.ChooseCategoriesActivity"
+            android:name="com.android.hangman.activity.ChooseCategoriesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
         </activity>
 
         <activity
-            android:name=".activity.PlayGameActivity"
+            android:name="com.android.hangman.activity.PlayGameActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
         </activity>
 
         <activity
-            android:name=".activity.SummaryActivity"
+            android:name="com.android.hangman.activity.SummaryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
         </activity>
 
+        <activity
+            android:name="com.android.hangman.activity.ApplicationInformationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
+
 </manifest>

@@ -1,5 +1,129 @@
 <resources>
     <string name="app_name">Gra w wisielca</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Otwórz boczne menu</string>
+    <string name="navigation_drawer_close">Zamknij boczne menu</string>
+
+    <string name="activity_after_login_avatar_description">Avatar użytkownika</string>
+    <string name="activity_after_login_play_game_button">Graj</string>
+    <string name="activity_after_login_how_to_play_button">Jak grać?</string>
+    <string name="activity_after_login_ranking_button">Ranking</string>
+    <string name="activity_after_login_best_players">Najlepsi gracze</string>
+    <string name="activity_after_login_first_badge_image_description">Najlepszy gracz</string>
+    <string name="activity_after_login_second_badge_image_description">Drugi najlepszy gracz</string>
+    <string name="activity_after_login_third_badge_image_description">Trzeci najlepszy gracz</string>
+
+    <string name="app_bar_after_login_avatar_description">Avatar użytkownika</string>
+    <string name="app_bar_after_login_ranking">Miejsce w rankingu</string>
+    <string name="app_bar_after_login_rank">Ranga</string>
+    <string name="app_bar_after_login_points">Punkty</string>
+    <string name="app_bar_after_login_settings_button">Ustawienia</string>
+    <string name="app_bar_after_login_logout_button">Wyloguj</string>
+
+    <string name="activity_application_information_title">O aplikacji</string>
+
+
+    <string name="activity_choose_categories_title">Kategorie</string>
+    <string name="activity_choose_categories_change_category">Zmień kategorie</string>
+    <string name="activity_choose_categories_start_game_button">Zacznij rozgrywkę</string>
+
+    <string name="activity_choose_count_of_rounds_title">Wybierz liczbę rund</string>
+    <string name="activity_choose_count_of_rounds_three_rounds">3 rundy</string>
+    <string name="activity_choose_count_of_rounds_five_rounds">5 rund</string>
+    <string name="activity_choose_count_of_rounds_seven_rounds">7 rund</string>
+
+    <string name="activity_edit_account_title">Edycja konta</string>
+    <string name="activity_edit_account_avatar_description">Avatar użytkownika</string>
+    <string name="activity_edit_account_new_username_hint">Podaj nową nazwę</string>
+    <string name="activity_edit_account_save_button">Zapisz</string>
+    <string name="activity_edit_account_change_avatar_button">Zmień avatar</string>
+    <string name="activity_edit_account_delete_account_button">Usuń konto</string>
+
+    <string name="activity_home_application_logo_description">Logo aplikacji</string>
+    <string name="activity_home_login_button">Logowanie</string>
+    <string name="activity_home_registration_button">Rejestracja</string>
+    <string name="activity_home_about_application_button">O aplikacji</string>
+    <string name="activity_home_quit_button">Wyjście</string>
+
+    <string name="activity_how_to_play_title">Jak grać?</string>
+
+    <string name="activity_play_game_hangman_window">Okno wisielca</string>
+    <string name="activity_play_game_hangman_element_one">Pierwszy element</string>
+    <string name="activity_play_game_hangman_element_two">Drugi element</string>
+    <string name="activity_play_game_hangman_element_three">Trzeci element</string>
+    <string name="activity_play_game_hangman_element_four">Czwarty element</string>
+    <string name="activity_play_game_hangman_element_five">Piąty element</string>
+    <string name="activity_play_game_letter_A">A</string>
+    <string name="activity_play_game_letter_B">B</string>
+    <string name="activity_play_game_letter_C">C</string>
+    <string name="activity_play_game_letter_D">D</string>
+    <string name="activity_play_game_letter_E">E</string>
+    <string name="activity_play_game_letter_F">F</string>
+    <string name="activity_play_game_letter_G">G</string>
+    <string name="activity_play_game_letter_H">H</string>
+    <string name="activity_play_game_letter_I">I</string>
+    <string name="activity_play_game_letter_J">J</string>
+    <string name="activity_play_game_letter_K">K</string>
+    <string name="activity_play_game_letter_L">L</string>
+    <string name="activity_play_game_letter_M">M</string>
+    <string name="activity_play_game_letter_N">N</string>
+    <string name="activity_play_game_letter_O">O</string>
+    <string name="activity_play_game_letter_P">P</string>
+    <string name="activity_play_game_letter_Q">Q</string>
+    <string name="activity_play_game_letter_R">R</string>
+    <string name="activity_play_game_letter_S">S</string>
+    <string name="activity_play_game_letter_T">T</string>
+    <string name="activity_play_game_letter_U">U</string>
+    <string name="activity_play_game_letter_V">V</string>
+    <string name="activity_play_game_letter_W">W</string>
+    <string name="activity_play_game_letter_X">X</string>
+    <string name="activity_play_game_letter_Y">Y</string>
+    <string name="activity_play_game_letter_Z">Z</string>
+    <string name="activity_play_game_letter_polish_A">Ą</string>
+    <string name="activity_play_game_letter_polish_C">Ć</string>
+    <string name="activity_play_game_letter_polish_E">Ę</string>
+    <string name="activity_play_game_letter_polish_L">Ł</string>
+    <string name="activity_play_game_letter_polish_N">Ń</string>
+    <string name="activity_play_game_letter_polish_O">Ó</string>
+    <string name="activity_play_game_letter_polish_S">Ś</string>
+    <string name="activity_play_game_letter_polish_Z1">Ź</string>
+    <string name="activity_play_game_letter_polish_Z2">Ż</string>
+
+    <string name="activity_ranking_title">Ranking</string>
+    <string name="activity_ranking_avatar_description">Avatar użytkownika</string>
+    <string name="activity_ranking_rank_position">Miejsce w rankingu:</string>
+    <string name="activity_ranking_best_players">Lista najlepszych graczy</string>
+
+    <string name="activity_sign_in_title">Logowanie</string>
+    <string name="activity_sign_in_sign_up_email_hint">E-mail</string>
+    <string name="activity_sign_in_sign_up_password_hint">Hasło</string>
+    <string name="activity_sign_in_login_button">Zaloguj</string>
+    <string name="activity_sign_in_account_not_exists">Nie masz konta?</string>
+    <string name="activity_sign_in_registration_button">Rejestracja</string>
+
+    <string name="activity_sign_up_title">Rejestracja</string>
+    <string name="activity_sign_up_registration_button">Zarejestruj</string>
+    <string name="activity_sign_up_account_exists">Posiadasz już konto?</string>
+    <string name="activity_sign_up_login_button">Zaloguj</string>
+
+    <string name="activity_summary_title">Podsumowanie</string>
+    <string name="activity_summary_avatar_description">Avatar użytkownika</string>
+    <string name="activity_summary_base_score">Bazowy wynik</string>
+    <string name="activity_summary_bonus">Bonus</string>
+    <string name="activity_summary_full_score">Łączny wynik</string>
+    <string name="activity_summary_user_statistics">Statystyki użytkownika</string>
+    <string name="activity_summary_points">Punkty</string>
+    <string name="activity_summary_rank">Ranga</string>
+    <string name="activity_summary_before_game">Przed grą</string>
+    <string name="activity_summary_after_game">Po grze</string>
+    <string name="activity_summary_end_game_button">Zakończ rozgrywkę</string>
+
+    <string name="dialog_choose_avatar_title">Zmiana avatara</string>
+    <string name="dialog_choose_avatar_image_view_description">Nowy avatar</string>
+    <string name="dialog_choose_avatar_upload_button">Wgraj avatar</string>
+    <string name="dialog_choose_avatar_update_button">Zaktualizuj</string>
+
+    <string name="dialog_game_popup_image_view_description">Ikona po zakończonej rundzie</string>
+    <string name="dialog_game_popup_go_further_button">Przejdź dalej</string>
+
+    <string name="view_pager_item_description">Zasady gry - grafika</string>
 </resources>

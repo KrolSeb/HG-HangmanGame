@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_with_border"
-    tools:context="wisielec.wisielec.com.activity.EditAccountActivity">
+    tools:context="com.android.hangman.activity.EditAccountActivity">
 
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="Edycja konta"
+        android:text="@string/activity_edit_account_title"
         android:textAlignment="center"
         android:textColor="#0d2c4b"
         android:textStyle="bold"
@@ -28,6 +28,7 @@
 
     <ImageView
         android:id="@+id/avatarImageView"
+        android:contentDescription="@string/activity_edit_account_avatar_description"
         android:layout_width="0sp"
         android:layout_height="0sp"
         android:layout_alignParentTop="true"
@@ -44,19 +45,20 @@
         android:layout_width="0sp"
         android:layout_height="0sp"
         android:layout_gravity="center"
+        android:gravity="center"
         android:text=""
+        android:textAlignment="center"
         android:textColor="#0d2c4b"
         android:textStyle="bold"
-        android:textAlignment="center"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="14sp"
         app:autoSizeMaxTextSize="26sp"
+        app:autoSizeMinTextSize="14sp"
         app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal6"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toRightOf="@+id/guidelineVertical1"
         app:layout_constraintRight_toLeftOf="@+id/guidelineVertical5"
-        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal5"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal6" />
+        app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal5" />
 
 
     <EditText
@@ -64,16 +66,20 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center"
+        android:autofillHints="email"
         android:background="@drawable/style_edittext_border"
-        android:hint="Podaj nową nazwę"
+        android:gravity="center"
+        android:hint="@string/activity_edit_account_new_username_hint"
+        android:inputType="textAutoCorrect"
         android:textAlignment="center"
         android:textColor="#7c8085"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal10"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toRightOf="@+id/guidelineVertical1"
         app:layout_constraintRight_toLeftOf="@+id/guidelineVertical5"
         app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal9"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal10" />
+        tools:targetApi="o" />
 
     <Button
         android:id="@+id/saveButton"
@@ -81,7 +87,7 @@
         android:layout_height="0sp"
         android:layout_gravity="center"
         android:background="#0d2c4b"
-        android:text="Zapisz"
+        android:text="@string/activity_edit_account_save_button"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
         android:textColor="#f4d170"
         android:textStyle="bold"
@@ -101,12 +107,14 @@
         android:layout_height="0sp"
         android:layout_gravity="center"
         android:background="#0d2c4b"
-        android:text="Zmień avatar"
+        android:text="@string/activity_edit_account_change_avatar_button"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
         android:textColor="#f4d170"
         android:textStyle="bold"
-        android:textSize="18dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="10sp"
+        app:autoSizeMaxTextSize="18sp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toRightOf="@+id/guidelineVertical1"
         app:layout_constraintRight_toLeftOf="@+id/guidelineVertical5"
@@ -122,7 +130,7 @@
         android:textAppearance="@android:style/TextAppearance.Small.Inverse"
         android:textColor="#0d2c4b"
         android:textStyle="bold"
-        android:text="Usuń konto"
+        android:text="@string/activity_edit_account_delete_account_button"
         android:padding="10sp"
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="10sp"

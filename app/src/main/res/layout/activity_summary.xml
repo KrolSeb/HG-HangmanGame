@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="Podsumowanie"
+        android:text="@string/activity_summary_title"
         android:textAlignment="center"
         android:textColor="#0d2c4b"
         android:textStyle="bold"
@@ -26,6 +26,7 @@
 
     <ImageView
         android:id="@+id/avatarImageView"
+        android:contentDescription="@string/activity_summary_avatar_description"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_alignParentTop="true"
@@ -59,9 +60,9 @@
         android:layout_width="0sp"
         android:layout_height="0sp"
         android:textColor="#0d2c4b"
-        android:gravity="right|center"
+        android:gravity="end|center"
         android:textStyle="bold"
-        android:text="Bazowy wynik"
+        android:text="@string/activity_summary_base_score"
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="12sp"
         app:autoSizeMaxTextSize="20sp"
@@ -93,8 +94,8 @@
         android:layout_width="0sp"
         android:layout_height="0sp"
         android:textColor="#0d2c4b"
-        android:text="Bonus"
-        android:gravity="right|center"
+        android:text="@string/activity_summary_bonus"
+        android:gravity="end|center"
         android:textStyle="bold"
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="12sp"
@@ -126,8 +127,8 @@
         android:id="@+id/gameFinalScoreTextView"
         android:layout_width="0sp"
         android:layout_height="0sp"
-        android:text="Łączny wynik"
-        android:gravity="right|center"
+        android:text="@string/activity_summary_full_score"
+        android:gravity="end|center"
         android:textColor="#0d2c4b"
         android:textStyle="bold"
         app:autoSizeTextType="uniform"
@@ -160,16 +161,17 @@
         android:id="@+id/userStatsTextView"
         android:layout_width="0sp"
         android:layout_height="0sp"
+        android:gravity="center"
+        android:text="@string/activity_summary_user_statistics"
         android:textAlignment="center"
         android:textColor="#0d2c4b"
         android:textStyle="bold"
-        android:text="Statystyki użytkownika"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="16sp"
         app:autoSizeMaxTextSize="22sp"
+        app:autoSizeMinTextSize="16sp"
         app:autoSizeStepGranularity="2sp"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal12"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toRightOf="@id/guidelineVertical1"
         app:layout_constraintRight_toLeftOf="@id/guidelineVertical13"
         app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal11" />
@@ -179,7 +181,7 @@
         android:layout_width="0sp"
         android:layout_height="0sp"
         android:gravity="center"
-        android:text="Punkty"
+        android:text="@string/activity_summary_points"
         android:textColor="#0d2c4b"
         android:textStyle="bold"
         app:autoSizeMinTextSize="12sp"
@@ -196,7 +198,7 @@
         android:layout_width="0sp"
         android:layout_height="0sp"
         android:gravity="center"
-        android:text="Ranga"
+        android:text="@string/activity_summary_rank"
         android:textColor="#0d2c4b"
         android:textStyle="bold"
         app:autoSizeMinTextSize="12sp"
@@ -216,7 +218,7 @@
         android:textStyle="bold"
         android:textAlignment="center"
         android:gravity="center"
-        android:text="Przed grą"
+        android:text="@string/activity_summary_before_game"
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="16sp"
         app:autoSizeMaxTextSize="20sp"
@@ -270,7 +272,7 @@
         android:textStyle="bold"
         android:textAlignment="center"
         android:gravity="center"
-        android:text="Po grze"
+        android:text="@string/activity_summary_after_game"
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="16sp"
         app:autoSizeMaxTextSize="20sp"
@@ -325,7 +327,7 @@
         android:textColor="#F4D170"
         android:textStyle="bold"
         android:padding="10sp"
-        android:text="Zakończ rozgrywkę"
+        android:text="@string/activity_summary_end_game_button"
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="14sp"
         app:autoSizeMaxTextSize="28sp"
@@ -346,7 +348,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.14" />
+        app:layout_constraintGuide_percent="0.17" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical3"
@@ -367,14 +369,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.39" />
+        app:layout_constraintGuide_percent="0.42" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.43" />
+        app:layout_constraintGuide_percent="0.46" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical7"
