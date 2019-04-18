@@ -20,6 +20,17 @@
     <string name="app_bar_after_login_logout_button">Wyloguj</string>
 
     <string name="activity_application_information_title">O aplikacji</string>
+    <string name="activity_application_information_app_logo_description">Logo aplikacji</string>
+    <string name="activity_application_information_app_version">ver 1.0</string>
+    <string name="activity_application_information_authors">Autorzy</string>
+    <string name="activity_application_information_main_developer_logo_description">Logo autora</string>
+    <string name="activity_application_information_main_developer"><a href="https://github.com/KrolSeb">KrolSeb</a></string>
+    <string name="activity_application_information_first_developer"><a href="https://github.com/martapiecko">martapiecko</a></string>
+    <string name="activity_application_information_second_developer"><a href="https://github.com/kusmierczykw">kusmierczykw</a></string>
+    <string name="activity_application_information_third_developer"><a href="https://github.com/mati6677">mati6677</a></string>
+    <string name="activity_application_information_readme_project_link"><a href="https://github.com/KrolSeb/HG-HangmanGame/blob/master/README.md">Szczegóły projektu</a></string>
+    <string name="activity_application_information_contact">Kontakt</string>
+    <string name="activity_application_information_mail_link"><a href="mailto:sibisserv@gmail.com" target="_top">sibisserv@gmail.com</a></string>
 
 
     <string name="activity_choose_categories_title">Kategorie</string>
