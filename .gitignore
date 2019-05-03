@@ -20,15 +20,6 @@ out/
 # Gradle files
 .gradle/
 build/
-app/build.gradle
-build.gradle
-gradle.properties
-gradlew
-gradlew.bat
-settings.gradle
-
-# Gradle wrapper files
-gradle/wrapper
 
 # Local configuration file (sdk path, etc)
 local.properties
