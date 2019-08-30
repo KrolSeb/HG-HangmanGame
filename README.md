@@ -85,6 +85,6 @@ After finishing my studies I want to continue application  implementation.
 Primarily I want to improve my programming skills, Java knowledge and increase expercience in creating mobile apps. 
 
 ## Contact
-Created by [@KrolSeb](https://krolseb.github.io/blog/) - please feel free to contact me if you need any further information.
+Created by [@KrolSeb](https://krolseb.github.io/) - please feel free to contact me if you need any further information.
 
 Credits to [@flynerdpl](https://www.flynerd.pl/) for the article about github README writing - it's my first "good quality" README on Github :).
